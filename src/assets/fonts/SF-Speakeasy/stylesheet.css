@@ -1,0 +1,11 @@
+@font-face {
+    font-family: 'sf-speakeasy';
+    src: url('sf-speakeasy-regular-webfont.eot');
+    src: url('sf-speakeasy-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('sf-speakeasy-regular-webfont.woff2') format('woff2'),
+         url('sf-speakeasy-regular-webfont.woff') format('woff'),
+         url('sf-speakeasy-regular-webfont.ttf') format('truetype'),
+         url('sf-speakeasy-regular-webfont.svg#sf-speakeasy') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
