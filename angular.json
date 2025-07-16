@@ -65,10 +65,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "trail-trekkers:build:production"
+              "buildTarget": "trail-trekkers:build:production"
             },
             "development": {
-              "browserTarget": "trail-trekkers:build:development"
+              "buildTarget": "trail-trekkers:build:development"
             }
           },
           "defaultConfiguration": "development"
