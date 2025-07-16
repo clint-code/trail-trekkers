@@ -17,6 +17,8 @@ import { SingleHikeItemComponent } from './components/single-hike-item/single-hi
 
 @NgModule({
   declarations: [
+  ],
+  imports: [
     AppComponent,
     HomeComponent,
     AdventuresComponent,
@@ -29,12 +31,10 @@ import { SingleHikeItemComponent } from './components/single-hike-item/single-hi
     SinglePostItemComponent,
     PostBannerComponent,
     HikeBannerComponent,
-    SingleHikeItemComponent
-  ],
-  imports: [
+    SingleHikeItemComponent,
     BrowserModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: []
 })
 export class AppModule { }
