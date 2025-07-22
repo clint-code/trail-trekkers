@@ -5,16 +5,31 @@
 }
 
 .home {
+  .content-left {
+    width: 35%;
+    min-height: 100vh;
+    position: relative;
+    height: auto;
+
+    .text-section {
+      h1 {
+        line-height: 0.85;
+      }
+    }
+  }
   .content-right {
+    width: 65%;
+
     .column {
       .scroll {
         animation: scroll-up 20s linear infinite;
 
         img {
-          width: 50%;
+          width: 90%;
           height: auto;
           object-fit: cover;
           margin-bottom: 20px;
+          border-radius: 20px;
         }
       }
 
