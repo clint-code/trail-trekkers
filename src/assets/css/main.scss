@@ -1,23 +1,44 @@
+.navbar-header {
+  z-index: 10;
+  position: fixed;
+  width: 100%;
+}
 
+.home {
+  .content-right {
+    .column {
+      .scroll {
+        animation: scroll-up 20s linear infinite;
 
-.banner-section {
-  background-color: #f0f0f0;
-  padding: 20px;
-  text-align: center;
+        img {
+          width: 50%;
+          height: auto;
+          object-fit: cover;
+          margin-bottom: 20px;
+        }
+      }
 
-  h1 {
-    font-size: 2rem;
-    font-weight: bold;
-    font-family: "apple_garamonditalic", serif;
+      .reverse {
+        animation: scroll-down 20s linear infinite;
+      }
+    }
   }
+}
 
-  h2 {
-    font-size: 1.5rem;
-    font-weight: normal;
-    font-family: "sf-speakeasy", sans-serif;
+@keyframes scroll-up {
+  0% {
+    transform: translateY(0);
   }
+  100% {
+    transform: translateY(-50%);
+  }
+}
 
-  p {
-    font-family: "passion_oneregular", sans-serif;
+@keyframes scroll-down {
+  0% {
+    transform: translateY(-50%);
+  }
+  100% {
+    transform: translateY(0);
   }
 }
