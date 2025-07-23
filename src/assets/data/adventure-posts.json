@@ -2,19 +2,43 @@
   {
     "id": 1,
     "title": "First Hike, Fierce Climb",
-    "image": "assets/img/elephant-hill-2-1.jpg",
-    "description": "A thrilling trek through the Aberdares."
+    "imageUrl": "assets/img/blog-article-imgs/elephant-hill-1.png",
+    "imageAlt": "Elephant Hill",
+    "location": "Elephant Hill, Aberdare Ranges, Njabini."
   },
   {
     "id": 2,
     "title": "Call of the Wild",
-    "image": "assets/img/loldia-eburru-4.jpg",
-    "description": "Scenic lake views and grassy plains."
+    "imageUrl": "assets/img/blog-article-imgs/lolida-eburru-campsite.png",
+    "imageAlt": "Lolida Eburru Campsite",
+    "location": "Lolida Eburru Campsite, Naivasha"
   },
   {
     "id": 3,
+    "title": "Cold Nights, Warm Memories",
+    "imageUrl": "assets/img/blog-article-imgs/cold-loldia-eburru.png",
+    "imageAlt": "Lolida Eburru Campsite",
+    "location": "Lolida Eburru Campsite, Naivasha"
+  },
+    {
+    "id": 4,
+    "title": "Beyond Expectations",
+    "imageUrl": "assets/img/blog-article-imgs/Kijabe-Hill.png",
+    "imageAlt": "Kijabe Hill",
+    "location": "Kijabe Hill, Kijabe"
+  },
+    {
+    "id": 5,
     "title": "Battling the Elements",
-    "image": "assets/images/kamweti.jpg",
-    "description": "Dense misty forests for true explorers."
+    "imageUrl": "assets/img/blog-article-imgs/rurimeria-hill.png",
+    "imageAlt": "Rurimeria Hill",
+    "location": "Rurimeria Hill, Aberdare Ranges"
+  },
+    {
+    "id": 6,
+    "title": "Grand Finale",
+    "imageUrl": "assets/img/blog-article-imgs/mount-longonot.png",
+    "imageAlt": "Mount Longonot",
+    "location": "Mount Longonot, Naivasha"
   }
 ]

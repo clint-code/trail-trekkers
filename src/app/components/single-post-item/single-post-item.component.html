@@ -1,10 +1,15 @@
-<div class="single-post-item">
-    <div class="post-image">
-        <img [src]="postImageUrl" alt="Post Image" class="w-full h-auto object-cover">
+<div class="single-post-item relative mb-5">
+    <div class="post-image ">
+        <img 
+            [src]="postImageUrl" 
+            [alt]="postImageAlt" 
+            class="w-full h-auto object-cover">
+    
+        <div class="post-content p-4 absolute bottom-0 w-full">
+            <h2 class="text-5xl uppercase font-garamondItalic text-white text-center">{{ postTitle }}</h2>
+            <h3 class="text-2xl font-garamondRegular text-white text-center mt-2">{{ postSubtitle }}</h3>
+        </div>
+
     </div>
     
-    <div class="post-content p-4">
-        <h2 class="text-2xl font-garamondItalic text-white">{{ postTitle }}</h2>
-        <h3 class="text-xl font-garamondRegular text-white mt-2">{{ postSubtitle }}</h3>
-    </div>
 </div>

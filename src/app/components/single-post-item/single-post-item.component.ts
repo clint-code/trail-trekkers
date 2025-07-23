@@ -12,6 +12,7 @@ export class SinglePostItemComponent {
   @Input() postTitle: string = '';
   @Input() postSubtitle: string = '';
   @Input() postImageUrl: string = '';
+  @Input() postImageAlt: string = '';
 
   constructor() { }
 
