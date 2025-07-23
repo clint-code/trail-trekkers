@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-single-post-item',
@@ -9,4 +9,11 @@ import { Component } from '@angular/core';
 })
 export class SinglePostItemComponent {
 
+  @Input() postTitle: string = '';
+  @Input() postSubtitle: string = '';
+  @Input() postImageUrl: string = '';
+
+  constructor() { }
+
+  // Additional methods can be added here if needed
 }

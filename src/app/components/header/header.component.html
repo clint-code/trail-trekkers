@@ -1,19 +1,45 @@
 <header class="bg-[#FAF8EC] text-white shadow-md py-2">
-
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
-    
+  <div
+    class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20"
+  >
     <!-- Logo -->
     <div class="flex items-center space-x-4">
-      <img src="assets/img/Trail-Trekkers-logo.png" alt="Trail Trekkers" class="h-20 w-auto" />
+      <img
+        src="assets/img/Trail-Trekkers-logo.png"
+        alt="Trail Trekkers"
+        class="h-20 w-auto"
+      />
     </div>
 
     <!-- Navigation -->
     <nav class="hidden md:flex space-x-8 text-xl">
-      <a href="#" class="hover:text-orange-600 transition font-passion text-black">Upcoming Hikes</a>
-      <a href="#" class="hover:text-orange-600 transition font-passion text-black">Adventures</a>
-      <a href="#" class="hover:text-orange-600 transition font-passion text-black">About</a>
-      <a href="#" class="hover:text-orange-600 transition font-passion text-black">Community</a>
+      <a
+        [routerLink]="['/upcoming-hikes']"
+        [routerLinkActive]="['text-orange-600']"
+        class="hover:text-orange-600 transition font-passion text-black"
+      >
+        Upcoming Hikes
+      </a>
+
+      <a
+        [routerLink]="['/adventures']"
+        [routerLinkActive]="['text-orange-600']"
+        class="hover:text-orange-600 transition font-passion text-black"
+      >
+        Adventures
+      </a>
+
+      <a
+        [routerLink]="['/about']"
+        [routerLinkActive]="['text-orange-600']"
+        class="hover:text-orange-600 transition font-passion text-black"
+        >About</a
+      >
+      <a
+        href="#"
+        class="hover:text-orange-600 transition font-passion text-black"
+        >Community</a
+      >
     </nav>
   </div>
-
 </header>

@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "First Hike, Fierce Climb",
+    "image": "assets/img/elephant-hill-2-1.jpg",
+    "description": "A thrilling trek through the Aberdares."
+  },
+  {
+    "id": 2,
+    "title": "Call of the Wild",
+    "image": "assets/img/loldia-eburru-4.jpg",
+    "description": "Scenic lake views and grassy plains."
+  },
+  {
+    "id": 3,
+    "title": "Battling the Elements",
+    "image": "assets/images/kamweti.jpg",
+    "description": "Dense misty forests for true explorers."
+  }
+]
