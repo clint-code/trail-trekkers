@@ -5,7 +5,7 @@
     position: relative;
     height: auto;
 
-    .text-section {
+    .hero-text-section {
       h1 {
         line-height: 0.85;
       }
@@ -19,20 +19,30 @@
         animation: scroll-up 20s linear infinite;
 
         img {
-          width: 90%;
+          width: 95%;
           height: auto;
           object-fit: cover;
           margin-bottom: 20px;
           border-radius: 20px;
         }
+
+        &:hover {
+          animation-duration: 35s;
+        }
       }
 
       .reverse {
         animation: scroll-down 20s linear infinite;
+
+        &:hover {
+          animation-duration: 35s;
+        }
+
       }
     }
   }
 }
+
 
 @keyframes scroll-up {
   0% {
@@ -52,6 +62,5 @@
   }
 }
 
-.single-post-item{
-  
+.single-post-item {
 }

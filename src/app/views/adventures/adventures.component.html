@@ -2,10 +2,10 @@
 
 <div class="adventures max-w-6xl mx-auto relative min-h-screen">
   <div class="hero-section">
-    <h1 class="text-7xl text-center font-speakeasy text-orange-600 pt-5">
+    <h1 class="text-8xl text-center font-speakeasy text-orange-600 pt-5">
       Explore some of the adventures
     </h1>
-    <p class="text-5xl text-center mt-4 text-orange-600 font-garamondRegular">
+    <p class="text-6xl text-center mt-4 text-orange-600 font-garamondRegular">
       ...from well-seasoned hikers
     </p>
   </div>
@@ -13,7 +13,9 @@
   <div class="adventure-post-articles">
     <div class="flex flex-wrap gap-6 mt-10">
       <div class="columns-3">
-        <app-single-post-item *ngFor="let adventurePost of adventurePosts"
+        <app-single-post-item 
+          class="single-post-item"
+          *ngFor="let adventurePost of adventurePosts"
           [postTitle]="adventurePost.title"
           [postSubtitle]="adventurePost.location"
           [postImageUrl]="adventurePost.imageUrl"

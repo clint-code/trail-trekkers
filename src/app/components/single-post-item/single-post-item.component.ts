@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, AfterViewInit, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-single-post-item',
@@ -14,7 +14,7 @@ export class SinglePostItemComponent {
   @Input() postImageUrl: string = '';
   @Input() postImageAlt: string = '';
 
-  constructor() { }
+  constructor(public el: ElementRef) { }
 
   // Additional methods can be added here if needed
 }

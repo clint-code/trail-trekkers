@@ -21,6 +21,14 @@ export class HomeComponent implements AfterViewInit {
 
   ngAfterViewInit() {
 
+    this.animateHeroText();
+    this.animateDraggableItems();
+    this.fadeInUpScrollItems();
+    this.fadeInDownScrollItems();
+  }
+
+  animateDraggableItems() {
+
     const items = gsap.utils.toArray('.draggable-item') as HTMLElement[];
 
     Draggable.create(items, {
@@ -29,7 +37,42 @@ export class HomeComponent implements AfterViewInit {
       inertia: true
     });
 
+  }
+
+  animateHeroText() {
+
+    gsap.from(".hero-text-section", {
+      opacity: 0,
+      y: 200,
+      duration: 3.5,
+      delay: 1,
+      ease: "power2.out"
+    });
+  }
+
+  fadeInUpScrollItems() {
+
+    gsap.from(".scroll-top", {
+      opacity: 0,
+      y: -200,
+      duration: 3.5,
+      delay: 1,
+      ease: "power2.out"
+    });
 
   }
+
+  fadeInDownScrollItems() {
+
+    gsap.from(".scroll-reverse", {
+      opacity: 0,
+      y: 200,
+      duration: 3.5,
+      delay: 1,
+      ease: "power2.out"
+    });
+
+  }
+
 
 }
