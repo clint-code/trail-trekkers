@@ -25,6 +25,7 @@ export class AdventuresComponent implements OnInit {
 
   adventurePosts: any;
   @ViewChildren(SinglePostItemComponent) singlePostItemComponents!: QueryList<SinglePostItemComponent>;
+  threshold: number = 1;
 
   constructor(
     private adventurePostsService: AdventurePostsService,
@@ -83,7 +84,6 @@ export class AdventuresComponent implements OnInit {
   animatePostItems() {
 
     document.querySelectorAll('.single-post-item').forEach((box) => {
-      console.log("Box:", box);
 
       const scrollBox = gsap.timeline({
         scrollTrigger: {
@@ -100,6 +100,31 @@ export class AdventuresComponent implements OnInit {
       });
 
     });
+
+  }
+
+  handleHover(event: any) {
+
+    let card = event.target;
+
+    const { clientX, clientY, currentTarget } = event;
+    const { clientWidth, clientHeight, offsetLeft, offsetTop } = currentTarget;
+
+    const horizontal = (clientX - offsetLeft) / clientWidth;
+    const vertical = (clientY - offsetTop) / clientHeight;
+
+    const rotateX = (this.threshold / 2 - horizontal * this.threshold).toFixed(2);
+    const rotateY = (vertical * this.threshold - this.threshold / 2).toFixed(2);
+
+    card.style.transform = `perspective(${clientWidth}px) rotateX(${rotateY}deg) rotateY(${rotateX}deg) scale3d(1, 1, 1)`;
+
+  }
+
+  resetStyles(event: any) {
+
+    let card = event.target;
+
+    card.style.transform = `perspective(${event.currentTarget.clientWidth}px) rotateX(0deg) rotateY(0deg)`;
 
   }
 

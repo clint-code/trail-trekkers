@@ -1,3 +1,5 @@
+
+
 .home {
   .content-left {
     width: 35%;
@@ -37,12 +39,10 @@
         &:hover {
           animation-duration: 35s;
         }
-
       }
     }
   }
 }
-
 
 @keyframes scroll-up {
   0% {
@@ -63,4 +63,7 @@
 }
 
 .single-post-item {
+  will-change: transform;
+  transition: transform 0.5s ease;
+  transform-style: preserve-3d;
 }

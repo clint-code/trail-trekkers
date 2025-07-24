@@ -20,6 +20,8 @@
           [postSubtitle]="adventurePost.location"
           [postImageUrl]="adventurePost.imageUrl"
           [postImageAlt]="adventurePost.imageAlt"
+          (mouseenter)="handleHover($event)"
+          (mouseleave)="resetStyles($event)"
         ></app-single-post-item>
       </div>
     </div>
