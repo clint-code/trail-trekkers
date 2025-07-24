@@ -18,7 +18,7 @@
 
     .column {
       .scroll {
-        animation: scroll-up 20s linear infinite;
+        animation: scroll-up 50s linear infinite;
 
         img {
           width: 95%;
@@ -29,15 +29,15 @@
         }
 
         &:hover {
-          animation-duration: 35s;
+          animation-duration: 150s;
         }
       }
 
       .reverse {
-        animation: scroll-down 20s linear infinite;
+        animation: scroll-down 50s linear infinite;
 
         &:hover {
-          animation-duration: 35s;
+          animation-duration: 150s;
         }
       }
     }
