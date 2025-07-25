@@ -43,8 +43,14 @@ export class UpcomingHikesComponent implements OnInit {
   ngAfterViewInit(): void {
 
     gsap.registerPlugin(ScrollTrigger);
+
+    setTimeout(() => {
+      this.animatHikeItems();
+    }, 1000);
+
     this.animateHeroText();
     this.animateIcons();
+
 
   }
 
@@ -83,6 +89,28 @@ export class UpcomingHikesComponent implements OnInit {
       delay: 1,
       rotation: 360,
       ease: "elastic"
+    });
+
+  }
+
+  animatHikeItems() {
+
+    document.querySelectorAll('.single-hike-item').forEach((box) => {
+
+      const scrollBox = gsap.timeline({
+        scrollTrigger: {
+          trigger: box,
+          toggleActions: 'restart none none restart',
+        },
+      });
+
+      scrollBox.from(box, {
+        y: 150,
+        opacity: 0,
+        duration: 4.5,
+        stagger: 1,
+      });
+
     });
 
   }

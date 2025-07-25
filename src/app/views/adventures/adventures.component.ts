@@ -27,8 +27,7 @@ import { AdventurePostsService } from 'src/app/services/adventure-posts/adventur
 export class AdventuresComponent implements OnInit {
 
   adventurePosts: any;
-  @ViewChildren(SinglePostItemComponent) singlePostItemComponents!: QueryList<SinglePostItemComponent>;
-  threshold: number = 1;
+  //@ViewChildren(SinglePostItemComponent) singlePostItemComponents!: QueryList<SinglePostItemComponent>;
 
   constructor(
     private adventurePostsService: AdventurePostsService,
