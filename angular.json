@@ -30,26 +30,26 @@
               "src/assets",
               {
                 "glob": "**/*",
-                "input": "src/assets/fonts/apple-garamond",
-                "output": "assets/fonts/apple-garamond"
+                "input": "src/assets/fonts/Apple-Garamond",
+                "output": "assets/fonts/Apple-Garamond"
               },
               {
                 "glob": "**/*",
-                "input": "src/assets/fonts/passion-one",
-                "output": "assets/fonts/passion-one"
+                "input": "src/assets/fonts/Passion-One",
+                "output": "assets/fonts/Passion-One"
               },
               {
                 "glob": "**/*",
-                "input": "src/assets/fonts/sf-speakeasy",
-                "output": "assets/fonts/sf-speakeasy"
+                "input": "src/assets/fonts/SF-Speakeasy",
+                "output": "assets/fonts/SF-Speakeasy"
               }
             ],
             "styles": [
               "src/styles.css",
               "src/assets/css/main.scss",
-              "src/assets/fonts/apple-garamond/stylesheet.css",
-              "src/assets/fonts/passion-one/stylesheet.css",
-              "src/assets/fonts/sf-speakeasy/stylesheet.css"
+              "src/assets/fonts/Apple-Garamond/stylesheet.css",
+              "src/assets/fonts/Passion-One/stylesheet.css",
+              "src/assets/fonts/SF-Speakeasy/stylesheet.css"
             ],
             "scripts": []
           },
