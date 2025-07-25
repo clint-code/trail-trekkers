@@ -1,3 +1,7 @@
+[build]
+  command = "ng build --configuration production"
+  publish = "dist/trail-trekkers"
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
