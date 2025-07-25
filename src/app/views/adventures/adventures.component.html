@@ -1,6 +1,11 @@
 <app-header></app-header>
 
 <div class="adventures max-w-6xl mx-auto relative min-h-screen">
+
+  <div class="draggable-item absolute top-16 left-0" id="boot-icon">
+    <img src="assets/img/boot-icon.png" class="h-20 w-auto" alt="boot" />
+  </div>
+
   <div class="hero-section">
     <h1 class="text-8xl text-center font-speakeasy text-orange-600 pt-5">
       Explore some of the adventures
@@ -13,19 +18,22 @@
   <div class="adventure-post-articles">
     <div class="flex flex-wrap gap-6 mt-10">
       <div class="columns-3">
-        <app-single-post-item 
+        <app-single-post-item
           class="single-post-item"
           *ngFor="let adventurePost of adventurePosts"
           [postTitle]="adventurePost.title"
           [postSubtitle]="adventurePost.location"
           [postImageUrl]="adventurePost.imageUrl"
           [postImageAlt]="adventurePost.imageAlt"
-          (mouseenter)="handleHover($event)"
-          (mouseleave)="resetStyles($event)"
         ></app-single-post-item>
       </div>
     </div>
   </div>
+
+  <div class="draggable-item absolute top-16 right-0 " id="bag-icon">
+    <img src="assets/img/hiking-bag.png" class="h-24 w-auto" alt="bag" />
+  </div>
+
 </div>
 
 <app-footer></app-footer>

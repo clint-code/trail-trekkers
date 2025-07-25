@@ -3,8 +3,10 @@ import { HeaderComponent } from '../../components/header/header.component';
 import { FooterComponent } from 'src/app/components/footer/footer.component';
 import { gsap } from 'gsap';
 import { Draggable } from 'gsap/Draggable';
+import { SplitText } from 'gsap/SplitText';
 
 gsap.registerPlugin(Draggable);
+gsap.registerPlugin(SplitText);
 
 @Component({
   selector: 'app-home',
@@ -21,6 +23,7 @@ export class HomeComponent implements AfterViewInit {
 
   ngAfterViewInit() {
 
+    this.animateIcons();
     this.animateHeroText();
     this.animateDraggableItems();
     this.fadeInUpScrollItems();
@@ -31,6 +34,8 @@ export class HomeComponent implements AfterViewInit {
 
     const items = gsap.utils.toArray('.draggable-item') as HTMLElement[];
 
+    console.log("Items:", items);
+
     Draggable.create(items, {
       type: 'x,y',
       bounds: ".content-left",
@@ -39,15 +44,37 @@ export class HomeComponent implements AfterViewInit {
 
   }
 
-  animateHeroText() {
+  animateIcons() {
 
-    gsap.from(".hero-text-section", {
+    const items = gsap.utils.toArray('.draggable-item') as HTMLElement[];
+
+    gsap.from(items, {
       opacity: 0,
       y: 200,
-      duration: 3.5,
+      duration: 5,
       delay: 1,
-      ease: "power2.out"
+      rotation: 360,
+      ease: "elastic"
     });
+
+  }
+
+  animateHeroText() {
+
+    SplitText.create(".hero-text-section h1", {
+      type: "words, chars",
+      onSplit(self) {
+        gsap.from(self.chars, {
+          opacity: 0,
+          y: 100,
+          duration: 0.5,
+          autoAlpha: 0,
+          ease: "power4",
+          stagger: 0.05
+        });
+      }
+    });
+
   }
 
   fadeInUpScrollItems() {

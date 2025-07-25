@@ -1,13 +1,19 @@
-
+.body-background {
+  background-color: #FAF8EC;
+}
 
 .home {
   .content-left {
     width: 35%;
     min-height: 100vh;
-    position: relative;
     height: auto;
 
     .hero-text-section {
+      margin-top: -200px;
+      position: absolute;
+      width: 100%;
+      top: 50%;
+      left: 0%;
       h1 {
         line-height: 0.85;
       }

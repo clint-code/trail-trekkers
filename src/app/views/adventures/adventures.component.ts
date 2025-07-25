@@ -1,7 +1,10 @@
 import { Component, OnInit, AfterViewInit, ElementRef, ViewChildren, QueryList } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { gsap } from 'gsap';
+import { SplitText } from 'gsap/SplitText';
+
 import ScrollTrigger from 'gsap/ScrollTrigger';
+gsap.registerPlugin(SplitText);
 
 import { HeaderComponent } from '../../components/header/header.component';
 import { FooterComponent } from 'src/app/components/footer/footer.component';
@@ -52,31 +55,58 @@ export class AdventuresComponent implements OnInit {
 
     this.animateHeroText();
 
-    // const itemElements = this.singlePostItemComponents.map(comp => comp.el.nativeElement);
-
-    // console.log(itemElements);
-
-    // gsap.from(itemElements, {
-    //   opacity: 0,
-    //   y: 30,
-    //   duration: 0.6,
-    //   stagger: 0.2,
-    //   ease: 'power2.out'
-    // });
+    this.animateSubtitleText();
 
     this.animatePostItems();
+
+    this.animateIcons();
+
+  }
+
+  animateSubtitleText() {
+
+    SplitText.create(".hero-section p", {
+      type: "words, chars",
+      onSplit(self) {
+        gsap.from(self.chars, {
+          opacity: 0,
+          x: 100,
+          duration: 0.5,
+          autoAlpha: 0,
+          delay: 0.5,
+          ease: "power4",
+          stagger: 0.05
+        });
+      }
+    });
 
   }
 
   animateHeroText() {
 
-    gsap.from(".hero-section", {
+    gsap.from(".hero-section h1", {
       opacity: 0,
       y: 200,
       duration: 3.5,
       delay: 1,
+      stagger: 0.05,
       ease: "power3",
       toggleActions: 'restart none none none'
+    });
+
+  }
+
+  animateIcons() {
+
+    const items = gsap.utils.toArray('.draggable-item') as HTMLElement[];
+
+    gsap.from(items, {
+      opacity: 0,
+      y: 200,
+      duration: 5,
+      delay: 1,
+      rotation: 360,
+      ease: "elastic"
     });
 
   }
@@ -88,7 +118,7 @@ export class AdventuresComponent implements OnInit {
       const scrollBox = gsap.timeline({
         scrollTrigger: {
           trigger: box,
-          // toggleActions: 'restart none none restart',
+          toggleActions: 'restart none none restart',
         },
       });
 
@@ -100,31 +130,6 @@ export class AdventuresComponent implements OnInit {
       });
 
     });
-
-  }
-
-  handleHover(event: any) {
-
-    let card = event.target;
-
-    const { clientX, clientY, currentTarget } = event;
-    const { clientWidth, clientHeight, offsetLeft, offsetTop } = currentTarget;
-
-    const horizontal = (clientX - offsetLeft) / clientWidth;
-    const vertical = (clientY - offsetTop) / clientHeight;
-
-    const rotateX = (this.threshold / 2 - horizontal * this.threshold).toFixed(2);
-    const rotateY = (vertical * this.threshold - this.threshold / 2).toFixed(2);
-
-    card.style.transform = `perspective(${clientWidth}px) rotateX(${rotateY}deg) rotateY(${rotateX}deg) scale3d(1, 1, 1)`;
-
-  }
-
-  resetStyles(event: any) {
-
-    let card = event.target;
-
-    card.style.transform = `perspective(${event.currentTarget.clientWidth}px) rotateX(0deg) rotateY(0deg)`;
 
   }
 
