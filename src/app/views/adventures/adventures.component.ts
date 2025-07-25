@@ -37,10 +37,7 @@ export class AdventuresComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.adventurePostsService.getAdventurePosts().subscribe(posts => {
-      this.adventurePosts = posts;
-      console.log(this.adventurePosts);
-    });
+    this.getAdventurePosts();
 
 
   }
@@ -60,6 +57,15 @@ export class AdventuresComponent implements OnInit {
     this.animatePostItems();
 
     this.animateIcons();
+
+  }
+
+  getAdventurePosts() {
+
+    this.adventurePostsService.getAdventurePosts().subscribe(posts => {
+      this.adventurePosts = posts;
+      console.log(this.adventurePosts);
+    });
 
   }
 

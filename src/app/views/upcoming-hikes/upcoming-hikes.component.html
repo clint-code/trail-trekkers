@@ -1,7 +1,6 @@
 <app-header></app-header>
 
-<div class="hikes max-w-6xl mx-auto relative min-h-screen">
-
+<div class="hikes max-w-7xl mx-auto relative min-h-screen mt-1.5">
   <div class="draggable-item absolute top-16 left-0" id="boot-icon">
     <img src="assets/img/boot-icon.png" class="h-20 w-auto" alt="boot" />
   </div>
@@ -10,15 +9,28 @@
     <h1 class="text-8xl text-center font-speakeasy text-orange-600 pt-5">
       Book your next hike
     </h1>
-
   </div>
 
-
-  <div class="draggable-item absolute top-16 right-0 " id="bag-icon">
+  <div class="draggable-item absolute top-16 right-0" id="bag-icon">
     <img src="assets/img/hiking-bag.png" class="h-24 w-auto" alt="bag" />
   </div>
 
-</div>
+  <div class="hike-posts-section">
+    <!-- <div class="flex flex-col gap-6 mt-10">    </div> -->
 
+    <div class="w-full mt-10">
+      <app-single-hike-item
+        class="single-hike-item"
+        *ngFor="let hikePost of hikePosts"
+        [hikeTitle]="hikePost.title"
+        [hikeLocation]="hikePost.location"
+        [hikeDate]="hikePost.date"
+        [hikeImageUrl]="hikePost.thumbnailUrl"
+        [hikeImageAlt]="hikePost.imageAlt"
+        [hikeDifficulty]="hikePost.difficulty"
+      ></app-single-hike-item>
+    </div>
+  </div>
+</div>
 
 <app-footer></app-footer>

@@ -1,6 +1,4 @@
 import { Component, OnInit, AfterViewInit, ElementRef, ViewChildren, QueryList } from '@angular/core';
-import { HeaderComponent } from '../../components/header/header.component';
-import { FooterComponent } from 'src/app/components/footer/footer.component';
 import { CommonModule } from '@angular/common';
 
 import { gsap } from 'gsap';
@@ -8,20 +6,41 @@ import { SplitText } from 'gsap/SplitText';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 gsap.registerPlugin(SplitText);
 
+import { HeaderComponent } from '../../components/header/header.component';
+import { FooterComponent } from '../../components/footer/footer.component';
+import { SingleHikeItemComponent } from '../../components/single-hike-item/single-hike-item.component';
+import { HikePostsService } from '../../services/hikes/hike-posts.service';
+
+
 @Component({
   selector: 'app-upcoming-hikes',
   templateUrl: './upcoming-hikes.component.html',
   styleUrls: ['./upcoming-hikes.component.scss'],
   standalone: true,
   imports: [
+    CommonModule,
     HeaderComponent,
+    SingleHikeItemComponent,
     FooterComponent
   ]
 
 })
 export class UpcomingHikesComponent implements OnInit {
 
+  hikePosts: any;
+
+  constructor(
+    private hikePostsService: HikePostsService,
+    private el: ElementRef
+  ) { }
+
   ngOnInit(): void {
+
+    this.getUpcomingHikes();
+
+  }
+
+  ngAfterViewInit(): void {
 
     gsap.registerPlugin(ScrollTrigger);
     this.animateHeroText();
@@ -29,12 +48,15 @@ export class UpcomingHikesComponent implements OnInit {
 
   }
 
-  ngAfterViewInit(): void {
+  getUpcomingHikes() {
 
-    gsap.registerPlugin(ScrollTrigger);
+    this.hikePostsService.getHikePosts().subscribe(posts => {
+      // Process the hike posts data here
+      this.hikePosts = posts;
+      console.log(posts);
+    });
 
   }
-
 
   animateHeroText() {
 
