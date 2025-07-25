@@ -1,1 +1,22 @@
-<p>single-hike-item works!</p>
+<div class="single-hike-item flex">
+
+    <div class="date-section">
+        <p class="text-2xl font-garamondRegular">{{ hikeDate | date: 'longDate' }}</p>
+        <!-- <p class="text-xl font-garamondRegular">{{ hikeTime }}</p> -->
+    </div>
+
+    <div class="hike-details-section">
+        <h2 class="text-5xl uppercase font-garamondBold ">{{ hikeTitle }}</h2>
+        <h3 class="text-lg uppercase font-garamondRegular">{{ hikeLocation }}</h3>
+        <p class="text-lg uppercase font-garamondRegular mt-2">{{ hikeDifficulty }}</p>
+    </div>
+
+    <div class="hike-feature-image">
+        <img 
+            [src]="hikeImageUrl" 
+            [alt]="hikeImageAlt" 
+            class="w-full h-auto object-cover">
+        >
+    </div>
+
+</div>

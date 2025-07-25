@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "hike-title": "Kilimambogo",
+        "hike-location": "Location: Thika-Garissa Road, Machakos County",
+        "hike-difficulty": "Level of difficulty: Moderate.",
+        "hike-date": "Date: 2023-09-15",
+        "hike-thumbnail-url": "assets/img/kilimambogo-1.jpg",
+        "date": "2023-10-01"
+    },
+    {
+        "id": 2,
+        "title": "Kanunga Falls",
+        "hike-location": "Location: Thika-Garissa Road, Machakos County",
+        "hike-difficulty": "Level of difficulty: Moderate.",
+        "hike-date": "Date: 2023-09-15",
+        "hike-thumbnail-url": "assets/img/kilimambogo-1.jpg",
+        "date": "2023-10-01"
+    },
+    {
+        "id": 3,
+        "title": "Ravenswood",
+        "hike-location": "Location: Thika-Garissa Road, Machakos County",
+        "hike-difficulty": "Level of difficulty: Moderate.",
+        "hike-date": "Date: 2023-09-15",
+        "hike-thumbnail-url": "assets/img/kilimambogo-1.jpg",
+        "date": "2023-10-01"
+    }
+
+]

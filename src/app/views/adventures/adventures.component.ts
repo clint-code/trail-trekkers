@@ -1,8 +1,8 @@
 import { Component, OnInit, AfterViewInit, ElementRef, ViewChildren, QueryList } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
-
 import ScrollTrigger from 'gsap/ScrollTrigger';
 gsap.registerPlugin(SplitText);
 
