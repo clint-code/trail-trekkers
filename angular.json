@@ -28,6 +28,9 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
+              "src/assets/fonts/apple-garamond/stylesheet.css",
+              "src/assets/fonts/passion-one/stylesheet.css",
+              "src/assets/fonts/sf-speakeasy/stylesheet.css",
               {
                 "glob": "**/*",
                 "input": "public"
