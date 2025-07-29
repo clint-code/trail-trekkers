@@ -1,12 +1,13 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { HeaderComponent } from '../../components/header/header.component';
 import { FooterComponent } from 'src/app/components/footer/footer.component';
+
 import { gsap } from 'gsap';
 import { Draggable } from 'gsap/Draggable';
 import { SplitText } from 'gsap/SplitText';
+import { RouterModule } from '@angular/router';
 
-gsap.registerPlugin(Draggable);
-gsap.registerPlugin(SplitText);
+gsap.registerPlugin(SplitText, Draggable);
 
 @Component({
   selector: 'app-home',
@@ -14,6 +15,7 @@ gsap.registerPlugin(SplitText);
   styleUrls: ['./home.component.scss'],
   standalone: true,
   imports: [
+    RouterModule,
     HeaderComponent,
     FooterComponent
   ]

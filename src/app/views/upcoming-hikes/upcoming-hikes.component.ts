@@ -3,8 +3,10 @@ import { CommonModule } from '@angular/common';
 
 import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
+import { Draggable } from 'gsap/Draggable';
 import ScrollTrigger from 'gsap/ScrollTrigger';
-gsap.registerPlugin(SplitText);
+
+gsap.registerPlugin(SplitText, Draggable, ScrollTrigger);
 
 import { HeaderComponent } from '../../components/header/header.component';
 import { FooterComponent } from '../../components/footer/footer.component';
@@ -42,15 +44,13 @@ export class UpcomingHikesComponent implements OnInit {
 
   ngAfterViewInit(): void {
 
-    gsap.registerPlugin(ScrollTrigger);
-
-    setTimeout(() => {
-      this.animatHikeItems();
-    }, 1000);
-
+    // setTimeout(() => {
+    //   this.animatHikeItems();
+    // }, 1000);
+    this.animatHikeItems();
+    this.animateDraggableItems();
     this.animateHeroText();
     this.animateIcons();
-
 
   }
 
@@ -60,6 +60,20 @@ export class UpcomingHikesComponent implements OnInit {
       // Process the hike posts data here
       this.hikePosts = posts;
       console.log(posts);
+    });
+
+  }
+
+  animateDraggableItems() {
+
+    const items = gsap.utils.toArray('.draggable-item') as HTMLElement[];
+
+    console.log("Items:", items);
+
+    Draggable.create(items, {
+      type: 'x,y',
+      bounds: ".hikes-title",
+      inertia: true
     });
 
   }
@@ -84,10 +98,10 @@ export class UpcomingHikesComponent implements OnInit {
 
     gsap.from(items, {
       opacity: 0,
-      y: 200,
+      y: 700,
       duration: 5,
       delay: 1,
-      rotation: 360,
+      rotation: 180,
       ease: "elastic"
     });
 

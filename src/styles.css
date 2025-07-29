@@ -5,5 +5,16 @@
 @tailwind utilities;
 
 
+.display-1 {
+  @apply text-8xl text-center font-speakeasy text-orange-600 pt-5;
+}
+
+.display-2{
+    @apply font-garamondBold text-orange-600 text-4xl text-center uppercase;
+}
+
+.green-button {
+  @apply bg-[#266b5a] text-white w-6/12 px-6 py-3 rounded-lg text-2xl font-passion hover:bg-[#ea580c] transition;
+}
 
 @import "src/assets/css/main.scss";
