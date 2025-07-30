@@ -46,6 +46,43 @@ export class AboutComponent implements OnInit {
       { drawSVG: "100%", duration: 2, ease: "power2.out" }
     );
 
+    this.animateHeroText();
+
+    this.animateSubtitleText();
+
+  }
+
+  animateHeroText() {
+
+    gsap.from(".about-title-section .about-title h1", {
+      opacity: 0,
+      y: 200,
+      duration: 3.5,
+      delay: 1,
+      stagger: 0.05,
+      ease: "power3",
+      toggleActions: 'restart none none none'
+    });
+
+  }
+
+  animateSubtitleText() {
+
+    SplitText.create(".about-title-section .about-title p", {
+      type: "words, chars",
+      onSplit(self) {
+        gsap.from(self.chars, {
+          opacity: 0,
+          x: 100,
+          duration: 0.5,
+          autoAlpha: 0,
+          delay: 0.5,
+          ease: "power4",
+          stagger: 0.05
+        });
+      }
+    });
+
   }
 
   getAboutItems() {
