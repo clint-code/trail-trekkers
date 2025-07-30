@@ -10,7 +10,7 @@
 }
 
 .display-2{
-    @apply font-garamondBold text-orange-600 text-4xl text-center uppercase;
+    @apply font-garamondBold text-orange-600 text-5xl text-center capitalize;
 }
 
 .green-button {
