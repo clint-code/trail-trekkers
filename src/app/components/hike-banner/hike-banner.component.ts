@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-hike-banner',
@@ -8,5 +8,10 @@ import { Component } from '@angular/core';
 
 })
 export class HikeBannerComponent {
+
+  @Input() hikeTitle: string = '';
+  @Input() hikeLocation: string = '';
+  @Input() locationImage: string = '';
+  @Input() locationImageAlt: string = '';
 
 }

@@ -1,11 +1,12 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { HeaderComponent } from '../../components/header/header.component';
-import { FooterComponent } from 'src/app/components/footer/footer.component';
+import { FooterComponent } from '../../components/footer/footer.component';
+
+import { RouterModule } from '@angular/router';
 
 import { gsap } from 'gsap';
 import { Draggable } from 'gsap/Draggable';
 import { SplitText } from 'gsap/SplitText';
-import { RouterModule } from '@angular/router';
 
 gsap.registerPlugin(SplitText, Draggable);
 
@@ -63,18 +64,26 @@ export class HomeComponent implements AfterViewInit {
 
   animateHeroText() {
 
-    SplitText.create(".hero-text-section h1", {
-      type: "words, chars",
-      onSplit(self) {
-        gsap.from(self.chars, {
-          opacity: 0,
-          y: 100,
-          duration: 0.5,
-          autoAlpha: 0,
-          ease: "power4",
-          stagger: 0.05
-        });
-      }
+    // SplitText.create(".hero-text-section h1", {
+    //   type: "words, chars",
+    //   onSplit(self) {
+    //     gsap.from(self.chars, {
+    //       opacity: 0,
+    //       y: 100,
+    //       duration: 0.5,
+    //       autoAlpha: 0,
+    //       ease: "power4",
+    //       stagger: 0.05
+    //     });
+    //   }
+    // });
+
+    gsap.from(".hero-text-section h1", {
+      opacity: 0,
+      y: 200,
+      duration: 3.5,
+      delay: 1,
+      ease: "power2.out"
     });
 
   }

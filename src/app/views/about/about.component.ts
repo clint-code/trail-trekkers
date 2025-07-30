@@ -8,9 +8,12 @@ import { SingleAboutItemComponent } from '../../components/single-about-item/sin
 import { AboutItemsService } from '../../services/about-items/about-items.service';
 
 import { gsap } from 'gsap';
+import { SplitText } from 'gsap/SplitText';
 import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin';
+import ScrollTrigger from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(DrawSVGPlugin);
+gsap.registerPlugin(ScrollTrigger);
 
 @Component({
   selector: 'app-about',
@@ -38,13 +41,10 @@ export class AboutComponent implements OnInit {
 
   ngAfterViewInit() {
 
-    gsap.fromTo(".draw-path",
+    gsap.fromTo("#underlinePath",
       { drawSVG: "0%" },
-      { drawSVG: "100%", duration: 2, stagger: 0.3 }
+      { drawSVG: "100%", duration: 2, ease: "power2.out" }
     );
-
-    // gsap.to("#myPath", { stroke: "red", duration: 1 });
-
 
   }
 
@@ -56,5 +56,6 @@ export class AboutComponent implements OnInit {
 
     });
   }
+
 
 }

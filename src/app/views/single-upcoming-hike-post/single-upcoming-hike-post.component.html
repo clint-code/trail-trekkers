@@ -1,1 +1,51 @@
-<p>single-upcoming-hike-post works!</p>
+<app-header></app-header>
+
+<div class="hike-banner bg-orange-600">
+  <app-hike-banner
+    [hikeTitle]="'Kilimambogo'"
+    [hikeLocation]="'Off Thika-Garissa Highway'"
+    [locationImage]="'assets/img/mount-ol-donyo-sabuk-hero-1.jpg'"
+    [locationImageAlt]="'mount-ol-donyo-sabuk'"
+  ></app-hike-banner>
+</div>
+
+<div class="single-hike-post min-h-screen max-w-6xl mx-auto">
+  <div class="intro-section mt-5 mb-7">
+    <p class="font-garamondRegular text-2xl">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec
+      bibendum eros, ac iaculis tellus. Aenean congue lacus sed turpis sagittis,
+      nec pretium erat volutpat. Aliquam pulvinar bibendum est sit amet
+      tincidunt.
+    </p>
+  </div>
+
+  <div class="what-you-need-to-know-section text-center">
+    <div class="title-section pb-7">
+      <h3 class="display-2">What you need to know....</h3>
+
+      <svg class="underline" width="200" height="20" viewBox="0 0 200 20">
+        <path
+          id="underlinePath"
+          d="M10 15 H190"
+          stroke="#F85E00"
+          stroke-width="2"
+          fill="none"
+        />
+      </svg>
+    </div>
+
+    <div class="list-items-section flex pb-7">
+
+        <div class="single-item flex flex-wrap flex-row">
+
+        </div>
+
+    </div>
+
+    <a class="green-button"> Register Here </a>
+
+  </div>
+</div>
+
+
+<app-footer></app-footer>

@@ -1,12 +1,16 @@
 import { Component, Input, ElementRef } from '@angular/core';
 import { DatePipe } from '@angular/common';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-single-hike-item',
   templateUrl: './single-hike-item.component.html',
   styleUrls: ['./single-hike-item.component.scss'],
   standalone: true,
-  imports: [DatePipe]
+  imports: [
+    RouterModule,
+    DatePipe
+  ]
 
 })
 

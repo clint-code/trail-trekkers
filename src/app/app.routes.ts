@@ -3,7 +3,7 @@ import { HomeComponent } from './views/home/home.component';
 import { AdventuresComponent } from './views/adventures/adventures.component';
 import { UpcomingHikesComponent } from './views/upcoming-hikes/upcoming-hikes.component';
 import { AboutComponent } from './views/about/about.component';
-
+import { SingleUpcomingHikePostComponent } from './views/single-upcoming-hike-post/single-upcoming-hike-post.component';
 
 export const routes: Routes = [
 
@@ -20,6 +20,11 @@ export const routes: Routes = [
     {
         path: 'upcoming-hikes',
         component: UpcomingHikesComponent
+    },
+
+    {
+        path: 'single-hike',
+        component: SingleUpcomingHikePostComponent
     },
 
     {

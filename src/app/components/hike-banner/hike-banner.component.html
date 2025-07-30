@@ -1,1 +1,28 @@
-<p>hike-banner works!</p>
+<div class="banner-container relative">
+  <div class="banner-text absolute">
+    <h2 class="text-white font-speakeasy text-8xl">
+      {{ hikeTitle }}
+    </h2>
+
+    <p class="text-white font-garamondRegular text-3xl flex">
+      <span>
+        <img
+          src="assets/img/icons/location_on-white.png"
+          alt="location_on-white"
+          class="w-6"
+        />
+      </span>
+      {{ hikeLocation }}
+    </p>
+  </div>
+
+  <div class="hero-image-container">
+    <div class="hero-image">
+      <img
+        [src]="locationImage"
+        [alt]="locationImageAlt"
+        class="w-2/5 object-cover rounded-3xl"
+      />
+    </div>
+  </div>
+</div>
