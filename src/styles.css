@@ -17,4 +17,8 @@
   @apply bg-[#266b5a] text-white w-6/12 px-6 py-3 rounded-lg text-2xl font-passion hover:bg-[#ea580c] transition;
 }
 
+.parallax-effect {
+  @apply bg-cover bg-no-repeat bg-fixed bg-center;
+}
+
 @import "src/assets/css/main.scss";

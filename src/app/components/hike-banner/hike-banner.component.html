@@ -1,28 +1,26 @@
-<div class="banner-container relative">
-  <div class="banner-text absolute">
-    <h2 class="text-white font-speakeasy text-8xl">
+<div
+  class="banner-container relative"
+  [ngClass]="locationImage !== '' ? 'parallax-effect' : ''"
+  [ngStyle]="{ 'background-image': 'url(' + locationImage + ')' }"
+>
+  <div class="banner-text absolute z-10 top-1/2 left-1/2">
+    <h2 class="text-white font-garamondItalic text-9xl text-center uppercase">
       {{ hikeTitle }}
     </h2>
 
-    <p class="text-white font-garamondRegular text-3xl flex">
+    <p class="text-white font-garamondRegular text-4xl flex justify-center">
       <span>
         <img
           src="assets/img/icons/location_on-white.png"
           alt="location_on-white"
-          class="w-6"
+          class="w-8"
         />
       </span>
       {{ hikeLocation }}
     </p>
   </div>
 
-  <div class="hero-image-container">
-    <div class="hero-image">
-      <img
-        [src]="locationImage"
-        [alt]="locationImageAlt"
-        class="w-2/5 object-cover rounded-3xl"
-      />
-    </div>
-  </div>
+  <div class="overlay absolute w-full h-full bg-black opacity-30"></div>
+
+  <img class="hide-image" src="{{ locationImage }}" alt="" />
 </div>
