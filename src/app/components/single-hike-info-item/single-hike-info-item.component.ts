@@ -16,5 +16,6 @@ export class SingleHikeInfoItemComponent {
   @Input() hikeInfoIconAlt: string = '';
   @Input() hikeInfoTitle: string = '';
   @Input() hikeInfoDescription: string = '';
+  @Input() hikeInfoList: string[] | undefined = [];
 
 }

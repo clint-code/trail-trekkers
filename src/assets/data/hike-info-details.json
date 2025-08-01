@@ -44,5 +44,18 @@
         "infoDescription": "Supreme Court Parking",
         "infoIcon": "assets/img/icons/location_on.png",
         "infoIconAlt": "location_pin"
+    },
+
+    {
+       "id": 7,
+       "infoTitle":"What to wear/carry",
+       "infoList":[
+          "Comfortable walking shoes",
+          "Drinking water and light snacks",
+          "Cargo pants or sweat pants",
+          "Jacket"
+       ],
+        "infoIcon": "assets/img/icons/directions_walk.png",
+        "infoIconAlt": "directions_walk"
     }
 ]

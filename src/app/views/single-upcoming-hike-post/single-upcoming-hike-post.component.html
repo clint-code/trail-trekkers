@@ -39,12 +39,14 @@
     <div class="list-items-section flex pb-7 flex-wrap">
         
       <app-single-hike-info-item
-      *ngFor="let hikeInfoItem of hikeInfoDetails"
+        *ngFor="let hikeInfoItem of hikeInfoDetails"
         [hikeInfoIcon]="hikeInfoItem.infoIcon"
         [hikeInfoIconAlt]="hikeInfoItem.infoIconAlt"
         [hikeInfoTitle]="hikeInfoItem.infoTitle"
         [hikeInfoDescription]="hikeInfoItem.infoDescription"
+        [hikeInfoList]="hikeInfoItem.infoList"
       ></app-single-hike-info-item>
+
     </div>
 
     <a class="green-button"> Register Here </a>
