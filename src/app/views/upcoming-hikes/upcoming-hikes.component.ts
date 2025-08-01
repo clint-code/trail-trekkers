@@ -11,8 +11,8 @@ gsap.registerPlugin(SplitText, Draggable, ScrollTrigger);
 import { HeaderComponent } from '../../components/header/header.component';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { SingleHikeItemComponent } from '../../components/single-hike-item/single-hike-item.component';
-import { HikePostsService } from '../../services/hikes/hike-posts.service';
 
+import { AllContentService } from '../../services/all-content/all-content.service';
 
 @Component({
   selector: 'app-upcoming-hikes',
@@ -32,7 +32,7 @@ export class UpcomingHikesComponent implements OnInit {
   hikePosts: any;
 
   constructor(
-    private hikePostsService: HikePostsService,
+    private allContentService: AllContentService,
     private el: ElementRef
   ) { }
 
@@ -56,7 +56,7 @@ export class UpcomingHikesComponent implements OnInit {
 
   getUpcomingHikes() {
 
-    this.hikePostsService.getHikePosts().subscribe(posts => {
+    this.allContentService.getHikePosts().subscribe(posts => {
       // Process the hike posts data here
       this.hikePosts = posts;
       console.log(posts);

@@ -1,0 +1,48 @@
+[
+    {
+        "id": 1,
+        "infoTitle": "Level of Difficulty",
+        "infoDescription": "Challenging",
+        "infoIcon": "assets/img/icons/directions_walk.png",
+        "infoIconAlt": "directions_walk"
+    },
+    {
+        "id": 2,
+        "infoTitle": "Cost",
+        "infoDescription": "Kshs. 1870/-",
+        "infoIcon": "assets/img/icons/credit-card.png",
+        "infoIconAlt": "credit-card"
+    },
+
+    {
+        "id": 3,
+        "infoTitle": "Distance",
+        "infoDescription": "8.9kms",
+        "infoIcon": "assets/img/icons/navigation.png",
+        "infoIconAlt": "navigation_icon"
+    },
+
+    {
+        "id": 4,
+        "infoTitle": "Departure Time",
+        "infoDescription": "8:30 am",
+        "infoIcon": "assets/img/icons/directions_bus.png",
+        "infoIconAlt": "directions_bus"
+    },
+
+    {
+        "id": 5,
+        "infoTitle": "Duration of the hike",
+        "infoDescription": "4hrs",
+        "infoIcon": "assets/img/icons/schedule.png",
+        "infoIconAlt": "duration_icon"
+    },
+
+    {
+        "id": 6,
+        "infoTitle": "Meeting Point",
+        "infoDescription": "Supreme Court Parking",
+        "infoIcon": "assets/img/icons/location_on.png",
+        "infoIconAlt": "location_pin"
+    }
+]

@@ -1,1 +1,11 @@
-<p>single-hike-info-item works!</p>
+<div class="single-hike-info-item flex">
+  <div class="flex">
+    <img [src]="hikeInfoIcon" [alt]="hikeInfoIconAlt" class="w-1/6" />
+
+    <div class="single-hike-info">
+      <p class="font-passion text-xl">{{ hikeInfoTitle }}</p>
+      <p class="font-garamondRegular text-lg">{{ hikeInfoDescription }}</p>
+    </div>
+
+  </div>
+</div>

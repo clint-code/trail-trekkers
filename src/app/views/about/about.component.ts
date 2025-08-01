@@ -5,7 +5,7 @@ import { HeaderComponent } from '../../components/header/header.component';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { SingleAboutItemComponent } from '../../components/single-about-item/single-about-item.component';
 
-import { AboutItemsService } from '../../services/about-items/about-items.service';
+import { AllContentService } from '../../services/all-content/all-content.service';
 
 import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
@@ -32,7 +32,7 @@ export class AboutComponent implements OnInit {
   aboutItems: any;
 
   constructor(
-    private aboutItemService: AboutItemsService
+    private allContentService: AllContentService
   ) { }
 
   ngOnInit(): void {
@@ -87,7 +87,7 @@ export class AboutComponent implements OnInit {
 
   getAboutItems() {
 
-    this.aboutItemService.getAboutItems().subscribe(items => {
+    this.allContentService.getAboutItems().subscribe(items => {
 
       this.aboutItems = items;
 

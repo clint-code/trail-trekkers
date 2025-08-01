@@ -7,9 +7,10 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 gsap.registerPlugin(SplitText);
 
 import { HeaderComponent } from '../../components/header/header.component';
-import { FooterComponent } from 'src/app/components/footer/footer.component';
-import { SinglePostItemComponent } from 'src/app/components/single-post-item/single-post-item.component';
-import { AdventurePostsService } from 'src/app/services/adventure-posts/adventure-posts.service';
+import { FooterComponent } from '../../components/footer/footer.component';
+import { SinglePostItemComponent } from '../../components/single-post-item/single-post-item.component';
+
+import { AllContentService } from '../../services/all-content/all-content.service';
 
 @Component({
   selector: 'app-adventures',
@@ -30,7 +31,7 @@ export class AdventuresComponent implements OnInit {
   //@ViewChildren(SinglePostItemComponent) singlePostItemComponents!: QueryList<SinglePostItemComponent>;
 
   constructor(
-    private adventurePostsService: AdventurePostsService,
+    private allContentService: AllContentService,
     private el: ElementRef
   ) { }
 
@@ -61,7 +62,7 @@ export class AdventuresComponent implements OnInit {
 
   getAdventurePosts() {
 
-    this.adventurePostsService.getAdventurePosts().subscribe(posts => {
+    this.allContentService.getAdventurePosts().subscribe(posts => {
       this.adventurePosts = posts;
       console.log(this.adventurePosts);
     });

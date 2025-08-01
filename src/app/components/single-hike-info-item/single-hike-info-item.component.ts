@@ -12,7 +12,8 @@ import { CommonModule } from '@angular/common';
 })
 export class SingleHikeInfoItemComponent {
 
-  @Input() hikeInfoItem: string = '';
+  @Input() hikeInfoIcon: string = '';
+  @Input() hikeInfoIconAlt: string = '';
   @Input() hikeInfoTitle: string = '';
   @Input() hikeInfoDescription: string = '';
 
