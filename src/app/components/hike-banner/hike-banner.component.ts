@@ -29,31 +29,15 @@ export class HikeBannerComponent {
       { drawSVG: "100%", duration: 2, ease: "power2.out" }
     );
 
-    gsap.from(".banner-text h2", {
+    gsap.from(".banner-text h2, .banner-text p", {
       opacity: 0,
       y: 200,
-      duration: 3.5,
+      duration: 2.5,
       delay: 1,
       stagger: 0.05,
       ease: "",
       toggleActions: 'restart none none none'
     });
-
-    SplitText.create(".banner-text p", {
-      type: "words, chars",
-      onSplit(self) {
-        gsap.from(self.chars, {
-          opacity: 0,
-          x: 100,
-          duration: 0.5,
-          autoAlpha: 0,
-          delay: 0.5,
-          ease: "power3",
-          stagger: 0.05
-        });
-      }
-    });
-
 
   }
 

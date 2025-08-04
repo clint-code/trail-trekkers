@@ -29,7 +29,9 @@ gsap.registerPlugin(ScrollTrigger);
 })
 
 export class AboutComponent implements OnInit {
+
   aboutItems: any;
+  threshold: number = 1;
 
   constructor(
     private allContentService: AllContentService
@@ -41,20 +43,31 @@ export class AboutComponent implements OnInit {
 
   ngAfterViewInit() {
 
-    gsap.fromTo("#underlinePath",
-      { drawSVG: "0%" },
-      { drawSVG: "100%", duration: 2, ease: "power2.out" }
-    );
-
+    this.animateSVGLine();
     this.animateHeroText();
 
-    this.animateSubtitleText();
+  }
+
+  animateSVGLine() {
+
+    gsap.fromTo("#underlinePath",
+      { drawSVG: "0%" },
+      {
+        drawSVG: "100%",
+        scrollTrigger: {
+          trigger: '.title-section',
+          // start: 'top 80%',
+          // end: 'bottom 60%',
+          scrub: true
+        }
+      }
+    );
 
   }
 
   animateHeroText() {
 
-    gsap.from(".about-title-section .about-title h1", {
+    gsap.from(".about-title-section .about-title h1, p", {
       opacity: 0,
       y: 200,
       duration: 3.5,
@@ -92,6 +105,27 @@ export class AboutComponent implements OnInit {
       this.aboutItems = items;
 
     });
+  }
+
+  handleHover(event: any) {
+    let imageThumbnail = event.target;
+
+    const { clientX, clientY, currentTarget } = event;
+    const { clientWidth, clientHeight, offsetLeft, offsetTop } = currentTarget;
+
+    const horizontal = (clientX - offsetLeft) / clientWidth;
+    const vertical = (clientY - offsetTop) / clientHeight;
+
+    const rotateX = (this.threshold / 2 - horizontal * this.threshold).toFixed(2);
+    const rotateY = (vertical * this.threshold - this.threshold / 2).toFixed(2);
+
+    imageThumbnail.style.transform = `perspective(${clientWidth}px) rotateX(${rotateY}deg) rotateY(${rotateX}deg) scale3d(1.03, 1.03, 1.03)`;
+
+  }
+
+  resetStyles(event: any) {
+    let imageThumbnail = event.target;
+    imageThumbnail.style.transform = `perspective(${event.currentTarget.clientWidth}px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
   }
 
 

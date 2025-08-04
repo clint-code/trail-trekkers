@@ -18,7 +18,9 @@
       <img
         src="assets/img/mount-ol-donyo-sabuk-1.jpg"
         alt="mount-ol-donyo-sabuk"
-        class="h-auto"
+        (mouseenter)="handleHover($event)"
+        (mouseleave)="resetStyles($event)"
+        class="h-auto inline-block transition-transform duration-200 ease-out [transform-style:preserve-3d]"
       />
     </div>
   </div>
@@ -90,7 +92,9 @@
         <img
           src="assets/img/first-hike.jpg"
           alt="first-hike"
-          class="h-2/4 rounded-lg"
+          class="h-2/4 rounded-lg inline-block transition-transform duration-200 ease-out [transform-style:preserve-3d]"
+          (mouseenter)="handleHover($event)"
+          (mouseleave)="resetStyles($event)"
         />
       </div>
     </div>

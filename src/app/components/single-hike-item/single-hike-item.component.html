@@ -12,13 +12,13 @@
     >
       {{ hikeTitle }}
     </a>
-    <p class="text-xl uppercase font-garamondRegular"> Location:
-      <span class="font-garamondBold">
+    <p class="text-xl uppercase font-garamondBold"> Location:
+      <span class="font-passion">
         {{ hikeLocation }}
       </span>
     </p>
-    <p class="text-xl uppercase font-garamondRegular"> Level of Difficulty:
-      <span class="font-garamondBold">
+    <p class="text-xl uppercase font-garamondBold"> Level of Difficulty:
+      <span class="font-passion">
         {{ hikeDifficulty }}
       </span>
     </p>
@@ -29,7 +29,9 @@
       <img
         [src]="hikeImageUrl"
         [alt]="hikeImageAlt"
-        class="max-w-full h-auto object-cover rounded-md"
+        class="max-w-full h-auto object-cover inline-block transition-transform duration-200 ease-out [transform-style:preserve-3d]"
+        (mouseenter)="handleHover($event)"
+        (mouseleave)="resetStyles($event)"
       />
     </a>
   </div>

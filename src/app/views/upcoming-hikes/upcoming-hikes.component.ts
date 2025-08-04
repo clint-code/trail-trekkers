@@ -46,10 +46,9 @@ export class UpcomingHikesComponent implements OnInit {
 
   ngAfterViewInit(): void {
 
-    // setTimeout(() => {
-    //   this.animatHikeItems();
-    // }, 1000);
-    this.animatHikeItems();
+    setTimeout(() => {
+      this.animatHikeItems();
+    }, 1000);
     this.animateDraggableItems();
     this.animateHeroText();
     this.animateIcons();
@@ -68,8 +67,6 @@ export class UpcomingHikesComponent implements OnInit {
   animateDraggableItems() {
 
     const items = gsap.utils.toArray('.draggable-item') as HTMLElement[];
-
-    console.log("Items:", items);
 
     Draggable.create(items, {
       type: 'x,y',
@@ -121,13 +118,12 @@ export class UpcomingHikesComponent implements OnInit {
       scrollBox.from(box, {
         y: 150,
         opacity: 0,
-        duration: 4.5,
+        duration: 2.0,
         stagger: 1,
       });
 
     });
 
   }
-
 
 }

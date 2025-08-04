@@ -3,8 +3,11 @@ import { CommonModule } from '@angular/common';
 
 import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
+import { Draggable } from 'gsap/Draggable';
 import ScrollTrigger from 'gsap/ScrollTrigger';
+
 gsap.registerPlugin(SplitText);
+gsap.registerPlugin(Draggable);
 
 import { HeaderComponent } from '../../components/header/header.component';
 import { FooterComponent } from '../../components/footer/footer.component';
@@ -51,12 +54,9 @@ export class AdventuresComponent implements OnInit {
     }, 1000);
 
     this.animateHeroText();
-
-    this.animateSubtitleText();
-
-    this.animatePostItems();
-
+    //this.animateSubtitleText();
     this.animateIcons();
+    this.animateDraggableItems();
 
   }
 
@@ -65,6 +65,17 @@ export class AdventuresComponent implements OnInit {
     this.allContentService.getAdventurePosts().subscribe(posts => {
       this.adventurePosts = posts;
       console.log(this.adventurePosts);
+    });
+
+  }
+
+  animateDraggableItems() {
+
+    const items = gsap.utils.toArray('.draggable-item') as HTMLElement[];
+
+    Draggable.create(items, {
+      type: 'x,y',
+      inertia: true
     });
 
   }
@@ -90,7 +101,7 @@ export class AdventuresComponent implements OnInit {
 
   animateHeroText() {
 
-    gsap.from(".hero-section h1", {
+    gsap.from(".hero-section h1, .hero-section p", {
       opacity: 0,
       y: 200,
       duration: 3.5,

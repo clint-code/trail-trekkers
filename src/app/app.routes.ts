@@ -4,6 +4,7 @@ import { AdventuresComponent } from './views/adventures/adventures.component';
 import { UpcomingHikesComponent } from './views/upcoming-hikes/upcoming-hikes.component';
 import { AboutComponent } from './views/about/about.component';
 import { SingleUpcomingHikePostComponent } from './views/single-upcoming-hike-post/single-upcoming-hike-post.component';
+import { SingleAdventurePostComponent } from './views/single-adventure-post/single-adventure-post.component';
 
 export const routes: Routes = [
 
@@ -15,6 +16,11 @@ export const routes: Routes = [
     {
         path: 'adventures',
         component: AdventuresComponent
+    },
+
+    {
+        path: 'single-adventure-post',
+        component: SingleAdventurePostComponent
     },
 
     {
