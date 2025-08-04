@@ -78,7 +78,7 @@ export class HomeComponent implements AfterViewInit {
     //   }
     // });
 
-    gsap.from(".hero-text-section h1", {
+    gsap.from(".hero-text-section", {
       opacity: 0,
       y: 200,
       duration: 3.5,
