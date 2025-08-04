@@ -2,8 +2,8 @@
     {
         "id": 1,
         "title": "Kilimambogo",
-        "location": "Location: Thika-Garissa Road, Machakos County",
-        "difficulty": "Level of difficulty: Moderate.",
+        "location": "Thika-Garissa Road, Machakos County",
+        "difficulty": "Moderate.",
         "date": "2023-09-15",
         "thumbnailUrl": "assets/img/kilimambogo-1.jpg",
         "imageAlt": "kilimambogo"
@@ -11,8 +11,8 @@
     {
         "id": 2,
         "title": "Kanunga Falls",
-        "location": "Location: Thika-Garissa Road, Machakos County",
-        "difficulty": "Level of difficulty: Moderate.",
+        "location": "Thika-Garissa Road, Machakos County",
+        "difficulty": "Moderate.",
         "date": "2023-09-15",
         "thumbnailUrl": "assets/img/kilimambogo-1.jpg",
         "imageAlt": "kilimambogo"
@@ -20,8 +20,8 @@
     {
         "id": 3,
         "title": "Ravenswood",
-        "location": "Location: Thika-Garissa Road, Machakos County",
-        "difficulty": "Level of difficulty: Moderate.",
+        "location": "Thika-Garissa Road, Machakos County",
+        "difficulty": "Moderate.",
         "date": "2023-09-15",
         "thumbnailUrl": "assets/img/kilimambogo-1.jpg",
         "imageAlt": "kilimambogo"
@@ -29,8 +29,8 @@
     {
         "id": 4,
         "title": "Kijabe Hill",
-        "location": "Location: Thika-Garissa Road, Machakos County",
-        "difficulty": "Level of difficulty: Moderate.",
+        "location": "Thika-Garissa Road, Machakos County",
+        "difficulty": "Moderate.",
         "date": "2023-09-15",
         "thumbnailUrl": "assets/img/kilimambogo-1.jpg",
         "imageAlt": "kilimambogo"

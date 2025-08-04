@@ -6,7 +6,9 @@ import { SplitText } from 'gsap/SplitText';
 import { Draggable } from 'gsap/Draggable';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 
-gsap.registerPlugin(SplitText, Draggable, ScrollTrigger);
+gsap.registerPlugin(SplitText);
+gsap.registerPlugin(Draggable);
+gsap.registerPlugin(ScrollTrigger);
 
 import { HeaderComponent } from '../../components/header/header.component';
 import { FooterComponent } from '../../components/footer/footer.component';
@@ -59,7 +61,6 @@ export class UpcomingHikesComponent implements OnInit {
     this.allContentService.getHikePosts().subscribe(posts => {
       // Process the hike posts data here
       this.hikePosts = posts;
-      console.log(posts);
     });
 
   }
@@ -72,7 +73,6 @@ export class UpcomingHikesComponent implements OnInit {
 
     Draggable.create(items, {
       type: 'x,y',
-      bounds: ".hikes-title",
       inertia: true
     });
 

@@ -1,6 +1,6 @@
-<footer class="bg-[#216151] text-white py-2">
+<footer class="bg-black text-white py-2">
   <div
-    class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-28"
+    class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-3/5"
   >
     <!-- Logo -->
     <div class="flex items-center space-x-4">
@@ -16,24 +16,41 @@
     <div class="flex">
       <div class="quick-links-section">
         <!-- Quick Links -->
-        <h3 class="font-garamondBold text-2xl underline">Quick Links</h3>
+        <h3 class="font-garamondBold text-3xl">Quick Links</h3>
 
         <ul>
           <li
-            class="hover:text-orange-300 transition font-passion text-lg"
+            class="font-passion text-lg"
           >
-            <a href="#">Community</a>
+            <a href="#" class="white-hover-underline">Community</a>
           </li>
 
           <li
             class="hover:text-orange-300 transition font-passion text-lg"
           >
-            <a href="#">Adventures</a>
+            <a 
+              [routerLink]="['/adventures']"
+              class="white-hover-underline">
+              Adventures
+            </a>
           </li>
 
           <li class="hover:text-orange-300 transition font-passion text-lg">
-            <a href="#">Upcoming Hikes</a>
+            <a 
+              [routerLink]="['/upcoming-hikes']"
+              class="white-hover-underline">
+              Upcoming Hikes
+            </a>
           </li>
+
+          <li class="hover:text-orange-300 transition font-passion text-lg">
+            <a 
+              [routerLink]="['/about']"
+              class="white-hover-underline">
+              About
+            </a>
+          </li>
+
         </ul>
       </div>
     </div>

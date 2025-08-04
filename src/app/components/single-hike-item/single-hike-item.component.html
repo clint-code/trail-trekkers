@@ -1,27 +1,37 @@
-<div class="single-hike-item flex gap-6">
-  <div class="date-section flex-none w-1/6">
-    <p class="text-5xl font-garamondBold">{{ hikeDate | date : "LLL" }}</p>
+<div class="single-hike-item flex gap-6 mb-10">
+
+  <div class="date-section flex-none w-1/12">
+    <p class="text-4xl font-garamondBold uppercase">{{ hikeDate | date : "LLL" }}</p>
     <p class="text-5xl font-garamondRegular">{{ hikeDate | date : "dd" }}</p>
   </div>
 
-  <div class="hike-details-section w-9/12">
+  <div class="hike-details-section w-8/12">
     <a
-      class="text-5xl uppercase font-garamondBold text-orange-600"
+      class="text-5xl pb-2 uppercase font-garamondBold text-orange-600 orange-hover-underline"
       [routerLink]="['/single-hike']"
     >
       {{ hikeTitle }}
     </a>
-    <h3 class="text-xl uppercase font-garamondRegular">{{ hikeLocation }}</h3>
-    <p class="text-xl uppercase font-garamondRegular">{{ hikeDifficulty }}</p>
+    <p class="text-xl uppercase font-garamondRegular"> Location:
+      <span class="font-garamondBold">
+        {{ hikeLocation }}
+      </span>
+    </p>
+    <p class="text-xl uppercase font-garamondRegular"> Level of Difficulty:
+      <span class="font-garamondBold">
+        {{ hikeDifficulty }}
+      </span>
+    </p>
   </div>
 
-  <div class="hike-feature-image w-3/4">
+  <div class="hike-feature-image w-1/3">
     <a [routerLink]="['/single-hike']">
       <img
         [src]="hikeImageUrl"
         [alt]="hikeImageAlt"
-        class="w-full h-3/5 object-cover rounded-lg"
+        class="max-w-full h-auto object-cover rounded-md"
       />
     </a>
   </div>
+
 </div>

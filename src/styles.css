@@ -4,6 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/*global styles*/
 
 .display-1 {
   @apply text-8xl text-center font-speakeasy text-orange-600 pt-5;
@@ -19,6 +20,14 @@
 
 .parallax-effect {
   @apply bg-cover bg-no-repeat bg-fixed bg-center;
+}
+
+.white-hover-underline {
+  @apply relative inline-block text-white after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-white after:transition-[width] after:duration-300 hover:after:w-full;
+}
+
+.orange-hover-underline {
+  @apply relative inline-block after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-orange-600 after:transition-[width] after:duration-300 hover:after:w-full;
 }
 
 @import "src/assets/css/main.scss";
