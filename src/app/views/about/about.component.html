@@ -42,7 +42,7 @@
 
     <div class="list-items-section flex pb-7">
       <app-single-about-item
-        class="w-1/4"
+        class="w-1/4 single-list-item"
         *ngFor="let item of aboutItems"
         [itemIcon]="item.itemIcon"
         [itemIconAlt]="item.itemIconAlt"
@@ -51,12 +51,10 @@
     </div>
   </div>
 
-  <div class="how-it-started-section mt-5 mb-7">
-
+  <div class="how-it-started-section mt-5 mb-7 relative">
     <div class="title-section pb-7 text-center">
-      
       <h3 class="display-2">How it all started...</h3>
-      
+
       <svg class="underline" width="200" height="20" viewBox="0 0 200 20">
         <path
           id="underlinePath"
@@ -66,24 +64,23 @@
           fill="none"
         />
       </svg>
-
     </div>
 
     <div class="how-it-started-title columns-2 gap-2 mb-5">
       <div class="how-it-started-cnt">
-        <p class="font-garamondRegular text-4xl">
+        <p class="font-garamondRegular text-3xl">
           <span class="font-garamondBold text-8xl">T</span>he whole point of
           leisure is that time is not just something to be filled with work or
           usefulness, but is itself a gift."
         </p>
         <br />
-        <p class="font-garamondRegular text-4xl">
+        <p class="font-garamondRegular text-3xl">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec
           bibendum eros, ac iaculis tellus. Aenean congue lacus sed turpis
           sagittis, nec pretium erat volutpat.
         </p>
         <br />
-        <p class="font-garamondRegular text-4xl">
+        <p class="font-garamondRegular text-3xl">
           Aliquam pulvinar bibendum est sit amet tincidunt.
         </p>
       </div>
@@ -99,6 +96,17 @@
       </div>
     </div>
   </div>
+
+  <div class="quote-section w-2/5 -rotate-6 absolute bottom-7 left-7">
+    <blockquote class="font-garamondItalic text-6xl text-orange-600">
+      "The world is not in your books and maps. It’s out there."
+    </blockquote>
+    <small class="font-passion text-2xl pt-5 black-hover-underline"
+      >Gandalf the Grey, The Hobbit</small
+    >
+  </div>
+
+  <!-- <div class="conclusion-section relative"></div> -->
 </div>
 
 <app-footer></app-footer>

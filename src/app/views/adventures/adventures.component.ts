@@ -142,8 +142,8 @@ export class AdventuresComponent implements OnInit {
       scrollBox.from(box, {
         y: 150,
         opacity: 0,
+        stagger: 0.2,
         duration: 4.5,
-        stagger: 1,
       });
 
     });

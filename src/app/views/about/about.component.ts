@@ -14,6 +14,7 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(DrawSVGPlugin);
 gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(SplitText);
 
 @Component({
   selector: 'app-about',
@@ -45,6 +46,11 @@ export class AboutComponent implements OnInit {
 
     this.animateSVGLine();
     this.animateHeroText();
+    this.animateQuoteText();
+
+    setTimeout(() => {
+      this.animateAboutItems();
+    }, 1000);
 
   }
 
@@ -81,17 +87,21 @@ export class AboutComponent implements OnInit {
 
   animateSubtitleText() {
 
-    SplitText.create(".about-title-section .about-title p", {
+    SplitText.create(".how-it-started-section .how-it-started-cnt p", {
       type: "words, chars",
       onSplit(self) {
         gsap.from(self.chars, {
+          scrollTrigger: {
+            trigger: ".how-it-started-section",
+            scrub: true
+          },
           opacity: 0,
           x: 100,
           duration: 0.5,
           autoAlpha: 0,
           delay: 0.5,
           ease: "power4",
-          stagger: 0.05
+          stagger: 0.2
         });
       }
     });
@@ -105,6 +115,24 @@ export class AboutComponent implements OnInit {
       this.aboutItems = items;
 
     });
+  }
+
+  animateAboutItems() {
+
+    gsap.from(".single-list-item .single-item", {
+      scrollTrigger: {
+        trigger: ".list-items-section",
+        scrub: true
+      },
+      toggleActions: 'play pause resume reset',
+      opacity: 0,
+      y: 100,
+      duration: 0.6,
+      stagger: 0.2,
+      ease: "power2.out",
+
+    });
+
   }
 
   handleHover(event: any) {
@@ -126,6 +154,29 @@ export class AboutComponent implements OnInit {
   resetStyles(event: any) {
     let imageThumbnail = event.target;
     imageThumbnail.style.transform = `perspective(${event.currentTarget.clientWidth}px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+  }
+
+  animateQuoteText() {
+
+    SplitText.create(".quote-section", {
+      type: "words",
+      onSplit(self) {
+        gsap.from(self.words, {
+          scrollTrigger: {
+            trigger: ".quote-section",
+            //scrub: true
+          },
+          opacity: 0,
+          //x: 100,
+          duration: 0.5,
+          autoAlpha: 0,
+          delay: 0.5,
+          ease: "power4",
+          stagger: 0.2
+        });
+      }
+    });
+
   }
 
 
