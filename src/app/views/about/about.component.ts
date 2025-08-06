@@ -47,6 +47,7 @@ export class AboutComponent implements OnInit {
     this.animateSVGLine();
     this.animateHeroText();
     this.animateQuoteText();
+    this.animateSubtitleText();
 
     setTimeout(() => {
       this.animateAboutItems();
@@ -88,16 +89,17 @@ export class AboutComponent implements OnInit {
   animateSubtitleText() {
 
     SplitText.create(".how-it-started-section .how-it-started-cnt p", {
-      type: "words, chars",
+      type: "words",
       onSplit(self) {
-        gsap.from(self.chars, {
+        gsap.from(self.words, {
           scrollTrigger: {
             trigger: ".how-it-started-section",
-            scrub: true
+            //scrub: true
           },
+          toggleActions: 'play pause resume reset',
           opacity: 0,
           x: 100,
-          duration: 0.5,
+          duration: 4.0,
           autoAlpha: 0,
           delay: 0.5,
           ease: "power4",
@@ -164,13 +166,13 @@ export class AboutComponent implements OnInit {
         gsap.from(self.words, {
           scrollTrigger: {
             trigger: ".quote-section",
-            //scrub: true
           },
+          toggleActions: 'play pause resume reset',
           opacity: 0,
-          //x: 100,
-          duration: 0.5,
+          x: 100,
+          duration: 4.5,
           autoAlpha: 0,
-          delay: 0.5,
+          delay: 3.5,
           ease: "power4",
           stagger: 0.2
         });
