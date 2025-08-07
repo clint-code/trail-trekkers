@@ -1,10 +1,10 @@
 <div class="single-hike-info-item flex">
-  <div class="flex">
-    <img [src]="hikeInfoIcon" [alt]="hikeInfoIconAlt" class="w-2/6 h-auto" />
+  <div class="flex items-center">
+    <img [src]="hikeInfoIcon" [alt]="hikeInfoIconAlt" class="w-2/12 h-fit" />
 
-    <div class="single-hike-info">
+    <div class="single-hike-info ml-2">
 
-      <p class="font-passion text-2xl text-left">{{ hikeInfoTitle }}</p>
+      <p class="font-passion text-2xl text-left mb-1">{{ hikeInfoTitle }}</p>
       <p class="font-garamondRegular text-xl text-left">{{ hikeInfoDescription }}</p>
 
       <ul *ngIf="hikeInfoList">

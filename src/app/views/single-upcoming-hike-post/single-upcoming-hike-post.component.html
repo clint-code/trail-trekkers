@@ -36,9 +36,10 @@
       </svg>
     </div>
 
-    <div class="list-items-section flex pb-7 flex-wrap">
+    <div class="list-items-section flex pb-7 flex-wrap justify-evenly">
         
       <app-single-hike-info-item
+        class="w-1/3 single-list-item mb-6"
         *ngFor="let hikeInfoItem of hikeInfoDetails"
         [hikeInfoIcon]="hikeInfoItem.infoIcon"
         [hikeInfoIconAlt]="hikeInfoItem.infoIconAlt"
