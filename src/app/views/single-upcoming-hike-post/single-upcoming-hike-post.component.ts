@@ -39,10 +39,27 @@ export class SingleUpcomingHikePostComponent implements OnInit {
   }
 
   ngAfterViewInit() {
+    this.animateSVGLine();
+
+    setTimeout(() => {
+      this.animateHikeInfoItems();
+    }, 1000);
+
+  }
+
+  animateSVGLine() {
 
     gsap.fromTo("#underlinePath",
       { drawSVG: "0%" },
-      { drawSVG: "100%", duration: 2, ease: "power2.out" }
+      {
+        drawSVG: "100%",
+        scrollTrigger: {
+          trigger: '.title-section',
+          // start: 'top 80%',
+          // end: 'bottom 60%',
+          scrub: true
+        }
+      }
     );
 
   }
@@ -53,6 +70,23 @@ export class SingleUpcomingHikePostComponent implements OnInit {
 
       this.hikeInfoDetails = items;
       console.log(this.hikeInfoDetails);
+    });
+
+  }
+
+  animateHikeInfoItems() {
+
+    gsap.from(".single-list-item .single-hike-info-item", {
+      scrollTrigger: {
+        trigger: ".list-items-section",
+      },
+      toggleActions: 'play pause resume reset',
+      opacity: 0,
+      y: 100,
+      duration: 0.6,
+      stagger: 0.2,
+      ease: "power2.out",
+
     });
 
   }

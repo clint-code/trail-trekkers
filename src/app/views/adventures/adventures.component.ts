@@ -130,21 +130,34 @@ export class AdventuresComponent implements OnInit {
 
   animatePostItems() {
 
-    document.querySelectorAll('.single-post-item').forEach((box) => {
+    // document.querySelectorAll('.single-post-item').forEach((box) => {
 
-      const scrollBox = gsap.timeline({
-        scrollTrigger: {
-          trigger: box,
-          toggleActions: 'restart none none restart',
-        },
-      });
+    //   const scrollBox = gsap.timeline({
+    //     scrollTrigger: {
+    //       trigger: box,
+    //       toggleActions: 'restart none none restart',
+    //     },
+    //   });
 
-      scrollBox.from(box, {
-        y: 150,
-        opacity: 0,
-        stagger: 0.2,
-        duration: 4.5,
-      });
+    //   scrollBox.from(box, {
+    //     y: 150,
+    //     opacity: 0,
+    //     stagger: 0.2,
+    //     duration: 4.5,
+    //   });
+
+    // });
+
+    gsap.from(".single-post-item .single-post", {
+      scrollTrigger: {
+        trigger: ".adventure-post-articles",
+      },
+      toggleActions: 'play pause resume reset',
+      opacity: 0,
+      y: 100,
+      duration: 0.6,
+      stagger: 0.2,
+      ease: "power2.out",
 
     });
 

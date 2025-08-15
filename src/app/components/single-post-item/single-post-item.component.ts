@@ -1,5 +1,6 @@
 import { Component, Input, ElementRef } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-single-post-item',
@@ -7,7 +8,8 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./single-post-item.component.scss'],
   standalone: true,
   imports: [
-    RouterModule
+    RouterModule,
+    DatePipe
   ]
 
 })
@@ -17,6 +19,7 @@ export class SinglePostItemComponent {
 
   @Input() postTitle: string = '';
   @Input() postSubtitle: string = '';
+  @Input() postDate!: Date;
   @Input() postImageUrl: string = '';
   @Input() postImageAlt: string = '';
 

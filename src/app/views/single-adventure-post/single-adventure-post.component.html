@@ -1,14 +1,43 @@
 <app-header></app-header>
 
 <div class="hike-banner-section relative">
-  
   <app-hike-banner
     [hikeTitle]="'First Hike, Fierce Climb'"
     [hikeLocation]="'Elephant Hill, Aberdare Ranges, Njabini'"
-    [locationImage]="'assets/img/mount-ol-donyo-sabuk-hero-1.jpg'"
-    [locationImageAlt]="'mount-ol-donyo-sabuk'"
+    [locationImage]="'assets/img/blog-imgs/elephant-hill-banner.jpg'"
+    [locationImageAlt]="'elephant-hill-banner'"
   ></app-hike-banner>
-
 </div>
 
-<app-footer></app-footer>
+<div class="blog-article-section">
+  <div class="blog-intro-section">
+    <div class="w-full text-center mt-8 mb-8">
+      <h2 class="display-2 orange-hover-underline">Scaling the Giant</h2>
+      <p class="blog-intro-date">Posted on 12th March 2023</p>
+    </div>
+
+    <div class="blog-intro-text columns-2 gap-5 mb-5">
+
+      <div class="nav-section">
+        <ul>
+          <li>The Journey</li>
+          <li>The Rewarding Views</li>
+          <li>In Summary...</li>
+        </ul>
+      </div>
+
+      <div class="intro">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec
+          bibendum eros, ac iaculis tellus. Aenean congue lacus sed turpis
+          sagittis, nec pretium erat volutpat. Aliquam pulvinar bibendum est sit
+          amet tincidunt. Maecenas diam velit, laoreet ut nisl sit amet,
+          volutpat varius felis.
+        </p>
+
+      </div>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+</div>

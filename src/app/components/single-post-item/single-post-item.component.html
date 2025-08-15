@@ -1,4 +1,4 @@
-<div class="relative mb-5">
+<div class="relative mb-5 single-post">
   <div class="post-image">
     <img
       [src]="postImageUrl"
@@ -18,6 +18,11 @@
       <h3 class="text-2xl font-garamondRegular text-white text-center mt-2">
         {{ postSubtitle }}
       </h3>
+
+      <p class="text-lg font-garamondRegular text-white text-center mt-1">
+        {{ postDate | date: 'longDate' }}
+      </p>
+
     </div>
   </div>
 </div>

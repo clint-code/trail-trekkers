@@ -22,6 +22,7 @@
           class="single-post-item"
           *ngFor="let adventurePost of adventurePosts"
           [postTitle]="adventurePost.title"
+          [postDate]="adventurePost.postDate"
           [postSubtitle]="adventurePost.location"
           [postImageUrl]="adventurePost.imageUrl"
           [postImageAlt]="adventurePost.imageAlt"
