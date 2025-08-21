@@ -1,5 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FaIconComponent, FaIconLibrary, FontAwesomeModule } from "@fortawesome/angular-fontawesome";
+import { faBusSimple, faEarthAfrica, faPeopleGroup, faSun } from '@fortawesome/free-solid-svg-icons';
 
 import { HeaderComponent } from '../../components/header/header.component';
 import { FooterComponent } from '../../components/footer/footer.component';
@@ -35,8 +37,17 @@ export class AboutComponent implements OnInit {
   threshold: number = 1;
 
   constructor(
-    private allContentService: AllContentService
-  ) { }
+    private allContentService: AllContentService,
+    private library: FaIconLibrary
+
+  ) {
+    this.library.addIcons(
+      faBusSimple,
+      faEarthAfrica,
+      faPeopleGroup,
+      faSun
+    );
+  }
 
   ngOnInit(): void {
     this.getAboutItems();

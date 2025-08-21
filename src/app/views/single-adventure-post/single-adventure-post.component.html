@@ -9,15 +9,15 @@
   ></app-hike-banner>
 </div>
 
-<div class="blog-article-section">
+<div class="blog-article-section max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
   <div class="blog-intro-section">
     <div class="w-full text-center mt-8 mb-8">
       <h2 class="display-2 orange-hover-underline">Scaling the Giant</h2>
       <p class="blog-intro-date">Posted on 12th March 2023</p>
     </div>
 
-    <div class="blog-intro-text columns-2 gap-5 mb-5">
-
+    <div class="columns-2 gap-5 blog-intro-text mb-5">
       <div class="nav-section">
         <ul>
           <li>The Journey</li>
@@ -34,10 +34,182 @@
           amet tincidunt. Maecenas diam velit, laoreet ut nisl sit amet,
           volutpat varius felis.
         </p>
-
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec
+          bibendum eros, ac iaculis tellus. Aenean congue lacus sed turpis
+          sagittis, nec pretium erat volutpat. Aliquam pulvinar bibendum est sit
+          amet tincidunt. Maecenas diam velit, laoreet ut nisl sit amet,
+          volutpat varius felis.
+        </p>
       </div>
     </div>
   </div>
 
-  <app-footer></app-footer>
+  <div class="journey-section">
+    <div class="columns-2 gap-5 journey-text mb-5">
+      <div class="text-section">
+        <h2 class="display-2 orange-hover-underline">The Journey</h2>
+
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec
+          bibendum eros, ac iaculis tellus. Aenean congue lacus sed turpis
+          sagittis, nec pretium erat volutpat. Aliquam pulvinar bibendum est sit
+          amet tincidunt. Maecenas diam velit, laoreet ut nisl sit amet,
+          volutpat varius felis.
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec
+          bibendum eros, ac iaculis tellus. Aenean congue lacus sed turpis
+          sagittis, nec pretium erat volutpat. Aliquam pulvinar bibendum est sit
+          amet tincidunt. Maecenas diam velit, laoreet ut nisl sit amet,
+          volutpat varius felis.
+        </p>
+      </div>
+
+      <div class="img-section">
+        <img
+          src="assets/img/blog-imgs/elephant-hill-terrain.jpg"
+          alt="first-hike"
+          class="h-2/4 rounded-lg inline-block transition-transform duration-200 ease-out [transform-style:preserve-3d]"
+          (mouseenter)="handleHover($event)"
+          (mouseleave)="resetStyles($event)"
+        />
+      </div>
+    </div>
+
+    <div class="quote-section">
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec
+        bibendum eros, ac iaculis tellus. Aenean congue lacus sed turpis
+        sagittis, nec pretium erat volutpat. Aliquam pulvinar bibendum est sit
+        amet tincidunt. Maecenas diam velit, laoreet ut nisl sit amet, volutpat
+        varius felis.
+      </p>
+    </div>
+
+    <div class="photo-grid-section">
+      <div class="columns-2">
+        <img
+          src="assets/img/blog-imgs/before-starting-point.jpg"
+          alt="before-starting-point"
+          class="w-full aspect-auto"
+        />
+
+        <img
+          src="assets/img/blog-imgs/point-of-despair.jpg"
+          alt="before-starting-point"
+          class="w-full aspect-auto"
+        />
+
+        <img
+          src="assets/img/blog-imgs/the-tail.jpg"
+          alt="before-starting-point"
+          class="w-full aspect-auto"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="rewarding-views-section">
+    <div class="banner-image-section">
+      <app-hike-banner
+        [hikeTitle]="'The Rewarding Views'"
+        [locationImage]="'assets/img/blog-imgs/scenic-views-1.jpg'"
+        [locationImageAlt]="'elephant-hill-banner'"
+      ></app-hike-banner>
+    </div>
+
+    <div class="text-content">
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec
+        bibendum eros, ac iaculis tellus. Aenean congue lacus sed turpis
+        sagittis, nec pretium erat volutpat. Aliquam pulvinar bibendum est sit
+        amet tincidunt. Maecenas diam velit, laoreet ut nisl sit amet, volutpat
+        varius felis.
+      </p>
+
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec
+        bibendum eros, ac iaculis tellus. Aenean congue lacus sed turpis
+        sagittis, nec pretium erat volutpat. Aliquam pulvinar bibendum est sit
+        amet tincidunt. Maecenas diam velit, laoreet ut nisl sit amet, volutpat
+        varius felis.
+      </p>
+    </div>
+
+    <div class="photo-grid-section gap-x-8 gap-y-7 columns-2">
+      <img
+        src="assets/img/blog-imgs/scenic-views-1.jpg"
+        alt="scenic-views-1"
+        class="w-full aspect-auto"
+      />
+      
+      <img
+        src="assets/img/blog-imgs/scenic-views-5.jpg"
+        alt="scenic-views-5"
+        class="w-full aspect-auto"
+      />
+
+      <img
+        src="assets/img/blog-imgs/scenic-views-4.jpg"
+        alt="scenic-views-4"
+        class="w-full aspect-auto"
+      />
+
+      <img
+        src="assets/img/blog-imgs/scenic-views-2.jpg"
+        alt="scenic-views-2"
+        class="w-full aspect-auto"
+      />
+
+      <img
+        src="assets/img/blog-imgs/scenic-views-3.jpg"
+        alt="scenic-views-3"
+        class="w-full aspect-auto"
+      />
+    </div>
+
+    <div class="text-content">
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec
+        bibendum eros, ac iaculis tellus. Aenean congue lacus sed turpis
+        sagittis, nec pretium erat volutpat. Aliquam pulvinar bibendum est sit
+        amet tincidunt. Maecenas diam velit, laoreet ut nisl sit amet, volutpat
+        varius felis.
+      </p>
+
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec
+        bibendum eros, ac iaculis tellus. Aenean congue lacus sed turpis
+        sagittis, nec pretium erat volutpat. Aliquam pulvinar bibendum est sit
+        amet tincidunt. Maecenas diam velit, laoreet ut nisl sit amet, volutpat
+        varius felis.
+      </p>
+    </div>
+
+  </div>
+
+  <div class="in-summary-section columns-2 gap-5">
+
+    <div class="image-section">
+
+      <img
+        src="assets/img/blog-imgs/at-the-summit.jpg"
+        alt="at-the-summit"
+        class="h-auto"
+      />
+
+    </div>
+
+    <div class="in-summary-text">
+
+      <h2 class="display-2 orange-hover-underline">In Summary...</h2>
+
+
+    </div>
+
+  </div>
+
 </div>
+
+<app-footer></app-footer>

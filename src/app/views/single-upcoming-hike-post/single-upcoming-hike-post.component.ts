@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FaIconComponent, FaIconLibrary, FontAwesomeModule } from "@fortawesome/angular-fontawesome";
+import { faBusSimple, faMoneyBillWave, faMountain, faLocationDot, faPersonHiking, faClock, faCompass } from '@fortawesome/free-solid-svg-icons';
 
 import { HeaderComponent } from '../../components/header/header.component';
 import { FooterComponent } from '../../components/footer/footer.component';
@@ -22,16 +24,28 @@ gsap.registerPlugin(DrawSVGPlugin);
     HeaderComponent,
     FooterComponent,
     HikeBannerComponent,
-    SingleHikeInfoItemComponent
+    SingleHikeInfoItemComponent,
+    FontAwesomeModule
   ]
 })
 export class SingleUpcomingHikePostComponent implements OnInit {
 
-  hikeInfoDetails: any;
+  hikeInfoDetails: any[] = [];
 
   constructor(
-    private allContentService: AllContentService
-  ) { }
+    private allContentService: AllContentService,
+    private library: FaIconLibrary
+  ) {
+    this.library.addIcons(
+      faBusSimple,
+      faMoneyBillWave,
+      faMountain,
+      faLocationDot,
+      faPersonHiking,
+      faClock,
+      faCompass
+    );
+  }
 
 
   ngOnInit(): void {
@@ -70,6 +84,12 @@ export class SingleUpcomingHikePostComponent implements OnInit {
 
       this.hikeInfoDetails = items;
       console.log(this.hikeInfoDetails);
+
+      this.hikeInfoDetails = items.map(item => ({
+        ...item,
+        iconObject: this.library.getIconDefinition('fas', item.infoIcon)
+      }));
+
     });
 
   }

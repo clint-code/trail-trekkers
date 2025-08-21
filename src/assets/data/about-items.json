@@ -1,26 +1,22 @@
 [
     {
         "id": 1,
-        "itemIcon": "assets/img/icons/public.png",
-        "itemIconAlt": "globe-icon",
+        "itemIcon": "earth-africa",
         "itemDescription": "Admire the mysteries and wonders of God's creations"
     },
     {
         "id": 2,
-        "itemIcon": "assets/img/icons/directions_bus.png",
-        "itemIconAlt": "directions_bus",
+        "itemIcon": "bus-simple",
         "itemDescription": "Get out of town"
     },
     {
         "id": 3,
-        "itemIcon": "assets/img/icons/users.png",
-        "itemIconAlt": "users-icon",
+        "itemIcon": "people-group",
         "itemDescription": "Connect and create friendships"
     },
     {
         "id": 4,
-        "itemIcon": "assets/img/icons/sun.png",
-        "itemIconAlt": "sun-icon",
+        "itemIcon": "sun",
         "itemDescription": "Recover a sense of awe with the nature world"
     }
 ]
