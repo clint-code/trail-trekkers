@@ -1,0 +1,26 @@
+[
+    {
+        "id": 4,
+        "infoTitle": "Level of Difficulty",
+        "infoDescription": "Challenging",
+        "infoIcon": "person-hiking"
+    },
+    {
+        "id": 2,
+        "infoTitle": "Distance",
+        "infoDescription": "8.9 km",
+        "infoIcon": "compass"
+    },
+    {
+        "id": 6,
+        "infoTitle": "Total Time Taken",
+        "infoDescription": "4hrs",
+        "infoIcon": "clock"
+    },
+    {
+        "id": 1,
+        "infoTitle": "Elevation Gain",
+        "infoDescription": "1200m",
+        "infoIcon": "mountain"
+    }
+]

@@ -1,15 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { HeaderComponent } from '../../components/header/header.component';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { HikeBannerComponent } from '../../components/hike-banner/hike-banner.component';
+import { SingleHikeInfoItemComponent } from '../../components/single-hike-info-item/single-hike-info-item.component';
+import { SinglePostItemComponent } from '../../components/single-post-item/single-post-item.component';
 
 import { AllContentService } from '../../services/all-content/all-content.service';
 
-import { FaIconLibrary } from "@fortawesome/angular-fontawesome";
-import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { FaIconComponent, FaIconLibrary, FontAwesomeModule } from "@fortawesome/angular-fontawesome";
+import { faArrowRight, faMountain, faLocationDot, faPersonHiking, faClock, faCompass } from "@fortawesome/free-solid-svg-icons";
 
 import { gsap } from 'gsap';
 import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin';
@@ -23,25 +24,65 @@ import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin';
     CommonModule,
     HeaderComponent,
     FooterComponent,
-    HikeBannerComponent
+    HikeBannerComponent,
+    SingleHikeInfoItemComponent,
+    SinglePostItemComponent
   ]
 })
 export class SingleAdventurePostComponent {
 
-  faIconLibrary: FaIconLibrary;
   threshold: number = 1;
+
+  hikeInfoDetails: any[] = [];
+  adventurePosts: any;
+
 
   constructor(
     private allContentService: AllContentService,
-    faIconLibrary: FaIconLibrary) {
-    this.faIconLibrary = faIconLibrary;
+    private faIconLibrary: FaIconLibrary
+  ) {
     this.allContentService = allContentService;
     this.faIconLibrary.addIcons(
-      faArrowRight
+      faArrowRight,
+      faClock,
+      faCompass,
+      faLocationDot,
+      faMountain,
+      faPersonHiking
     );
 
     // Register GSAP plugins
     gsap.registerPlugin(DrawSVGPlugin);
+
+  }
+
+  ngOnInit(): void {
+
+    this.getAdventurePostContent();
+    this.getOtherAdventurePosts();
+
+  }
+
+  getOtherAdventurePosts() {
+
+    this.allContentService.getAdventurePosts().subscribe(posts => {
+      this.adventurePosts = posts;
+    });
+
+  }
+
+  getAdventurePostContent() {
+
+    this.allContentService.getAdventureSummaryDetails().subscribe(items => {
+
+      this.hikeInfoDetails = items;
+
+      this.hikeInfoDetails = items.map(item => ({
+        ...item,
+        iconObject: this.faIconLibrary.getIconDefinition('fas', item.infoIcon)
+      }));
+    });
+
 
   }
 

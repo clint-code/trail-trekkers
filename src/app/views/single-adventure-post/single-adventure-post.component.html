@@ -10,7 +10,6 @@
 </div>
 
 <div class="blog-article-section max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
   <div class="blog-intro-section">
     <div class="w-full text-center mt-8 mb-8">
       <h2 class="display-2 orange-hover-underline">Scaling the Giant</h2>
@@ -111,13 +110,13 @@
   </div>
 
   <div class="rewarding-views-section">
-    <div class="banner-image-section">
+    <!-- <div class="banner-image-section">
       <app-hike-banner
         [hikeTitle]="'The Rewarding Views'"
         [locationImage]="'assets/img/blog-imgs/scenic-views-1.jpg'"
         [locationImageAlt]="'elephant-hill-banner'"
       ></app-hike-banner>
-    </div>
+    </div> -->
 
     <div class="text-content">
       <p>
@@ -143,7 +142,7 @@
         alt="scenic-views-1"
         class="w-full aspect-auto"
       />
-      
+
       <img
         src="assets/img/blog-imgs/scenic-views-5.jpg"
         alt="scenic-views-5"
@@ -186,28 +185,51 @@
         varius felis.
       </p>
     </div>
-
   </div>
 
   <div class="in-summary-section columns-2 gap-5">
-
     <div class="image-section">
-
       <img
         src="assets/img/blog-imgs/at-the-summit.jpg"
         alt="at-the-summit"
         class="h-auto"
       />
-
     </div>
 
     <div class="in-summary-text">
-
       <h2 class="display-2 orange-hover-underline">In Summary...</h2>
 
-
+      <div class="list-items-section flex flex-col">
+        <app-single-hike-info-item
+          class="w-1/3 single-list-item mb-6"
+          *ngFor="let hikeInfoItem of hikeInfoDetails"
+          [hikeInfoIcon]="hikeInfoItem.infoIcon"
+          [hikeInfoTitle]="hikeInfoItem.infoTitle"
+          [hikeInfoDescription]="hikeInfoItem.infoDescription"
+        ></app-single-hike-info-item>
+      </div>
     </div>
+  </div>
+  
+  <div class="adventure-post-articles">
 
+    <h3 class="display-2 orange-hover-underline">
+      More adventures...
+    </h3>
+
+    <div class="flex gap-6 mt-10">
+      <div class="columns-3">
+        <app-single-post-item
+          class="single-post-item"
+          *ngFor="let adventurePost of adventurePosts"
+          [postTitle]="adventurePost.title"
+          [postDate]="adventurePost.postDate"
+          [postSubtitle]="adventurePost.location"
+          [postImageUrl]="adventurePost.imageUrl"
+          [postImageAlt]="adventurePost.imageAlt"
+        ></app-single-post-item>
+      </div>
+    </div>
   </div>
 
 </div>

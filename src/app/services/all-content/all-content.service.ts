@@ -21,6 +21,10 @@ export class AllContentService {
     return this.http.get<any[]>("/assets/data/hike-info-details.json");
   }
 
+  getAdventureSummaryDetails(): Observable<any[]> {
+    return this.http.get<any[]>("/assets/data/adventure-posts-hiking-summary.json");
+  }
+
   getHikePosts(): Observable<any[]> {
     return this.http.get<any[]>("/assets/data/hike-posts.json");
   }

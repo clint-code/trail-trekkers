@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FaIconComponent, FaIconLibrary, FontAwesomeModule } from "@fortawesome/angular-fontawesome";
+import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 
 import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
@@ -11,7 +13,8 @@ gsap.registerPlugin(SplitText);
   styleUrls: ['./hike-banner.component.scss'],
   standalone: true,
   imports: [
-    CommonModule
+    CommonModule,
+    FaIconComponent
   ]
 
 })
@@ -21,6 +24,14 @@ export class HikeBannerComponent {
   @Input() hikeLocation: string = '';
   @Input() locationImage: string = '';
   @Input() locationImageAlt: string = '';
+
+  constructor(
+    private library: FaIconLibrary
+  ) {
+    this.library.addIcons(
+      faLocationDot
+    );
+  }
 
   ngAfterViewInit() {
 
