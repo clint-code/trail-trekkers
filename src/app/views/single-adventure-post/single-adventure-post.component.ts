@@ -55,7 +55,33 @@ export class SingleAdventurePostComponent {
   threshold: number = 1;
 
   hikeInfoDetails: any[] = [];
-  adventurePosts: any;
+  adventurePosts: any[] = [
+    {
+      id: 2,
+      title: "Call of the Wild",
+      postDate: "2024-03-09",
+      imageUrl: "assets/img/blog-article-imgs/lolida-eburru-campsite.png",
+      imageAlt: "Lolida Eburru Campsite",
+      location: "Lolida Eburru Campsite, Naivasha"
+    },
+    {
+      id: 2,
+      title: "Beyond Expectations",
+      postDate: "2024-03-09",
+      imageUrl: "assets/img/blog-article-imgs/Kijabe-Hill.png",
+      imageAlt: "Kijabe Hill",
+      location: "Kijabe Hill, Kijabe"
+    },
+    {
+      id: 2,
+      title: "Cold Nights, Warm Memories",
+      postDate: "2024-03-09",
+      imageUrl: "assets/img/blog-article-imgs/cold-loldia-eburru.png",
+      imageAlt: "Lolida Eburru Campsite",
+      location: "Lolida Eburru Campsite, Naivasha"
+    }
+  ];
+
 
 
   constructor(
@@ -102,9 +128,9 @@ export class SingleAdventurePostComponent {
 
   getOtherAdventurePosts() {
 
-    this.allContentService.getAdventurePosts().subscribe(posts => {
-      this.adventurePosts = posts;
-    });
+    // this.allContentService.getAdventurePosts().subscribe(posts => {
+    //   this.adventurePosts = posts;
+    // });
 
   }
 
