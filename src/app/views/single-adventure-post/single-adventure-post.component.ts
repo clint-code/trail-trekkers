@@ -1,19 +1,34 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, Inject, ElementRef, ViewChild } from '@angular/core';
+import { CommonModule, DOCUMENT } from '@angular/common';
 
 import { HeaderComponent } from '../../components/header/header.component';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { HikeBannerComponent } from '../../components/hike-banner/hike-banner.component';
 import { SingleHikeInfoItemComponent } from '../../components/single-hike-info-item/single-hike-info-item.component';
 import { SinglePostItemComponent } from '../../components/single-post-item/single-post-item.component';
+import { PostHeroImageComponent } from 'src/app/components/post-hero-image/post-hero-image.component';
 
 import { AllContentService } from '../../services/all-content/all-content.service';
 
 import { FaIconComponent, FaIconLibrary, FontAwesomeModule } from "@fortawesome/angular-fontawesome";
-import { faArrowRight, faMountain, faLocationDot, faPersonHiking, faClock, faCompass } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowRight,
+  faLocationArrow,
+  faMountain,
+  faLocationDot,
+  faPersonHiking,
+  faClock,
+  faCompass
+} from "@fortawesome/free-solid-svg-icons";
 
 import { gsap } from 'gsap';
 import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+
+// Register GSAP plugins
+gsap.registerPlugin(DrawSVGPlugin);
+gsap.registerPlugin(ScrollTrigger);
+
 
 @Component({
   selector: 'app-single-adventure-post',
@@ -25,11 +40,17 @@ import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin';
     HeaderComponent,
     FooterComponent,
     HikeBannerComponent,
+    PostHeroImageComponent,
     SingleHikeInfoItemComponent,
-    SinglePostItemComponent
+    SinglePostItemComponent,
+    FaIconComponent
   ]
 })
 export class SingleAdventurePostComponent {
+
+  @ViewChild('theJourney') theJourney !: ElementRef;
+  @ViewChild('rewardingViews') rewardingViews !: ElementRef;
+  @ViewChild('inSummary') inSummary !: ElementRef;
 
   threshold: number = 1;
 
@@ -38,6 +59,7 @@ export class SingleAdventurePostComponent {
 
 
   constructor(
+    @Inject(DOCUMENT) private document: Document,
     private allContentService: AllContentService,
     private faIconLibrary: FaIconLibrary
   ) {
@@ -48,18 +70,33 @@ export class SingleAdventurePostComponent {
       faCompass,
       faLocationDot,
       faMountain,
-      faPersonHiking
+      faPersonHiking,
+      faLocationArrow
     );
-
-    // Register GSAP plugins
-    gsap.registerPlugin(DrawSVGPlugin);
 
   }
 
   ngOnInit(): void {
-
+    this.document.documentElement.scrollTop = 0;
     this.getAdventurePostContent();
     this.getOtherAdventurePosts();
+
+  }
+
+  ngAfterViewInit() {
+
+    gsap.to("#scrollbarBg", {
+      width: "100%",
+      ease: "none",
+      scrollTrigger: {
+        trigger: document.body,
+        start: "top top",
+        end: "bottom bottom",
+        scrub: true
+      }
+    });
+
+
 
   }
 
@@ -83,6 +120,28 @@ export class SingleAdventurePostComponent {
       }));
     });
 
+
+  }
+
+  scrollToTarget(section: string) {
+    const sectionMap: { [key: string]: ElementRef; } = {
+      theJourney: this.theJourney,
+      rewardingViews: this.rewardingViews,
+      inSummary: this.inSummary
+    };
+
+    const target = sectionMap[section];
+
+    if (target) {
+      target.nativeElement.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    } else {
+      console.warn(`No ViewChild found for section: ${section}`);
+    }
+
+    //console.log("Target:", target);
 
   }
 

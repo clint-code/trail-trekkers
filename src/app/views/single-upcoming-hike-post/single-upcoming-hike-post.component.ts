@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, Inject } from '@angular/core';
+import { CommonModule, DOCUMENT } from '@angular/common';
 import { FaIconComponent, FaIconLibrary, FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { faBusSimple, faMoneyBillWave, faMountain, faLocationDot, faPersonHiking, faClock, faCompass } from '@fortawesome/free-solid-svg-icons';
 
@@ -33,6 +33,7 @@ export class SingleUpcomingHikePostComponent implements OnInit {
   hikeInfoDetails: any[] = [];
 
   constructor(
+    @Inject(DOCUMENT) private document: Document,
     private allContentService: AllContentService,
     private library: FaIconLibrary
   ) {
@@ -49,6 +50,7 @@ export class SingleUpcomingHikePostComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.document.documentElement.scrollTop = 0;
     this.getHikeInfoDetails();
   }
 

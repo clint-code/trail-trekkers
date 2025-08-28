@@ -4,20 +4,10 @@
   [ngStyle]="{ 'background-image': 'url(' + locationImage + ')' }"
 >
   <div class="banner-text absolute z-10 top-1/2 left-1/2">
-    <h2 class="text-white font-garamondItalic text-9xl text-center uppercase">
+    <h2 class="text-white font-garamondItalic text-8xl text-center uppercase">
       {{ hikeTitle }}
     </h2>
 
-    <p class="text-white font-garamondRegular text-4xl flex justify-center">
-      <span>
-        <fa-icon
-          class="icon-style text-3xl mr-2"
-          [icon]="['fas', 'location-dot']"
-        >
-        </fa-icon>
-      </span>
-      {{ hikeLocation }}
-    </p>
   </div>
 
   <div class="overlay absolute w-full h-full bg-black opacity-30"></div>

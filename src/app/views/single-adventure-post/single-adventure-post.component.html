@@ -1,5 +1,9 @@
 <app-header></app-header>
 
+<div class="scrollbar-container">
+  <div class="scrollbar-bg" id="scrollbarBg"></div>
+</div>
+
 <div class="hike-banner-section relative">
   <app-hike-banner
     [hikeTitle]="'First Hike, Fierce Climb'"
@@ -9,229 +13,263 @@
   ></app-hike-banner>
 </div>
 
-<div class="blog-article-section max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-  <div class="blog-intro-section">
-    <div class="w-full text-center mt-8 mb-8">
-      <h2 class="display-2 orange-hover-underline">Scaling the Giant</h2>
-      <p class="blog-intro-date">Posted on 12th March 2023</p>
-    </div>
-
-    <div class="columns-2 gap-5 blog-intro-text mb-5">
-      <div class="nav-section">
-        <ul>
-          <li>The Journey</li>
-          <li>The Rewarding Views</li>
-          <li>In Summary...</li>
-        </ul>
+<div class="blog-article-section">
+  <div class="container">
+    <div class="blog-intro-section">
+      <div class="w-full text-center mt-8 mb-8">
+        <h2 class="display-2 orange-hover-underline">Scaling the Giant</h2>
+        <p class="blog-intro-date">Posted on 12th March 2023</p>
       </div>
 
-      <div class="intro">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec
-          bibendum eros, ac iaculis tellus. Aenean congue lacus sed turpis
-          sagittis, nec pretium erat volutpat. Aliquam pulvinar bibendum est sit
-          amet tincidunt. Maecenas diam velit, laoreet ut nisl sit amet,
-          volutpat varius felis.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec
-          bibendum eros, ac iaculis tellus. Aenean congue lacus sed turpis
-          sagittis, nec pretium erat volutpat. Aliquam pulvinar bibendum est sit
-          amet tincidunt. Maecenas diam velit, laoreet ut nisl sit amet,
-          volutpat varius felis.
-        </p>
+      <div class="columns-2 gap-8 blog-intro-text mb-5 flex">
+        <div class="nav-section w-1/4">
+          <ul>
+            <li
+              class="font-passion text-xl hover:text-orange-600 cursor-pointer"
+              (click)="scrollToTarget('theJourney')"
+            >
+              <fa-icon
+                class="icon-style text-sm mr-1"
+                [icon]="['fas', 'location-arrow']"
+              ></fa-icon>
+              <a class="orange-hover-underline"> The Journey </a>
+            </li>
+
+            <li
+              class="font-passion text-xl hover:text-orange-600 cursor-pointer"
+              (click)="scrollToTarget('rewardingViews')"
+            >
+              <fa-icon
+                class="icon-style text-sm mr-1"
+                [icon]="['fas', 'location-arrow']"
+              ></fa-icon>
+              <a class="orange-hover-underline"> The Rewarding Views </a>
+            </li>
+
+            <li
+              class="font-passion text-xl hover:text-orange-600 cursor-pointer"
+              (click)="scrollToTarget('inSummary')"
+            >
+              <fa-icon
+                class="icon-style text-sm mr-1"
+                [icon]="['fas', 'location-arrow']"
+              ></fa-icon>
+              <a class="orange-hover-underline">In Summary... </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="intro w-3/4">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec
+            bibendum eros, ac iaculis tellus. Aenean congue lacus sed turpis
+            sagittis, nec pretium erat volutpat. Aliquam pulvinar bibendum est
+            sit amet tincidunt. Maecenas diam velit, laoreet ut nisl sit amet,
+            volutpat varius felis.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec
+            bibendum eros, ac iaculis tellus. Aenean congue lacus sed turpis
+            sagittis, nec pretium erat volutpat. Aliquam pulvinar bibendum est
+            sit amet tincidunt. Maecenas diam velit, laoreet ut nisl sit amet,
+            volutpat varius felis.
+          </p>
+        </div>
       </div>
     </div>
+
+    <div #theJourney class="journey-section">
+      <div class="columns-2 gap-5 journey-text mb-5">
+        <div class="text-section">
+          <h2 class="display-2 orange-hover-underline mb-2">The Journey</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec
+            bibendum eros, ac iaculis tellus. Aenean congue lacus sed turpis
+            sagittis, nec pretium erat volutpat. Aliquam pulvinar bibendum est
+            sit amet tincidunt. Maecenas diam velit, laoreet ut nisl sit amet,
+            volutpat varius felis.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec
+            bibendum eros, ac iaculis tellus. Aenean congue lacus sed turpis
+            sagittis, nec pretium erat volutpat. Aliquam pulvinar bibendum est
+            sit amet tincidunt. Maecenas diam velit, laoreet ut nisl sit amet,
+            volutpat varius felis.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec
+            bibendum eros, ac iaculis tellus. Aenean congue lacus sed turpis
+            sagittis, nec pretium erat volutpat. Aliquam pulvinar bibendum est
+            sit amet tincidunt. Maecenas diam velit, laoreet ut nisl sit amet,
+            volutpat varius felis.
+          </p>
+        </div>
+
+        <div class="img-section">
+          <img
+            src="assets/img/blog-imgs/elephant-hill-terrain.jpg"
+            alt="first-hike"
+            class="h-auto max-w-full rounded-lg inline-block"
+          />
+        </div>
+      </div>
+
+      <div class="quote-section mt-10 mb-10">
+        <blockquote class="font-garamondItalic">
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec
+          bibendum eros, ac iaculis tellus. Aenean congue lacus sed turpis
+          sagittis, nec pretium erat volutpat."
+        </blockquote>
+      </div>
+
+      <div class="photo-grid-section mb-8">
+        <div class="columns-2 gap-8 space-y-8">
+          <img
+            src="assets/img/blog-imgs/before-starting-point.jpg"
+            alt="before-starting-point"
+            class="w-full aspect-auto rounded-lg"
+          />
+
+          <img
+            src="assets/img/blog-imgs/point-of-despair.jpg"
+            alt="before-starting-point"
+            class="w-full aspect-auto rounded-lg"
+          />
+
+          <img
+            src="assets/img/blog-imgs/the-tail.jpg"
+            alt="before-starting-point"
+            class="w-full aspect-auto rounded-lg"
+          />
+        </div>
+      </div>
+    </div>
+
   </div>
 
-  <div class="journey-section">
-    <div class="columns-2 gap-5 journey-text mb-5">
-      <div class="text-section">
-        <h2 class="display-2 orange-hover-underline">The Journey</h2>
+  <div #rewardingViews class="rewarding-views-section">
 
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec
-          bibendum eros, ac iaculis tellus. Aenean congue lacus sed turpis
-          sagittis, nec pretium erat volutpat. Aliquam pulvinar bibendum est sit
-          amet tincidunt. Maecenas diam velit, laoreet ut nisl sit amet,
-          volutpat varius felis.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec
-          bibendum eros, ac iaculis tellus. Aenean congue lacus sed turpis
-          sagittis, nec pretium erat volutpat. Aliquam pulvinar bibendum est sit
-          amet tincidunt. Maecenas diam velit, laoreet ut nisl sit amet,
-          volutpat varius felis.
-        </p>
-      </div>
-
-      <div class="img-section">
-        <img
-          src="assets/img/blog-imgs/elephant-hill-terrain.jpg"
-          alt="first-hike"
-          class="h-2/4 rounded-lg inline-block transition-transform duration-200 ease-out [transform-style:preserve-3d]"
-          (mouseenter)="handleHover($event)"
-          (mouseleave)="resetStyles($event)"
-        />
-      </div>
-    </div>
-
-    <div class="quote-section">
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec
-        bibendum eros, ac iaculis tellus. Aenean congue lacus sed turpis
-        sagittis, nec pretium erat volutpat. Aliquam pulvinar bibendum est sit
-        amet tincidunt. Maecenas diam velit, laoreet ut nisl sit amet, volutpat
-        varius felis.
-      </p>
-    </div>
-
-    <div class="photo-grid-section">
-      <div class="columns-2">
-        <img
-          src="assets/img/blog-imgs/before-starting-point.jpg"
-          alt="before-starting-point"
-          class="w-full aspect-auto"
-        />
-
-        <img
-          src="assets/img/blog-imgs/point-of-despair.jpg"
-          alt="before-starting-point"
-          class="w-full aspect-auto"
-        />
-
-        <img
-          src="assets/img/blog-imgs/the-tail.jpg"
-          alt="before-starting-point"
-          class="w-full aspect-auto"
-        />
-      </div>
-    </div>
-  </div>
-
-  <div class="rewarding-views-section">
-    <!-- <div class="banner-image-section">
-      <app-hike-banner
+    <div class="banner-image-section">
+      <app-post-hero-image
         [hikeTitle]="'The Rewarding Views'"
         [locationImage]="'assets/img/blog-imgs/scenic-views-1.jpg'"
-        [locationImageAlt]="'elephant-hill-banner'"
-      ></app-hike-banner>
-    </div> -->
-
-    <div class="text-content">
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec
-        bibendum eros, ac iaculis tellus. Aenean congue lacus sed turpis
-        sagittis, nec pretium erat volutpat. Aliquam pulvinar bibendum est sit
-        amet tincidunt. Maecenas diam velit, laoreet ut nisl sit amet, volutpat
-        varius felis.
-      </p>
-
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec
-        bibendum eros, ac iaculis tellus. Aenean congue lacus sed turpis
-        sagittis, nec pretium erat volutpat. Aliquam pulvinar bibendum est sit
-        amet tincidunt. Maecenas diam velit, laoreet ut nisl sit amet, volutpat
-        varius felis.
-      </p>
+      ></app-post-hero-image>
     </div>
 
-    <div class="photo-grid-section gap-x-8 gap-y-7 columns-2">
-      <img
-        src="assets/img/blog-imgs/scenic-views-1.jpg"
-        alt="scenic-views-1"
-        class="w-full aspect-auto"
-      />
+    <div class="container">
+      <div class="text-content">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec
+          bibendum eros, ac iaculis tellus. Aenean congue lacus sed turpis
+          sagittis, nec pretium erat volutpat. Aliquam pulvinar bibendum est sit
+          amet tincidunt. Maecenas diam velit, laoreet ut nisl sit amet,
+          volutpat varius felis.
+        </p>
 
-      <img
-        src="assets/img/blog-imgs/scenic-views-5.jpg"
-        alt="scenic-views-5"
-        class="w-full aspect-auto"
-      />
-
-      <img
-        src="assets/img/blog-imgs/scenic-views-4.jpg"
-        alt="scenic-views-4"
-        class="w-full aspect-auto"
-      />
-
-      <img
-        src="assets/img/blog-imgs/scenic-views-2.jpg"
-        alt="scenic-views-2"
-        class="w-full aspect-auto"
-      />
-
-      <img
-        src="assets/img/blog-imgs/scenic-views-3.jpg"
-        alt="scenic-views-3"
-        class="w-full aspect-auto"
-      />
-    </div>
-
-    <div class="text-content">
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec
-        bibendum eros, ac iaculis tellus. Aenean congue lacus sed turpis
-        sagittis, nec pretium erat volutpat. Aliquam pulvinar bibendum est sit
-        amet tincidunt. Maecenas diam velit, laoreet ut nisl sit amet, volutpat
-        varius felis.
-      </p>
-
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec
-        bibendum eros, ac iaculis tellus. Aenean congue lacus sed turpis
-        sagittis, nec pretium erat volutpat. Aliquam pulvinar bibendum est sit
-        amet tincidunt. Maecenas diam velit, laoreet ut nisl sit amet, volutpat
-        varius felis.
-      </p>
-    </div>
-  </div>
-
-  <div class="in-summary-section columns-2 gap-5">
-    <div class="image-section">
-      <img
-        src="assets/img/blog-imgs/at-the-summit.jpg"
-        alt="at-the-summit"
-        class="h-auto"
-      />
-    </div>
-
-    <div class="in-summary-text">
-      <h2 class="display-2 orange-hover-underline">In Summary...</h2>
-
-      <div class="list-items-section flex flex-col">
-        <app-single-hike-info-item
-          class="w-1/3 single-list-item mb-6"
-          *ngFor="let hikeInfoItem of hikeInfoDetails"
-          [hikeInfoIcon]="hikeInfoItem.infoIcon"
-          [hikeInfoTitle]="hikeInfoItem.infoTitle"
-          [hikeInfoDescription]="hikeInfoItem.infoDescription"
-        ></app-single-hike-info-item>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec
+          bibendum eros, ac iaculis tellus. Aenean congue lacus sed turpis
+          sagittis, nec pretium erat volutpat. Aliquam pulvinar bibendum est sit
+          amet tincidunt. Maecenas diam velit, laoreet ut nisl sit amet,
+          volutpat varius felis.
+        </p>
       </div>
-    </div>
-  </div>
-  
-  <div class="adventure-post-articles">
 
-    <h3 class="display-2 orange-hover-underline">
-      More adventures...
-    </h3>
+      <div class="photo-grid-section gap-x-8 gap-y-7 columns-2">
+        <img
+          src="assets/img/blog-imgs/scenic-views-1.jpg"
+          alt="scenic-views-1"
+          class="w-full aspect-auto"
+        />
 
-    <div class="flex gap-6 mt-10">
-      <div class="columns-3">
-        <app-single-post-item
-          class="single-post-item"
-          *ngFor="let adventurePost of adventurePosts"
-          [postTitle]="adventurePost.title"
-          [postDate]="adventurePost.postDate"
-          [postSubtitle]="adventurePost.location"
-          [postImageUrl]="adventurePost.imageUrl"
-          [postImageAlt]="adventurePost.imageAlt"
-        ></app-single-post-item>
+        <img
+          src="assets/img/blog-imgs/scenic-views-5.jpg"
+          alt="scenic-views-5"
+          class="w-full aspect-auto"
+        />
+
+        <img
+          src="assets/img/blog-imgs/scenic-views-4.jpg"
+          alt="scenic-views-4"
+          class="w-full aspect-auto"
+        />
+
+        <img
+          src="assets/img/blog-imgs/scenic-views-2.jpg"
+          alt="scenic-views-2"
+          class="w-full aspect-auto"
+        />
+
+        <img
+          src="assets/img/blog-imgs/scenic-views-3.jpg"
+          alt="scenic-views-3"
+          class="w-full aspect-auto"
+        />
+      </div>
+
+      <div class="text-content">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec
+          bibendum eros, ac iaculis tellus. Aenean congue lacus sed turpis
+          sagittis, nec pretium erat volutpat. Aliquam pulvinar bibendum est sit
+          amet tincidunt. Maecenas diam velit, laoreet ut nisl sit amet,
+          volutpat varius felis.
+        </p>
+
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec
+          bibendum eros, ac iaculis tellus. Aenean congue lacus sed turpis
+          sagittis, nec pretium erat volutpat. Aliquam pulvinar bibendum est sit
+          amet tincidunt. Maecenas diam velit, laoreet ut nisl sit amet,
+          volutpat varius felis.
+        </p>
       </div>
     </div>
   </div>
 
+  <div class="container">
+    <div #inSummary class="in-summary-section columns-2 gap-5">
+      <div class="image-section">
+        <img
+          src="assets/img/blog-imgs/at-the-summit.jpg"
+          alt="at-the-summit"
+          class="h-auto"
+        />
+      </div>
+
+      <div class="in-summary-text">
+        <h2 class="display-2 orange-hover-underline">In Summary...</h2>
+
+        <div class="list-items-section flex flex-col">
+          <app-single-hike-info-item
+            class="w-1/3 single-list-item mb-6"
+            *ngFor="let hikeInfoItem of hikeInfoDetails"
+            [hikeInfoIcon]="hikeInfoItem.infoIcon"
+            [hikeInfoTitle]="hikeInfoItem.infoTitle"
+            [hikeInfoDescription]="hikeInfoItem.infoDescription"
+          ></app-single-hike-info-item>
+        </div>
+      </div>
+    </div>
+
+    <div class="adventure-post-articles">
+      <h3 class="display-2 orange-hover-underline">More adventures...</h3>
+
+      <div class="flex gap-6 mt-10">
+        <div class="columns-3">
+          <app-single-post-item
+            class="single-post-item"
+            *ngFor="let adventurePost of adventurePosts"
+            [postTitle]="adventurePost.title"
+            [postDate]="adventurePost.postDate"
+            [postSubtitle]="adventurePost.location"
+            [postImageUrl]="adventurePost.imageUrl"
+            [postImageAlt]="adventurePost.imageAlt"
+          ></app-single-post-item>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <app-footer></app-footer>

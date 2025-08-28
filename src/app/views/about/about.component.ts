@@ -1,5 +1,5 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, AfterViewInit, Inject } from '@angular/core';
+import { CommonModule, DOCUMENT } from '@angular/common';
 import { FaIconComponent, FaIconLibrary, FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { faBusSimple, faEarthAfrica, faPeopleGroup, faSun } from '@fortawesome/free-solid-svg-icons';
 
@@ -37,6 +37,7 @@ export class AboutComponent implements OnInit {
   threshold: number = 1;
 
   constructor(
+    @Inject(DOCUMENT) private document: Document,
     private allContentService: AllContentService,
     private library: FaIconLibrary
 
@@ -50,6 +51,7 @@ export class AboutComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.document.documentElement.scrollTop = 0;
     this.getAboutItems();
   }
 

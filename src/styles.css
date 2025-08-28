@@ -6,12 +6,15 @@
 
 /*global styles*/
 
+.container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8
+}
 .display-1 {
   @apply text-8xl text-center font-speakeasy text-orange-600 pt-5;
 }
 
 .display-2{
-    @apply font-garamondBold text-orange-600 text-5xl text-center capitalize;
+    @apply font-garamondBold text-orange-600 text-6xl text-center capitalize;
 }
 
 .green-button {
@@ -30,8 +33,14 @@
   @apply relative inline-block text-white after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-white after:transition-[width] after:duration-300 hover:after:w-full;
 }
 
+.simple-orange-hover-underline{
+  @apply relative inline-block after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-orange-600 after:transition-[width] after:duration-300 hover:after:w-full;
+}
+
 .orange-hover-underline {
   @apply relative inline-block after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-orange-600 after:transition-[width] after:duration-300 hover:after:w-full;
 }
+
+
 
 @import "src/assets/css/main.scss";

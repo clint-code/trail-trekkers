@@ -1,12 +1,14 @@
 //typography
 
 .body-background {
-  background-color: #FAF8EC;
+  background-color: #faf8ec;
 }
 
-p{
-  font-family: 'apple_garamondregular';
-  font-size: 1.55rem;
+p {
+  font-family: "apple_garamondregular";
+  font-size: 1.65rem;
+  line-height: 1.1;
+  margin-bottom: 10px;
 }
 
 .home {
@@ -86,12 +88,42 @@ p{
   margin-top: 5px;
 }
 
-
 //banner styles
-.hide-image{
+.hide-image {
   visibility: hidden;
 }
 
-.banner-text{
+.banner-text {
   transform: translate(-50%, -50%);
+}
+
+//inner blog-post page
+.scrollbar-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  width: 100%;
+  height: 15px;
+  z-index: 9999;
+}
+
+#scrollbarBg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background-color: #f85e00;
+  transition: width 0.30s ease-out;
+}
+
+.blog-article-section{
+  .quote-section{
+    blockquote {
+      font-size: 60px;
+      text-align: center;
+      line-height: 1.1;
+    }
+  }
 }

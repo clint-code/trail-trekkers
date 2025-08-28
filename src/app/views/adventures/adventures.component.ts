@@ -1,5 +1,5 @@
-import { Component, OnInit, AfterViewInit, ElementRef, ViewChildren, QueryList } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, Inject, AfterViewInit, ElementRef, ViewChildren, QueryList } from '@angular/core';
+import { CommonModule, DOCUMENT } from '@angular/common';
 
 import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
@@ -34,6 +34,7 @@ export class AdventuresComponent implements OnInit {
   //@ViewChildren(SinglePostItemComponent) singlePostItemComponents!: QueryList<SinglePostItemComponent>;
 
   constructor(
+    @Inject(DOCUMENT) private document: Document,
     private allContentService: AllContentService,
     private el: ElementRef
   ) { }
@@ -46,7 +47,7 @@ export class AdventuresComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
-
+    this.document.documentElement.scrollTop = 0;
     gsap.registerPlugin(ScrollTrigger);
 
     setTimeout(() => {
