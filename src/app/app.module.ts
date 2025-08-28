@@ -15,6 +15,7 @@ import { PostBannerComponent } from './components/post-banner/post-banner.compon
 import { HikeBannerComponent } from './components/hike-banner/hike-banner.component';
 import { SingleHikeItemComponent } from './components/single-hike-item/single-hike-item.component';
 
+
 @NgModule({
   declarations: [
   ],
@@ -32,7 +33,7 @@ import { SingleHikeItemComponent } from './components/single-hike-item/single-hi
     PostBannerComponent,
     HikeBannerComponent,
     SingleHikeItemComponent,
-    BrowserModule
+    BrowserModule,
   ],
   providers: [],
   bootstrap: []

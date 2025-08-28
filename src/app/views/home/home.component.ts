@@ -1,6 +1,7 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { HeaderComponent } from '../../components/header/header.component';
 import { FooterComponent } from '../../components/footer/footer.component';
+import { PreloaderComponent } from '../../components/preloader/preloader.component';
 
 import { RouterModule } from '@angular/router';
 
@@ -18,7 +19,8 @@ gsap.registerPlugin(SplitText, Draggable);
   imports: [
     RouterModule,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    PreloaderComponent
   ]
 })
 
@@ -36,8 +38,6 @@ export class HomeComponent implements AfterViewInit {
   animateDraggableItems() {
 
     const items = gsap.utils.toArray('.draggable-item') as HTMLElement[];
-
-    console.log("Items:", items);
 
     Draggable.create(items, {
       type: 'x,y',
