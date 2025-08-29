@@ -6,6 +6,8 @@ import { faBusSimple, faEarthAfrica, faPeopleGroup, faSun } from '@fortawesome/f
 import { HeaderComponent } from '../../components/header/header.component';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { SingleAboutItemComponent } from '../../components/single-about-item/single-about-item.component';
+import { PreloaderComponent } from '../../components/preloader/preloader.component';
+import { Preloader } from '../../utils/preloader';
 
 import { AllContentService } from '../../services/all-content/all-content.service';
 
@@ -25,6 +27,7 @@ gsap.registerPlugin(SplitText);
   standalone: true,
   imports: [
     CommonModule,
+    PreloaderComponent,
     HeaderComponent,
     FooterComponent,
     SingleAboutItemComponent
@@ -35,6 +38,9 @@ export class AboutComponent implements OnInit {
 
   aboutItems: any;
   threshold: number = 1;
+  hikePosts: any;
+  imagesLoaded: boolean = false;
+  siteImages: any = [];
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -56,6 +62,10 @@ export class AboutComponent implements OnInit {
   }
 
   ngAfterViewInit() {
+
+    setTimeout(() => {
+      this.siteImages = Preloader.getImages();
+    }, 1000);
 
     this.animateSVGLine();
     this.animateHeroText();

@@ -1,16 +1,16 @@
-import { Component, AfterViewInit, } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, AfterViewInit, Inject } from '@angular/core';
+import { CommonModule, DOCUMENT } from '@angular/common';
 
 import { HeaderComponent } from '../../components/header/header.component';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { PreloaderComponent } from '../../components/preloader/preloader.component';
 
 import { RouterModule } from '@angular/router';
+import { Preloader } from '../../utils/preloader';
 
 import { gsap } from 'gsap';
 import { Draggable } from 'gsap/Draggable';
 import { SplitText } from 'gsap/SplitText';
-import { NgIf } from "../../../../node_modules/@angular/common/common_module.d-NEF7UaHr";
 
 gsap.registerPlugin(SplitText, Draggable);
 
@@ -30,16 +30,25 @@ gsap.registerPlugin(SplitText, Draggable);
 
 export class HomeComponent implements AfterViewInit {
 
-  isLoading = false;
+  imagesLoaded: boolean = false;
+  siteImages: any = [];
+
+  constructor(
+    @Inject(DOCUMENT) private document: Document,
+  ) { }
+
 
   ngOnInit() {
 
-    setTimeout(() => {
-      this.isLoading = false;
-    }, 8000);
+    this.document.documentElement.scrollTop = 0;
+
   }
 
   ngAfterViewInit() {
+
+    setTimeout(() => {
+      this.siteImages = Preloader.getImages();
+    }, 1000);
 
     this.animateIcons();
     this.animateHeroText();
@@ -77,20 +86,6 @@ export class HomeComponent implements AfterViewInit {
 
   animateHeroText() {
 
-    // SplitText.create(".hero-text-section h1", {
-    //   type: "words, chars",
-    //   onSplit(self) {
-    //     gsap.from(self.chars, {
-    //       opacity: 0,
-    //       y: 100,
-    //       duration: 0.5,
-    //       autoAlpha: 0,
-    //       ease: "power4",
-    //       stagger: 0.05
-    //     });
-    //   }
-    // });
-
     gsap.from(".hero-text-section", {
       opacity: 0,
       y: 200,
@@ -123,6 +118,11 @@ export class HomeComponent implements AfterViewInit {
       ease: "power2.out"
     });
 
+  }
+
+  handleSiteLoaded() {
+
+    this.imagesLoaded = true;
   }
 
 

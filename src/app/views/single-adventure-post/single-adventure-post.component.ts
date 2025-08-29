@@ -7,6 +7,8 @@ import { HikeBannerComponent } from '../../components/hike-banner/hike-banner.co
 import { SingleHikeInfoItemComponent } from '../../components/single-hike-info-item/single-hike-info-item.component';
 import { SinglePostItemComponent } from '../../components/single-post-item/single-post-item.component';
 import { PostHeroImageComponent } from 'src/app/components/post-hero-image/post-hero-image.component';
+import { PreloaderComponent } from '../../components/preloader/preloader.component';
+import { Preloader } from '../../utils/preloader';
 
 import { AllContentService } from '../../services/all-content/all-content.service';
 
@@ -37,6 +39,7 @@ gsap.registerPlugin(ScrollTrigger);
   standalone: true,
   imports: [
     CommonModule,
+    PreloaderComponent,
     HeaderComponent,
     FooterComponent,
     HikeBannerComponent,
@@ -52,7 +55,8 @@ export class SingleAdventurePostComponent {
   @ViewChild('rewardingViews') rewardingViews !: ElementRef;
   @ViewChild('inSummary') inSummary !: ElementRef;
 
-  threshold: number = 1;
+  imagesLoaded: boolean = false;
+  siteImages: any = [];
 
   hikeInfoDetails: any[] = [];
   adventurePosts: any[] = [
@@ -111,6 +115,10 @@ export class SingleAdventurePostComponent {
 
   ngAfterViewInit() {
 
+    setTimeout(() => {
+      this.siteImages = Preloader.getImages();
+    }, 1000);
+
     gsap.to("#scrollbarBg", {
       width: "100%",
       ease: "none",
@@ -167,30 +175,6 @@ export class SingleAdventurePostComponent {
       console.warn(`No ViewChild found for section: ${section}`);
     }
 
-    //console.log("Target:", target);
-
-  }
-
-
-  handleHover(event: any) {
-    let imageThumbnail = event.target;
-
-    const { clientX, clientY, currentTarget } = event;
-    const { clientWidth, clientHeight, offsetLeft, offsetTop } = currentTarget;
-
-    const horizontal = (clientX - offsetLeft) / clientWidth;
-    const vertical = (clientY - offsetTop) / clientHeight;
-
-    const rotateX = (this.threshold / 2 - horizontal * this.threshold).toFixed(2);
-    const rotateY = (vertical * this.threshold - this.threshold / 2).toFixed(2);
-
-    imageThumbnail.style.transform = `perspective(${clientWidth}px) rotateX(${rotateY}deg) rotateY(${rotateX}deg) scale3d(1.03, 1.03, 1.03)`;
-
-  }
-
-  resetStyles(event: any) {
-    let imageThumbnail = event.target;
-    imageThumbnail.style.transform = `perspective(${event.currentTarget.clientWidth}px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
   }
 
 

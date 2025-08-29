@@ -6,6 +6,9 @@ import { SplitText } from 'gsap/SplitText';
 import { Draggable } from 'gsap/Draggable';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 
+import { PreloaderComponent } from '../../components/preloader/preloader.component';
+import { Preloader } from '../../utils/preloader';
+
 gsap.registerPlugin(SplitText);
 gsap.registerPlugin(Draggable);
 
@@ -22,6 +25,7 @@ import { AllContentService } from '../../services/all-content/all-content.servic
   standalone: true,
   imports: [
     CommonModule,
+    PreloaderComponent,
     HeaderComponent,
     FooterComponent,
     SinglePostItemComponent
@@ -31,6 +35,8 @@ import { AllContentService } from '../../services/all-content/all-content.servic
 export class AdventuresComponent implements OnInit {
 
   adventurePosts: any;
+  imagesLoaded: boolean = false;
+  siteImages: any = [];
   //@ViewChildren(SinglePostItemComponent) singlePostItemComponents!: QueryList<SinglePostItemComponent>;
 
   constructor(
@@ -42,15 +48,15 @@ export class AdventuresComponent implements OnInit {
   ngOnInit(): void {
 
     this.getAdventurePosts();
-
+    this.document.documentElement.scrollTop = 0;
 
   }
 
   ngAfterViewInit(): void {
-    this.document.documentElement.scrollTop = 0;
     gsap.registerPlugin(ScrollTrigger);
 
     setTimeout(() => {
+      this.siteImages = Preloader.getImages();
       this.animatePostItems();
     }, 1000);
 

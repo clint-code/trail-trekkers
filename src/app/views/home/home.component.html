@@ -1,4 +1,11 @@
-<app-preloader></app-preloader>
+<app-preloader
+    *ngIf="siteImages.length < 1"
+></app-preloader>
+
+<!-- <app-preloader
+    *ngIf="siteImages.length > 0"
+    [images]="siteImages"
+></app-preloader> -->
 
 <app-header></app-header>
 <div class="home max-w-7xl mx-auto relative min-h-screen">

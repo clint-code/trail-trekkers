@@ -6,6 +6,10 @@ import { SplitText } from 'gsap/SplitText';
 import { Draggable } from 'gsap/Draggable';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 
+import { PreloaderComponent } from '../../components/preloader/preloader.component';
+
+import { Preloader } from '../../utils/preloader';
+
 gsap.registerPlugin(SplitText);
 gsap.registerPlugin(Draggable);
 gsap.registerPlugin(ScrollTrigger);
@@ -23,6 +27,7 @@ import { AllContentService } from '../../services/all-content/all-content.servic
   standalone: true,
   imports: [
     CommonModule,
+    PreloaderComponent,
     HeaderComponent,
     SingleHikeItemComponent,
     FooterComponent
@@ -32,6 +37,8 @@ import { AllContentService } from '../../services/all-content/all-content.servic
 export class UpcomingHikesComponent implements OnInit {
 
   hikePosts: any;
+  imagesLoaded: boolean = false;
+  siteImages: any = [];
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -48,8 +55,10 @@ export class UpcomingHikesComponent implements OnInit {
   ngAfterViewInit(): void {
 
     setTimeout(() => {
+      this.siteImages = Preloader.getImages();
       this.animateHikeItems();
     }, 1000);
+
     this.animateDraggableItems();
     this.animateHeroText();
     this.animateIcons();

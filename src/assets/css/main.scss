@@ -126,11 +126,19 @@ p {
 }
 
 .preloader{
-  height: 100vh;
+  height: 100%;
+  z-index: 9999;
+  position: fixed;
+  width: 100%;
 
   .loading-text{
     font-weight: 500;
     color: #f85e00;
+  }
+
+  .fade-out-up{
+    opacity: 0;
+    transform: translateY(-30px);
   }
 }
 

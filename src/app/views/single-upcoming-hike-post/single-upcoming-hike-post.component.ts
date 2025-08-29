@@ -10,6 +10,10 @@ import { SingleHikeInfoItemComponent } from '../../components/single-hike-info-i
 
 import { AllContentService } from '../../services/all-content/all-content.service';
 
+import { PreloaderComponent } from '../../components/preloader/preloader.component';
+
+import { Preloader } from '../../utils/preloader';
+
 import { gsap } from 'gsap';
 import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin';
 gsap.registerPlugin(DrawSVGPlugin);
@@ -21,6 +25,7 @@ gsap.registerPlugin(DrawSVGPlugin);
   standalone: true,
   imports: [
     CommonModule,
+    PreloaderComponent,
     HeaderComponent,
     FooterComponent,
     HikeBannerComponent,
@@ -31,6 +36,8 @@ gsap.registerPlugin(DrawSVGPlugin);
 export class SingleUpcomingHikePostComponent implements OnInit {
 
   hikeInfoDetails: any[] = [];
+  imagesLoaded: boolean = false;
+  siteImages: any = [];
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -50,6 +57,11 @@ export class SingleUpcomingHikePostComponent implements OnInit {
 
 
   ngOnInit(): void {
+
+    setTimeout(() => {
+      this.siteImages = Preloader.getImages();
+    }, 1000);
+
     this.document.documentElement.scrollTop = 0;
     this.getHikeInfoDetails();
   }
