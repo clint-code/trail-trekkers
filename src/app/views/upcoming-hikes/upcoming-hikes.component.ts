@@ -7,7 +7,6 @@ import { Draggable } from 'gsap/Draggable';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 
 import { PreloaderComponent } from '../../components/preloader/preloader.component';
-
 import { Preloader } from '../../utils/preloader';
 
 gsap.registerPlugin(SplitText);
