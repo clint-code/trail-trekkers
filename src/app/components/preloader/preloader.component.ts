@@ -14,13 +14,13 @@ import { LottieComponent, AnimationOptions } from 'ngx-lottie';
 export class PreloaderComponent {
 
   options: AnimationOptions = {
-    path: '/assets/animations/outdoor-boots-animation-video.json'
+    path: '/assets/animations/outdoor-boots-animation-video.json',
+    loop: true,
+    autoplay: true
   };
 
   styles: Partial<CSSStyleDeclaration> = {
-    maxWidth: '500px',
-    width: '500px',
-    height: '600px',
+    width: '600px',
     margin: '0 auto'
   };
 

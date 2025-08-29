@@ -1,6 +1,9 @@
-<ng-lottie 
-    [options]="options" 
+<div class="preloader flex flex-col items-center justify-center">
+  <ng-lottie
+    [options]="options"
     [styles]="styles"
-    (animationCreated)="animationCreated($event)" 
-    (loopComplete)="onLoopComplete()"
-/> 
+    (animationCreated)="animationCreated($event)"
+  />
+
+  <h2 class="text-center font-garamondBold text-5xl loading-text">Loading...</h2>
+</div>

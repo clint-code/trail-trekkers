@@ -1,4 +1,6 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
 import { HeaderComponent } from '../../components/header/header.component';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { PreloaderComponent } from '../../components/preloader/preloader.component';
@@ -8,6 +10,7 @@ import { RouterModule } from '@angular/router';
 import { gsap } from 'gsap';
 import { Draggable } from 'gsap/Draggable';
 import { SplitText } from 'gsap/SplitText';
+import { NgIf } from "../../../../node_modules/@angular/common/common_module.d-NEF7UaHr";
 
 gsap.registerPlugin(SplitText, Draggable);
 
@@ -17,6 +20,7 @@ gsap.registerPlugin(SplitText, Draggable);
   styleUrls: ['./home.component.scss'],
   standalone: true,
   imports: [
+    CommonModule,
     RouterModule,
     HeaderComponent,
     FooterComponent,
@@ -25,6 +29,15 @@ gsap.registerPlugin(SplitText, Draggable);
 })
 
 export class HomeComponent implements AfterViewInit {
+
+  isLoading = false;
+
+  ngOnInit() {
+
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 8000);
+  }
 
   ngAfterViewInit() {
 
