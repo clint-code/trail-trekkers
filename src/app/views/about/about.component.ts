@@ -193,10 +193,10 @@ export class AboutComponent implements OnInit {
           toggleActions: 'play pause resume reset',
           opacity: 0,
           x: 100,
-          duration: 2.5,
+          duration: 1.5,
           autoAlpha: 0,
-          delay: 3.5,
-          ease: "power4",
+          delay: 2.5,
+          ease: "power2.out",
           stagger: 0.2
         });
       }

@@ -1,11 +1,8 @@
-<app-preloader
-    *ngIf="siteImages.length < 1"
-></app-preloader>
+<app-preloader *ngIf="siteImages.length < 1"></app-preloader>
 
 <app-header></app-header>
 
 <div class="max-w-7xl mx-auto relative min-h-screen mt-1.5 mb-7">
-
   <div class="about-title-section columns-2 gap-5 mb-10 mt-10">
     <div class="about-title">
       <h1 class="text-8xl font-speakeasy text-orange-600 pb-5">
@@ -28,7 +25,6 @@
         class="h-auto inline-block transition-transform duration-200 ease-out [transform-style:preserve-3d]"
       />
     </div>
-
   </div>
 
   <div class="why-we-do-this-section mt-5 mb-7 text-center">
@@ -53,9 +49,7 @@
         [itemIcon]="item.itemIcon"
         [itemDescription]="item.itemDescription"
       ></app-single-about-item>
-
     </div>
-
   </div>
 
   <div class="how-it-started-section mt-5 mb-7 relative">
@@ -92,28 +86,34 @@
         </p>
       </div>
 
-      <div class="about-image-section">
+      <div class="about-image-section relative">
+
+        <div class="quote-section w-3/5 -rotate-6 absolute z-20 top-10 right-0">
+          <blockquote class="font-garamondItalic text-5xl text-white">
+            "The first hike at the Cianda Waterfalls."
+          </blockquote>
+        </div>
+
+        <div class="overlay absolute w-full h-full rounded-lg bg-black opacity-30 z-10"></div>
+
         <img
           src="assets/img/first-hike.jpg"
           alt="first-hike"
-          class="h-2/4 rounded-lg inline-block transition-transform duration-200 ease-out [transform-style:preserve-3d]"
-          (mouseenter)="handleHover($event)"
-          (mouseleave)="resetStyles($event)"
+          class="h-2/4 rounded-lg inline-block relative"
         />
+        
       </div>
     </div>
-
   </div>
 
   <div class="quote-section w-2/5 -rotate-6 absolute bottom-28 left-7">
-    <blockquote class="font-garamondItalic text-5xl text-orange-600 ">
+    <blockquote class="font-garamondItalic text-5xl text-orange-600">
       "The world is not in your books and maps. It’s out there."
     </blockquote>
     <small class="font-passion text-2xl pt-5 black-hover-underline"
       >Gandalf the Grey, The Hobbit</small
     >
   </div>
-
 </div>
 
 <app-footer></app-footer>
