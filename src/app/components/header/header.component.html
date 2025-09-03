@@ -1,5 +1,7 @@
 <header class="bg-[#FAF8EC] text-white shadow-md py-2">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
+  <div
+    class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20"
+  >
     <!-- Logo -->
     <div class="flex items-center space-x-4">
       <a [routerLink]="['']">
@@ -41,5 +43,60 @@
         >Community</a
       >
     </nav>
+
+    <!--Mobile Navigation-->
+    <div class="mobile-nav flex items-center md:hidden">
+      <!-- Mobile menu button-->
+      <button
+        type="button"
+        (click)="toggleMenu()"
+        class="relative text-gray-950"
+      >
+        <fa-icon class="icon-style text-4xl" [icon]="'compass'"> </fa-icon>
+      </button>
+    </div>
+
+    <div class="md:hidden mobile-nav-menu" id="side-menu" *ngIf="isMobileMenuOpen">
+      <nav class="mt-9">
+        <ul>
+          <li>
+            <a
+              [routerLink]="['/upcoming-hikes']"
+              [routerLinkActive]="['text-orange-600']"
+              class="hover:text-orange-600 transition orange-hover-underline font-passion text-black"
+            >
+              Upcoming Hikes
+            </a>
+          </li>
+
+          <li>
+            <a
+              [routerLink]="['/adventures']"
+              [routerLinkActive]="['text-orange-600']"
+              class="hover:text-orange-600 transition orange-hover-underline font-passion text-black"
+            >
+              Adventures
+            </a>
+          </li>
+
+          <li>
+            <a
+              [routerLink]="['/about']"
+              [routerLinkActive]="['text-orange-600']"
+              class="hover:text-orange-600 transition orange-hover-underline font-passion text-black"
+              >About
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="#"
+              class="hover:text-orange-600 transition orange-hover-underline font-passion text-black"
+              >Community
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
   </div>
 </header>
