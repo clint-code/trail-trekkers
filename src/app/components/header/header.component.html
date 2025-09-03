@@ -52,11 +52,21 @@
         (click)="toggleMenu()"
         class="relative text-gray-950"
       >
-        <fa-icon class="icon-style text-4xl" [icon]="'compass'"> </fa-icon>
+        <div
+          class="icon-style text-4xl transform transition-transform duration-300 ease-in-out" 
+          [ngClass]="isRotated ? 'rotate-90' : 'rotate-0'"
+        >
+          <fa-icon [icon]="'compass'"></fa-icon>
+        </div>
       </button>
     </div>
 
-    <div class="md:hidden mobile-nav-menu" id="side-menu" *ngIf="isMobileMenuOpen">
+    <div 
+      class="md:hidden mobile-nav-menu transition duration-300 ease-in-out" 
+      [ngClass]="{
+        'translate-x-0': isMobileMenuOpen,
+        '-translate-x-full': !isMobileMenuOpen
+      }">
       <nav class="mt-9">
         <ul>
           <li>

@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule, DOCUMENT } from '@angular/common';
 
-import { FaIconLibrary, FaIconComponent } from "@fortawesome/angular-fontawesome";
+import { FaIconLibrary, FaIconComponent, FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { faCompass } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -13,6 +13,7 @@ import { faCompass } from '@fortawesome/free-solid-svg-icons';
   imports: [
     RouterModule,
     CommonModule,
+    FontAwesomeModule,
     FaIconComponent
   ],
 
@@ -28,17 +29,16 @@ export class HeaderComponent {
     );
   }
 
-  isMobileMenuOpen = false;
+  isMobileMenuOpen: boolean = false;
+  isRotated: boolean = false;
 
   toggleMenu() {
     this.isMobileMenuOpen = !this.isMobileMenuOpen;
+    this.rotateIconOnClick();
+  }
 
-    // const menu = this.document.getElementById('side-menu');
-
-    // if (menu) {
-    //   menu.classList.toggle('-translate-x-full');
-    // }
-
+  rotateIconOnClick() {
+    this.isRotated = !this.isRotated;
   }
 
 }
