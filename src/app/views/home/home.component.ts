@@ -82,6 +82,7 @@ export class HomeComponent implements AfterViewInit {
       opacity: 0,
       y: 200,
       duration: 5,
+      bounds: '.content-left',
       delay: 1,
       rotation: 360,
       ease: "power2.out"
