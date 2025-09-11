@@ -51,6 +51,7 @@ export class HomeComponent implements AfterViewInit {
     }, 1000);
 
     this.animateIcons();
+    this.rotateIcon();
     this.animateHeroText();
     this.animateDraggableItems();
     this.fadeInUpScrollItems();
@@ -61,9 +62,13 @@ export class HomeComponent implements AfterViewInit {
 
     const items = gsap.utils.toArray('.draggable-item') as HTMLElement[];
 
+    gsap.set(items, {
+      xPercent: 0,
+      yPercent: 0
+    });
+
     Draggable.create(items, {
       type: 'x,y',
-      bounds: ".content-left",
       inertia: true
     });
 
@@ -79,7 +84,22 @@ export class HomeComponent implements AfterViewInit {
       duration: 5,
       delay: 1,
       rotation: 360,
-      ease: "elastic"
+      ease: "power2.out"
+    });
+
+  }
+
+
+  rotateIcon() {
+
+    // const item = gsap.utils.toArray('#compass-icon') as HTMLElement[];
+
+    gsap.to(".rotating-compass", {
+      duration: 5,
+      rotation: 360,
+      repeat: -1,
+      ease: "linear",
+      transformOrigin: "50% 50%"
     });
 
   }

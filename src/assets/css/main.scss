@@ -171,13 +171,51 @@ p {
   }
 }
 
-
-@media screen and (max-width: 768px){
-
-  .home{
-    .content-left{
-      width: 100%;
+@media screen and (max-width: 992px) {
+  .home {
+    .content-left {
+      .hero-text-section {
+        margin-top: -160px;
+      }
     }
   }
-  
+}
+
+@media screen and (max-width: 768px) {
+  .home {
+    .content-right {
+      width: 60%;
+    }
+    .content-left {
+      width: 40%;
+
+      .hero-text-section {
+        margin-top: -110px;
+
+        .green-button {
+          font-size: 1.35rem;
+          padding-top: 0.55rem;
+          padding-bottom: 0.55rem;
+          line-height: 1.5rem;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .home {
+    .content-left {
+      width: 100%;
+      transform: translate(0%, 0%);
+
+      .hero-text-section {
+        .green-button {
+          width: 90%;
+          margin-left: 5%;
+          margin-left: 5%;
+        }
+      }
+    }
+  }
 }
