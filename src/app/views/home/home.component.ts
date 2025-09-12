@@ -51,7 +51,8 @@ export class HomeComponent implements AfterViewInit {
     }, 1000);
 
     this.animateIcons();
-    this.rotateIcon();
+    this.autoRotateIcons();
+    this.dragBadgeOverText();
     this.animateHeroText();
     this.animateDraggableItems();
     this.fadeInUpScrollItems();
@@ -72,6 +73,43 @@ export class HomeComponent implements AfterViewInit {
       inertia: true
     });
 
+
+  }
+
+  dragBadgeOverText() {
+
+    const badge = gsap.utils.toArray('.rotating-badge') as HTMLElement[];
+
+    Draggable.create(badge, {
+      type: 'x,y',
+      onDragEnd: function () {
+        const target = document.getElementById('target-text')?.getBoundingClientRect();
+        const draggable = this['target'].getBoundingClientRect();
+
+        const isOverlapping = !(
+          draggable.right < (target?.left || 0) ||
+          draggable.left > (target?.right || 0) ||
+          draggable.bottom < (target?.top || 0) ||
+          draggable.top > (target?.bottom || 0)
+        );
+
+        if (isOverlapping) {
+          gsap.to("#target-text", {
+            duration: 0.1,
+            color: "#219ebc", // Change to blue
+            ease: "power1.out"
+          });
+        } else {
+          gsap.to("#target-text", {
+            duration: 0.4,
+            color: "#f97316", // Change back to original color
+            ease: "power2.out"
+          });
+        }
+      }
+
+    });
+
   }
 
   animateIcons() {
@@ -85,19 +123,27 @@ export class HomeComponent implements AfterViewInit {
       bounds: '.content-left',
       delay: 1,
       rotation: 360,
-      ease: "power2.out"
+      ease: "power3"
     });
 
   }
 
 
-  rotateIcon() {
-
-    // const item = gsap.utils.toArray('#compass-icon') as HTMLElement[];
+  autoRotateIcons() {
 
     gsap.to(".rotating-compass", {
       duration: 5,
       rotation: 360,
+      type: "rotation",
+      repeat: -1,
+      ease: "linear",
+      transformOrigin: "50% 50%"
+    });
+
+    gsap.to(".rotating-badge", {
+      duration: 5,
+      rotation: -360,
+      type: "rotation",
       repeat: -1,
       ease: "linear",
       transformOrigin: "50% 50%"

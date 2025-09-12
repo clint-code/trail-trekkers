@@ -15,6 +15,10 @@ p {
     min-height: 100vh;
     height: auto;
 
+    .rotating-badge {
+      filter: drop-shadow(rgba(0, 0, 0, 0.5) 8px 8px 10px);
+    }
+
     .hero-text-section {
       margin-top: -200px;
       position: absolute;
