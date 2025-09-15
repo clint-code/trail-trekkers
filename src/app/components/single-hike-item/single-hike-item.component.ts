@@ -23,6 +23,7 @@ export class SingleHikeItemComponent {
   @Input() hikeTitle: string = '';
   @Input() hikeLocation: string = '';
   @Input() hikeDifficulty: string = '';
+  @Input() summary: string = '';
   @Input() hikeImageUrl: string = '';
   @Input() hikeImageAlt: string = '';
 

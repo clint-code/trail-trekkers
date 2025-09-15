@@ -78,7 +78,8 @@ export class UpcomingHikesComponent implements OnInit {
     const items = gsap.utils.toArray('.draggable-item') as HTMLElement[];
 
     Draggable.create(items, {
-      type: 'x,y',
+      type: 'rotation',
+      bounds: '.hikes-title',
       inertia: true
     });
 

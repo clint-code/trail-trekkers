@@ -8,26 +8,25 @@
 
   <div class="hikes-title mt-12 mb-10">
 
-    <div class="draggable-item absolute top-16 left-0 z-10" id="boot-icon">
-      <img src="assets/img/vector-icons/boot-icon.png" class="h-20 w-auto" alt="boot" />
+    <div class="min-[600px]:hidden draggable-item absolute top-16 left-10 z-10" id="boot-icon">
+      <img src="assets/img/vector-icons/boot-icon.png" class="h-14 w-auto" alt="boot" />
     </div>
 
     <div class="hero-section">
-      <h1 class="display-1 ">
+      <h1 class="display-1 max-[1280px]:text-6xl max-[768px]:text-5xl">
         Book your next hike
       </h1>
     </div>
 
-    <div class="draggable-item absolute top-10 right-0 z-10" id="bag-icon">
-      <img src="assets/img/vector-icons/hiking-bag.png" class="h-24 w-auto" alt="bag" />
+    <div class="min-[600px]:hidden draggable-item absolute top-10 right-10 z-10" id="bag-icon">
+      <img src="assets/img/vector-icons/hiking-bag.png" class="h-16 w-auto" alt="bag" />
     </div>
 
   </div>
 
   <div class="hike-posts-section mt-20">
-    <!-- <div class="flex flex-col gap-6 mt-10">    </div> -->
 
-    <div class="w-full">
+    <div class="w-3/4 m-auto max-[768px]:w-11/12">
       <app-single-hike-item
         class="single-hike"
         *ngFor="let hikePost of hikePosts"
@@ -37,7 +36,9 @@
         [hikeImageUrl]="hikePost.thumbnailUrl"
         [hikeImageAlt]="hikePost.imageAlt"
         [hikeDifficulty]="hikePost.difficulty"
+        [summary]="hikePost.summary"
       ></app-single-hike-item>
+
     </div>
   </div>
 </div>
