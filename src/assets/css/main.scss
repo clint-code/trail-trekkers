@@ -10,6 +10,8 @@ p {
 }
 
 .home {
+  background-color: #ecf39e;
+  
   .content-left {
     width: 35%;
     min-height: 100vh;
@@ -210,6 +212,13 @@ p {
 }
 
 @media screen and (max-width: 600px) {
+
+.hero-section{
+  .display-1{
+    padding-top: 0rem;
+  }
+}
+
   .home {
     .content-left {
       width: 100%;

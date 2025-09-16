@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { CommonModule, DOCUMENT } from '@angular/common';
 import { FaIconComponent, FaIconLibrary, FontAwesomeModule } from "@fortawesome/angular-fontawesome";
-import { faBusSimple, faMoneyBillWave, faMountain, faLocationDot, faPersonHiking, faClock, faCompass } from '@fortawesome/free-solid-svg-icons';
+import { faBusSimple, faMoneyBillWave, faMountain, faLocationDot, faPersonHiking, faClock, faCompass, faBottleWater, faRoute } from '@fortawesome/free-solid-svg-icons';
 
 import { HeaderComponent } from '../../components/header/header.component';
 import { FooterComponent } from '../../components/footer/footer.component';
@@ -51,7 +51,9 @@ export class SingleUpcomingHikePostComponent implements OnInit {
       faLocationDot,
       faPersonHiking,
       faClock,
-      faCompass
+      faCompass,
+      faRoute,
+      faBottleWater
     );
   }
 

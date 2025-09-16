@@ -27,7 +27,7 @@
         "id": 3,
         "infoTitle": "Distance",
         "infoDescription": "8.9kms",
-        "infoIcon": "compass"
+        "infoIcon": "route"
     },
     {
         "id": 5,
@@ -37,13 +37,21 @@
     },
     {
         "id": 7,
-        "infoTitle": "What to wear/carry",
+        "infoTitle": "What to wear",
         "infoList": [
             "Comfortable walking shoes",
-            "Drinking water and light snacks",
             "Cargo pants or sweat pants",
             "Jacket"
         ],
         "infoIcon": "person-hiking"
+    },
+    {
+        "id": 7,
+        "infoTitle": "What to carry",
+        "infoList": [
+            "Drinking water and light snacks"
+        ],
+        "infoIcon": "bottle-water"
     }
+
 ]

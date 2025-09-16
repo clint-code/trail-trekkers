@@ -4,14 +4,14 @@
   [ngStyle]="{ 'background-image': 'url(' + locationImage + ')' }"
 >
   <div class="banner-text absolute z-10 top-1/2 left-1/2">
-    <h2 class="text-white font-garamondItalic text-9xl text-center uppercase">
+    <h2 class="text-white font-garamondItalic text-9xl text-center uppercase max-[768px]:text-7xl max-[600px]:text-5xl">
       {{ hikeTitle }}
     </h2>
 
-    <p class="text-white font-garamondRegular text-4xl flex justify-center">
+    <p class="text-white font-garamondRegular text-4xl flex justify-center max-[768px]:text-3xl max-[600px]:text-2xl">
       <span>
         <fa-icon
-          class="icon-style text-3xl mr-2"
+          class="icon-style text-3xl mr-2 max-[768px]:text-2xl"
           [icon]="['fas', 'location-dot']"
         >
         </fa-icon>

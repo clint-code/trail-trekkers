@@ -26,10 +26,9 @@
 
   <div class="hike-posts-section mt-20">
 
-    <div class="w-3/4 m-auto max-[768px]:w-11/12">
+    <div class="w-3/4 m-auto max-[768px]:w-11/12" *ngFor="let hikePost of hikePosts; let i = index">
       <app-single-hike-item
         class="single-hike"
-        *ngFor="let hikePost of hikePosts"
         [hikeTitle]="hikePost.title"
         [hikeLocation]="hikePost.location"
         [hikeDate]="hikePost.date"
@@ -37,8 +36,11 @@
         [hikeImageAlt]="hikePost.imageAlt"
         [hikeDifficulty]="hikePost.difficulty"
         [summary]="hikePost.summary"
-      ></app-single-hike-item>
-
+      >
+    </app-single-hike-item>
+    
+      <hr *ngIf="i< hikePosts.length - 1" class="border-t-2 border-green-900 mt-6 w-full" />
+      
     </div>
   </div>
 </div>
