@@ -1,26 +1,31 @@
 <div class="relative mb-5 single-post">
-  <div class="post-image">
+  <div class="post-image relative">
+
+    <div class="overlay absolute w-full h-full bg-black opacity-30 rounded-lg z-10"></div>
+
     <img
       [src]="postImageUrl"
       [alt]="postImageAlt"
-      class="w-full h-auto object-cover inline-block transition-transform duration-200 ease-out [transform-style:preserve-3d]"
+      class="w-full h-auto object-cover z-20 inline-block transition-transform duration-200 ease-out [transform-style:preserve-3d]"
       (mouseenter)="handleHover($event)"
       (mouseleave)="resetStyles($event)"
     />
 
-    <div class="post-content p-4 absolute bottom-0 w-full">
+    <div class="post-content p-4 absolute z-10 bottom-0 w-full">
+      
       <a
-        class="text-5xl w-full uppercase font-garamondItalic text-white text-center white-hover-underline"
+        class="text-5xl w-full uppercase font-garamondItalic text-white text-center white-hover-underline max-[768px]:text-4xl max-[600px]:text-3xl leading-none max-[500px]:text-2xl"
         [routerLink]="['/single-adventure-post']"
       >
         {{ postTitle }}
       </a>
-      <h3 class="text-2xl font-garamondRegular text-white text-center mt-2">
+
+      <h3 class="text-2xl font-garamondRegular text-white text-center mt-2 max-[768px]:text-xl max-[600px]:text-base">
         {{ postSubtitle }}
       </h3>
 
-      <p class="text-lg font-garamondRegular text-white text-center mt-1">
-        {{ postDate | date: 'longDate' }}
+      <p class="text-lg font-garamondRegular text-white text-center mt-1 max-[600px]:mb-0 max-[500px]:text-sm">
+        {{ postDate | date : "longDate" }}
       </p>
 
     </div>

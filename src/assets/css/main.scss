@@ -10,7 +10,6 @@ p {
 }
 
 .home {
-  
   .content-left {
     width: 35%;
     min-height: 100vh;
@@ -146,8 +145,6 @@ p {
   }
 }
 
-
-
 @keyframes pulse {
   0% {
     opacity: 0.3;
@@ -190,7 +187,7 @@ p {
 
 @media screen and (max-width: 768px) {
   .home {
-      background-color: #f4e285;
+    background-color: #f4e285;
     .content-right {
       width: 60%;
     }
@@ -212,12 +209,11 @@ p {
 }
 
 @media screen and (max-width: 600px) {
-
-.hero-section{
-  .display-1{
-    padding-top: 0rem;
+  .hero-section {
+    .display-1 {
+      padding-top: 0rem;
+    }
   }
-}
 
   .home {
     .content-left {
@@ -233,4 +229,28 @@ p {
       }
     }
   }
+
+  .post-content {
+    a {
+      line-height: 2rem;
+    }
+    h3{
+      margin-top: 0px;
+      line-height: 1.5rem;
+    }
+  }
+}
+
+
+@media screen and (max-width: 500px) {
+
+  .post-content {
+    a {
+      line-height: 1.5rem;
+    }
+    h3{
+      line-height: 1.25rem;
+    }
+  }
+
 }
