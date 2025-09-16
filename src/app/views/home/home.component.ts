@@ -5,6 +5,9 @@ import { HeaderComponent } from '../../components/header/header.component';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { PreloaderComponent } from '../../components/preloader/preloader.component';
 
+import { FaIconComponent, FaIconLibrary } from "@fortawesome/angular-fontawesome";
+import { faPersonHiking } from '@fortawesome/free-solid-svg-icons';
+
 import { RouterModule } from '@angular/router';
 import { Preloader } from '../../utils/preloader';
 
@@ -24,7 +27,8 @@ gsap.registerPlugin(SplitText, Draggable);
     RouterModule,
     HeaderComponent,
     FooterComponent,
-    PreloaderComponent
+    PreloaderComponent,
+    FaIconComponent
   ]
 })
 
@@ -34,8 +38,14 @@ export class HomeComponent implements AfterViewInit {
   siteImages: any = [];
 
   constructor(
-    @Inject(DOCUMENT) private document: Document,
-  ) { }
+    @Inject(DOCUMENT)
+    private document: Document,
+    private library: FaIconLibrary
+  ) {
+    this.library.addIcons(
+      faPersonHiking
+    );
+  }
 
 
   ngOnInit() {
