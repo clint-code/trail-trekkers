@@ -10,7 +10,6 @@ p {
 }
 
 .home {
-  background-color: #ecf39e;
   
   .content-left {
     width: 35%;
@@ -191,6 +190,7 @@ p {
 
 @media screen and (max-width: 768px) {
   .home {
+      background-color: #f4e285;
     .content-right {
       width: 60%;
     }
