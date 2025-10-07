@@ -142,7 +142,7 @@ export class HomeComponent implements AfterViewInit {
   autoRotateIcons() {
 
     gsap.to(".rotating-compass", {
-      duration: 5,
+      duration: 10,
       rotation: 360,
       type: "rotation",
       repeat: -1,
@@ -151,7 +151,7 @@ export class HomeComponent implements AfterViewInit {
     });
 
     gsap.to(".rotating-badge", {
-      duration: 5,
+      duration: 10,
       rotation: -360,
       type: "rotation",
       repeat: -1,
