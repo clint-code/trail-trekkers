@@ -234,23 +234,26 @@ p {
     a {
       line-height: 2rem;
     }
-    h3{
+    h3 {
       margin-top: 0px;
       line-height: 1.5rem;
     }
   }
 }
 
-
 @media screen and (max-width: 500px) {
+  .hero-section,
+  .hikes-title {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
 
   .post-content {
     a {
       line-height: 1.5rem;
     }
-    h3{
+    h3 {
       line-height: 1.25rem;
     }
   }
-
 }

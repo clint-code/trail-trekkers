@@ -28,7 +28,6 @@ gsap.registerPlugin(SplitText, Draggable);
     HeaderComponent,
     FooterComponent,
     PreloaderComponent,
-    FaIconComponent
   ]
 })
 
