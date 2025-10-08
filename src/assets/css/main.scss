@@ -206,6 +206,54 @@ p {
       }
     }
   }
+
+  .blog-article-section {
+    .blog-intro-section {
+      h2 {
+        font-size: 2.75rem;
+      }
+      p {
+        font-size: 1.5rem;
+      }
+
+      .intro {
+        order: 1;
+
+        p {
+          text-align: justify;
+        }
+      }
+    }
+
+    .journey-section {
+      h2 {
+        font-size: 2.75rem;
+      }
+
+      p {
+        font-size: 1.5rem;
+      }
+
+      .text-section {
+        p {
+          text-align: justify;
+        }
+      }
+    }
+
+    .quote-section {
+      blockquote {
+        font-size: 40px;
+        line-height: 1;
+      }
+    }
+  }
+
+  .banner-container {
+    .banner-text {
+      padding: 0 20px;
+    }
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -225,6 +273,33 @@ p {
           width: 90%;
           margin-left: 5%;
           margin-left: 5%;
+        }
+      }
+    }
+  }
+
+  .blog-article-section {
+    .blog-intro-section {
+      h2 {
+        font-size: 2.5rem;
+      }
+      p {
+        font-size: 1.35rem;
+      }
+    }
+
+    .journey-section {
+      h2 {
+        font-size: 2.5rem;
+      }
+      p {
+        font-size: 1.35rem;
+      }
+
+      .quote-section {
+        blockquote {
+          font-size: 35px;
+          line-height: 1;
         }
       }
     }
@@ -254,6 +329,19 @@ p {
     }
     h3 {
       line-height: 1.25rem;
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .blog-article-section {
+    .blog-intro-section {
+      h2 {
+        font-size: 1.75rem;
+      }
+      p {
+        font-size: 1.25rem;
+      }
     }
   }
 }
