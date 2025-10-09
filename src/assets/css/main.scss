@@ -249,19 +249,25 @@ p {
       }
     }
 
-    .in-summary-text{
-
+    .in-summary-text {
       text-align: center;
 
       h2 {
         font-size: 2.75rem;
       }
 
-      .single-hike-info-item{
+      .single-hike-info-item {
         justify-content: center;
       }
     }
 
+    .adventure-post-articles {
+      h4 {
+        margin-bottom: 0px;
+        margin-top: 0px;
+        font-size: 2.75rem;
+      }
+    }
   }
 
   .banner-container {
@@ -319,6 +325,19 @@ p {
         }
       }
     }
+
+    .in-summary-text {
+      h2 {
+        font-size: 2.5rem;
+      }
+    }
+
+    .adventure-post-articles {
+      h4 {
+        font-size: 2.5rem;
+      }
+    }
+
   }
 
   .post-content {
@@ -330,17 +349,6 @@ p {
       line-height: 1.5rem;
     }
   }
-
-      .in-summary-text{
-
-      text-align: center;
-
-      h2 {
-        font-size: 2rem;
-      }
-
-    }
-
 }
 
 @media screen and (max-width: 500px) {
@@ -351,24 +359,58 @@ p {
   }
 
   .post-content {
-    a {
-      line-height: 1.5rem;
-    }
     h3 {
       line-height: 1.25rem;
     }
   }
+
+  .adventure-post-articles{
+    .adventure-post-items{
+      margin-top: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+  }
+
 }
 
 @media screen and (max-width: 400px) {
   .blog-article-section {
     .blog-intro-section {
       h2 {
-        font-size: 1.75rem;
+        font-size: 2rem;
       }
       p {
         font-size: 1.25rem;
       }
     }
+
+    .journey-section,
+    .rewarding-views-section {
+      h2 {
+        font-size: 2rem;
+      }
+      p {
+        font-size: 1.25rem;
+      }
+
+      .quote-section {
+        blockquote {
+          font-size: 30px;
+        }
+      }
+    }
+
+    .in-summary-text {
+      h2 {
+        font-size: 2rem;
+      }
+    }
+
+    .adventure-post-articles {
+      h4 {
+        font-size: 2rem;
+      }
+    }
+
   }
 }

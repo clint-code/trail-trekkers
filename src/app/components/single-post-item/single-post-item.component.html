@@ -11,16 +11,16 @@
       (mouseleave)="resetStyles($event)"
     />
 
-    <div class="post-content p-4 absolute z-10 bottom-0 w-full">
+    <div class="post-content p-4 absolute z-10 bottom-0 w-full max-[400px]: top-1/2">
       
       <a
-        class="text-5xl w-full uppercase font-garamondItalic text-white text-center white-hover-underline max-[768px]:text-4xl max-[600px]:text-3xl leading-none"
+        class="text-5xl w-full uppercase font-garamondItalic text-white text-center white-hover-underline max-[768px]:text-4xl leading-none"
         [routerLink]="['/single-adventure-post']"
       >
         {{ postTitle }}
       </a>
 
-      <h3 class="text-2xl font-garamondRegular text-white text-center mt-2 max-[768px]:text-xl max-[600px]:text-base">
+      <h3 class="text-2xl font-garamondRegular text-white text-center mt-2 max-[768px]:text-xl">
         {{ postSubtitle }}
       </h3>
 
