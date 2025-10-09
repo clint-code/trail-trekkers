@@ -225,7 +225,8 @@ p {
       }
     }
 
-    .journey-section {
+    .journey-section,
+    .rewarding-views-section {
       h2 {
         font-size: 2.75rem;
       }
@@ -247,6 +248,20 @@ p {
         line-height: 1;
       }
     }
+
+    .in-summary-text{
+
+      text-align: center;
+
+      h2 {
+        font-size: 2.75rem;
+      }
+
+      .single-hike-info-item{
+        justify-content: center;
+      }
+    }
+
   }
 
   .banner-container {
@@ -288,7 +303,8 @@ p {
       }
     }
 
-    .journey-section {
+    .journey-section,
+    .rewarding-views-section {
       h2 {
         font-size: 2.5rem;
       }
@@ -314,6 +330,17 @@ p {
       line-height: 1.5rem;
     }
   }
+
+      .in-summary-text{
+
+      text-align: center;
+
+      h2 {
+        font-size: 2rem;
+      }
+
+    }
+
 }
 
 @media screen and (max-width: 500px) {

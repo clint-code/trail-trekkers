@@ -40,7 +40,8 @@ export class AboutComponent implements OnInit {
   threshold: number = 1;
   hikePosts: any;
   imagesLoaded: boolean = false;
-  siteImages: any = [];
+  siteImages: any = [];;
+
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
