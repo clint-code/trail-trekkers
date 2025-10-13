@@ -35,6 +35,8 @@ export class HomeComponent implements AfterViewInit {
 
   imagesLoaded: boolean = false;
   siteImages: any = [];
+  badges: any = [];
+  colors: string[] = ['#2f7db6', '#e61a23', '#266b5a'];
 
   constructor(
     @Inject(DOCUMENT)
@@ -50,6 +52,9 @@ export class HomeComponent implements AfterViewInit {
   ngOnInit() {
 
     this.document.documentElement.scrollTop = 0;
+    this.badges = this.document.querySelectorAll('.rotating-badge');
+
+    console.log("Badges on init:", this.badges);
 
   }
 
@@ -87,35 +92,64 @@ export class HomeComponent implements AfterViewInit {
 
   dragBadgeOverText() {
 
-    const badge = gsap.utils.toArray('.rotating-badge') as HTMLElement[];
+    const target = document.getElementById('target-text');
 
-    Draggable.create(badge, {
-      type: 'x,y',
-      onDragEnd: function () {
-        const target = document.getElementById('target-text')?.getBoundingClientRect();
-        const draggable = this['target'].getBoundingClientRect();
+    this.badges.forEach((badge: any, i: any) => {
 
-        const isOverlapping = !(
-          draggable.right < (target?.left || 0) ||
-          draggable.left > (target?.right || 0) ||
-          draggable.bottom < (target?.top || 0) ||
-          draggable.top > (target?.bottom || 0)
-        );
+      const badgeColor = this.colors[i % this.colors.length];
 
-        if (isOverlapping) {
-          gsap.to("#target-text", {
-            duration: 0.1,
-            color: "#219ebc", // Change to blue
-            ease: "power1.out"
+      console.log("Badge in loop:", badge, "with color:", badgeColor);
+
+      Draggable.create(badge, {
+        onPress: () => {
+          gsap.to(badge, {
+            duration: 0.5,
+            scale: 1.3,
+            zIndex: 1000,
           });
-        } else {
-          gsap.to("#target-text", {
-            duration: 0.4,
-            color: "#f97316", // Change back to original color
-            ease: "power2.out"
+          gsap.to(
+            this.badges, {
+            duration: 0.2,
           });
-        }
-      }
+        },
+
+        onRelease: () => {
+          gsap.to(badge, { duration: 0.4, scale: 1.25 });
+        },
+
+        onDrag: () => {
+
+          const badgeRect = badge.getBoundingClientRect();
+          const targetRect = target!.getBoundingClientRect();
+
+          // Calculate overlap
+          const overlapX = Math.max(0, Math.min(badgeRect.right, targetRect.right) - Math.max(badgeRect.left, targetRect.left));
+          const overlapY = Math.max(0, Math.min(badgeRect.bottom, targetRect.bottom) - Math.max(badgeRect.top, targetRect.top));
+          const overlapArea = overlapX * overlapY;
+
+          // Calculate overlap percentage relative to badge size
+          const badgeArea = badgeRect.width * badgeRect.height;
+          const overlapPercentage = Math.min(overlapArea / badgeArea, 1);
+
+          if (overlapPercentage > 0) {
+
+            gsap.to(target, {
+              duration: 0.9,
+              color: badgeColor,
+              ease: "elastic",
+
+            });
+          } else {
+
+            gsap.to(target, {
+              duration: 1.0,
+              color: "#f97316", // Change back to original color
+              ease: "sine.inOut"
+            });
+          }
+        },
+
+      });
 
     });
 
