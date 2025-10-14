@@ -1,8 +1,14 @@
 <div class="single-item flex flex-col items-center">
-        <fa-icon class="icon-style text-4xl" [icon]="itemIcon"></fa-icon>
+  
+  <fa-icon 
+    class="icon-style text-4xl max-[768px]:text-2xl" 
+    [icon]="itemIcon">
+  </fa-icon>
+
   <div class="item-description pt-3">
-    <p class="font-garamondBold text-center text-3xl">
+    <p class="font-garamondBold text-center text-3xl max-[768px]:text-2xl">
       {{ itemDescription }}
     </p>
   </div>
+
 </div>

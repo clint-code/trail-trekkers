@@ -16,9 +16,9 @@ import { SplitText } from 'gsap/SplitText';
 import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 
-gsap.registerPlugin(DrawSVGPlugin);
-gsap.registerPlugin(ScrollTrigger);
-gsap.registerPlugin(SplitText);
+gsap.registerPlugin(DrawSVGPlugin, ScrollTrigger, SplitText);
+// gsap.registerPlugin(ScrollTrigger);
+// gsap.registerPlugin(SplitText);
 
 @Component({
   selector: 'app-about',
@@ -70,12 +70,26 @@ export class AboutComponent implements OnInit {
 
     this.animateSVGLine();
     this.animateHeroText();
-    this.animateQuoteText();
-    this.animateSubtitleText();
+    //this.animateQuoteText();
+    //this.animateSubtitleText();
+    this.autoRotateIcons();
 
     setTimeout(() => {
       this.animateAboutItems();
     }, 1000);
+
+  }
+
+  autoRotateIcons() {
+
+    gsap.to(".rotating-compass", {
+      duration: 10,
+      rotation: 360,
+      type: "rotation",
+      repeat: -1,
+      ease: "linear",
+      transformOrigin: "50% 50%"
+    });
 
   }
 

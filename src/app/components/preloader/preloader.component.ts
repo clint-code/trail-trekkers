@@ -36,7 +36,7 @@ export class PreloaderComponent {
   // onLoopCompleteCalledTimes = 0;
 
   animationCreated(animationItem: AnimationItem): void {
-    console.log(animationItem);
+    //console.log(animationItem);
   }
 
   constructor(

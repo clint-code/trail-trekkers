@@ -54,8 +54,6 @@ export class HomeComponent implements AfterViewInit {
     this.document.documentElement.scrollTop = 0;
     this.badges = this.document.querySelectorAll('.rotating-badge');
 
-    console.log("Badges on init:", this.badges);
-
   }
 
   ngAfterViewInit() {
@@ -98,7 +96,7 @@ export class HomeComponent implements AfterViewInit {
 
       const badgeColor = this.colors[i % this.colors.length];
 
-      console.log("Badge in loop:", badge, "with color:", badgeColor);
+      // console.log("Badge in loop:", badge, "with color:", badgeColor);
 
       Draggable.create(badge, {
         onPress: () => {

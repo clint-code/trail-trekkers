@@ -3,116 +3,174 @@
 <app-header></app-header>
 
 <div class="max-w-7xl mx-auto relative min-h-screen mt-1.5 mb-7">
-  <div class="about-title-section columns-2 gap-5 mb-10 mt-10">
-    <div class="about-title">
-      <h1 class="text-8xl font-speakeasy text-orange-600 pb-5">
-        Hiking for young professionals
-      </h1>
+  <div class="about-container m-5">
+    <div
+      class="about-title-section columns-2 gap-5 mb-10 mt-10 max-[768px]:columns-1"
+    >
+      <div class="about-title">
+        <h1
+          class="text-8xl font-speakeasy text-orange-600 pb-5 max-[1100px]:text-6xl max-[768px]:text-center max-[500px]:text-5xl"
+        >
+          Hiking for young professionals
+        </h1>
 
-      <p class="font-garamondRegular font-normal text-4xl">
-        <span class="font-bold text-8xl">"T</span>he whole point of leisure is
-        that time is not just something to be filled with work or usefulness,
-        but is itself a gift." - <span class="font-bold">Josef Pieper</span>
-      </p>
-    </div>
-
-    <div class="about-image-section">
-      <img
-        src="assets/img/mount-ol-donyo-sabuk-1.jpg"
-        alt="mount-ol-donyo-sabuk"
-        (mouseenter)="handleHover($event)"
-        (mouseleave)="resetStyles($event)"
-        class="h-auto inline-block transition-transform duration-200 ease-out [transform-style:preserve-3d]"
-      />
-    </div>
-  </div>
-
-  <div class="why-we-do-this-section mt-5 mb-7 text-center">
-    <div class="title-section pb-7">
-      <h3 class="display-2">Why do we do this?</h3>
-
-      <svg class="underline" width="200" height="20" viewBox="0 0 200 20">
-        <path
-          id="underlinePath"
-          d="M10 15 H190"
-          stroke="#F85E00"
-          stroke-width="2"
-          fill="none"
-        />
-      </svg>
-    </div>
-
-    <div class="list-items-section flex pb-7">
-      <app-single-about-item
-        class="w-1/4 single-list-item"
-        *ngFor="let item of aboutItems"
-        [itemIcon]="item.itemIcon"
-        [itemDescription]="item.itemDescription"
-      ></app-single-about-item>
-    </div>
-  </div>
-
-  <div class="how-it-started-section mt-5 mb-7 relative">
-    <div class="title-section pb-7 text-center">
-      <h3 class="display-2">How it all started...</h3>
-
-      <svg class="underline" width="200" height="20" viewBox="0 0 200 20">
-        <path
-          id="underlinePath"
-          d="M10 15 H190"
-          stroke="#F85E00"
-          stroke-width="2"
-          fill="none"
-        />
-      </svg>
-    </div>
-
-    <div class="how-it-started-title columns-2 gap-2 mb-5">
-      <div class="how-it-started-cnt">
-        <p class="font-garamondRegular text-3xl">
-          <span class="font-garamondBold text-8xl">T</span>he whole point of
-          leisure is that time is not just something to be filled with work or
-          usefulness, but is itself a gift."
-        </p>
-        <br />
-        <p class="font-garamondRegular text-3xl">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec
-          bibendum eros, ac iaculis tellus. Aenean congue lacus sed turpis
-          sagittis, nec pretium erat volutpat.
-        </p>
-        <br />
-        <p class="font-garamondRegular text-3xl">
-          Aliquam pulvinar bibendum est sit amet tincidunt.
+        <p
+          class="font-garamondRegular font-normal text-4xl max-[1000px]:text-3xl"
+        >
+          <span
+            class="font-bold text-8xl max-[1000px]:text-7xl max-[500px]:text-5xl"
+            >"T</span
+          >he whole point of leisure is that time is not just something to be
+          filled with work or usefulness, but is itself a gift." -
+          <span class="font-bold">Josef Pieper</span>
         </p>
       </div>
 
       <div class="about-image-section relative">
-
-        <div class="quote-section w-3/5 -rotate-6 absolute z-20 top-10 right-0">
-          <blockquote class="font-garamondItalic text-5xl text-white">
-            "The first hike at the Cianda Waterfalls."
+        <div
+          class="quote-section w-3/5 -rotate-6 absolute z-20 bottom-20 right-10 max-[768px]:right-5 text-right"
+        >
+          <blockquote class="font-garamondItalic text-4xl text-white">
+            Mount Kilimambogo
           </blockquote>
         </div>
 
-        <div class="overlay absolute w-full h-full rounded-lg bg-black opacity-30 z-10"></div>
+        <div
+          class="min-[768px]:hidden draggable-item absolute top-7 right-6 z-10"
+          id="compass-icon"
+        >
+          <img
+            src="assets/img/vector-icons/compass.png"
+            class="h-20 w-auto rotating-compass"
+            alt="compass"
+          />
+        </div>
 
         <img
-          src="assets/img/first-hike.jpg"
-          alt="first-hike"
-          class="h-2/4 rounded-lg inline-block relative"
+          src="assets/img/mount-ol-donyo-sabuk-1.jpg"
+          alt="mount-ol-donyo-sabuk"
+          (mouseenter)="handleHover($event)"
+          (mouseleave)="resetStyles($event)"
+          class="h-auto inline-block transition-transform duration-200 ease-out [transform-style:preserve-3d] max-[768px]:h-2/4"
         />
-        
       </div>
     </div>
-  </div>
 
-  <div class="quote-section w-2/5 -rotate-6 absolute bottom-28 left-7">
-    <blockquote class="font-garamondItalic text-5xl text-orange-600">
-      "The world is not in your books and maps. It’s out there."
-    </blockquote>
-    <small class="font-passion text-2xl pt-5 black-hover-underline"
-      >Gandalf the Grey, The Hobbit</small
-    >
+    <div class="why-we-do-this-section mt-5 mb-7 text-center">
+      <div class="title-section pb-7">
+        <h3 class="display-2 max-[768px]:text-5xl max-[500px]:text-4xl">
+          Why do we do this?
+        </h3>
+
+        <svg class="underline" width="200" height="20" viewBox="0 0 200 20">
+          <path
+            id="underlinePath"
+            d="M10 15 H190"
+            stroke="#F85E00"
+            stroke-width="2"
+            fill="none"
+          />
+        </svg>
+      </div>
+
+      <div class="list-items-section flex pb-7 max-[768px]:flex-wrap">
+        <app-single-about-item
+          class="w-1/4 single-list-item max-[768px]:w-1/2 max-[500px]:w-full"
+          *ngFor="let item of aboutItems"
+          [itemIcon]="item.itemIcon"
+          [itemDescription]="item.itemDescription"
+        ></app-single-about-item>
+      </div>
+    </div>
+
+    <div class="how-it-started-section mt-5 mb-7 relative">
+      <div class="title-section pb-7 text-center">
+        <h3 class="display-2 max-[768px]:text-5xl max-[500px]:text-4xl">
+          How it all started...
+        </h3>
+
+        <svg class="underline" width="200" height="20" viewBox="0 0 200 20">
+          <path
+            id="underlinePath"
+            d="M10 15 H190"
+            stroke="#F85E00"
+            stroke-width="2"
+            fill="none"
+          />
+        </svg>
+      </div>
+
+      <div
+        class="how-it-started-title columns-2 gap-5 mb-5 flex max-[768px]:flex-col"
+      >
+        <div class="how-it-started-cnt">
+          <p class="font-garamondRegular text-3xl">
+            <span
+              class="font-garamondBold text-8xl max-[1000px]:text-7xl max-[500px]:text-5xl"
+              >T</span
+            >he whole point of leisure is that time is not just something to be
+            filled with work or usefulness, but is itself a gift."
+          </p>
+
+          <br />
+          <p class="font-garamondRegular text-3xl">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec
+            bibendum eros, ac iaculis tellus. Aenean congue lacus sed turpis
+            sagittis, nec pretium erat volutpat.
+          </p>
+          <br />
+          <p class="font-garamondRegular text-3xl">
+            Aliquam pulvinar bibendum est sit amet tincidunt.
+          </p>
+          <br />
+          <p class="font-garamondRegular text-3xl">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec
+            bibendum eros, ac iaculis tellus. Aenean congue lacus sed turpis
+            sagittis, nec pretium erat volutpat.
+          </p>
+
+          <div class="quote-section mt-4">
+            <blockquote class="font-garamondItalic text-5xl text-orange-600">
+              "The world is not in your books and maps. It’s out there!"
+            </blockquote>
+            <small class="font-passion text-2xl pt-5 black-hover-underline"
+              >Gandalf the Grey, The Hobbit</small
+            >
+          </div>
+        </div>
+
+        <div class="about-image-section relative">
+          <div
+            class="quote-section w-3/5 -rotate-6 absolute z-20 top-10 right-5 text-right"
+          >
+            <blockquote class="font-garamondItalic text-4xl text-white">
+              First hike at Cianda Waterfalls
+            </blockquote>
+          </div>
+
+          <div
+            class="min-[768px]:hidden draggable-item absolute bottom-0 right-6 z-100"
+            id="boot-icon"
+          >
+            <img
+              src="assets/img/vector-icons/white-boot-icon.png"
+              class="h-20 w-auto boot"
+              alt="white-boot-icon"
+            />
+          </div>
+
+          <div
+            class="overlay absolute w-full h-full rounded-lg bg-black opacity-30 z-10"
+          ></div>
+
+          <img
+            src="assets/img/first-hike.jpg"
+            alt="first-hike"
+            class="h-full w-full rounded-lg inline-block relative"
+          />
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
