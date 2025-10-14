@@ -104,7 +104,7 @@ export class HomeComponent implements AfterViewInit {
         onPress: () => {
           gsap.to(badge, {
             duration: 0.5,
-            scale: 1.3,
+            scale: 1.25,
             zIndex: 1000,
           });
           gsap.to(
@@ -114,7 +114,7 @@ export class HomeComponent implements AfterViewInit {
         },
 
         onRelease: () => {
-          gsap.to(badge, { duration: 0.4, scale: 1.25 });
+          gsap.to(badge, { duration: 0.4, scale: 1.0 });
         },
 
         onDrag: () => {
