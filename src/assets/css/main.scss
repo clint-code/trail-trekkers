@@ -268,27 +268,50 @@ p {
         font-size: 2.75rem;
       }
     }
+  }
 
-    .about-container {
-      .about-title-section {
-        .about-title {
+  .banner-container {
+    .banner-text {
+      padding: 0 20px;
+    }
+  }
+
+  .about-container {
+    .about-title-section {
+      .about-title {
+        h1 {
+          font-size: 2.75rem;
+        }
+        p {
+          font-size: 1.5rem;
+          line-height: 1.1;
+        }
+
+        .text-section {
           p {
-            font-size: 1.5rem;
-          }
-
-          .text-section {
-            p {
-              text-align: justify;
-            }
+            text-align: justify;
           }
         }
       }
     }
   }
 
-  .banner-container {
-    .banner-text {
-      padding: 0 20px;
+  .how-it-started-section {
+    .how-it-started-title {
+      .how-it-started-cnt {
+        p {
+          font-size: 1.5rem;
+          line-height: 1.1;
+          text-align: justify;
+        }
+
+        .quote-section {
+          blockquote {
+            font-size: 40px;
+            line-height: 1;
+          }
+        }
+      }
     }
   }
 }
@@ -337,7 +360,6 @@ p {
       .quote-section {
         blockquote {
           font-size: 35px;
-          line-height: 1;
         }
       }
     }
@@ -364,6 +386,35 @@ p {
       line-height: 1.5rem;
     }
   }
+
+  .about-container {
+    .about-title-section {
+      .about-title {
+        h1 {
+          font-size: 2.5rem;
+        }
+        p {
+          font-size: 1.35rem;
+        }
+      }
+    }
+  }
+
+  .how-it-started-section {
+    .how-it-started-title {
+      .how-it-started-cnt {
+        p {
+          font-size: 1.35rem;
+        }
+
+        .quote-section {
+          blockquote {
+            font-size: 35px;
+          }
+        }
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 500px) {
@@ -388,6 +439,7 @@ p {
 }
 
 @media screen and (max-width: 400px) {
+
   .blog-article-section {
     .blog-intro-section {
       h2 {
@@ -426,4 +478,33 @@ p {
       }
     }
   }
+
+  .about-container {
+    .about-title-section {
+      .about-title {
+        h1 {
+          font-size: 2rem;
+        }
+        p {
+          font-size: 1.25rem;
+        }
+      }
+    }
+  }
+
+  .how-it-started-section {
+    .how-it-started-title {
+      .how-it-started-cnt {
+        p {
+          font-size: 1.25rem;
+        }
+        .quote-section {
+          blockquote {
+            font-size: 30px;
+          }
+        }
+      }
+    }
+  }
+
 }
