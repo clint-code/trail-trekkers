@@ -58,6 +58,7 @@ export class UpcomingHikesComponent implements OnInit {
       this.animateHikeItems();
     }, 1000);
 
+    this.autoRotateIcons();
     this.animateDraggableItems();
     this.animateHeroText();
     this.animateIcons();
@@ -69,6 +70,19 @@ export class UpcomingHikesComponent implements OnInit {
     this.allContentService.getHikePosts().subscribe(posts => {
       // Process the hike posts data here
       this.hikePosts = posts;
+    });
+
+  }
+
+  autoRotateIcons() {
+
+    gsap.to(".rotating-compass", {
+      duration: 10,
+      rotation: 360,
+      type: "rotation",
+      repeat: -1,
+      ease: "linear",
+      transformOrigin: "50% 50%"
     });
 
   }

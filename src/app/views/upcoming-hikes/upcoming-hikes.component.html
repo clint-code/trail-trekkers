@@ -1,32 +1,36 @@
-<app-preloader
-    *ngIf="siteImages.length < 1"
-></app-preloader>
+<app-preloader *ngIf="siteImages.length < 1"></app-preloader>
 
 <app-header></app-header>
 
 <div class="max-w-7xl mx-auto relative min-h-screen mt-1.5">
-
   <div class="hikes-title mt-12 mb-10">
 
-    <div class="min-[600px]:hidden draggable-item absolute top-16 left-10 z-10" id="boot-icon">
-      <img src="assets/img/vector-icons/boot-icon.png" class="h-14 w-auto" alt="boot" />
-    </div>
-
     <div class="hero-section">
-      <h1 class="display-1 max-[1280px]:text-6xl max-[768px]:text-5xl max-[500px]:w-11/12 m-auto text-4xl">
+      <h1
+        class="display-1 max-[1280px]:text-6xl max-[768px]:text-5xl max-[500px]:w-11/12 m-auto text-4xl"
+      >
         Book your next hike
       </h1>
     </div>
 
-    <div class="min-[600px]:hidden draggable-item absolute top-10 right-10 z-10" id="bag-icon">
-      <img src="assets/img/vector-icons/hiking-bag.png" class="h-16 w-auto" alt="bag" />
+    <div
+      class="min-[768px]:hidden draggable-item absolute top-14 right-6 z-10"
+      id="compass-icon"
+    >
+      <img
+        src="assets/img/vector-icons/compass.png"
+        class="h-20 w-auto rotating-compass"
+        alt="compass"
+      />
     </div>
 
   </div>
 
   <div class="hike-posts-section mt-20">
-
-    <div class="w-3/4 m-auto max-[768px]:w-11/12" *ngFor="let hikePost of hikePosts; let i = index">
+    <div
+      class="w-3/4 m-auto max-[768px]:w-11/12"
+      *ngFor="let hikePost of hikePosts; let i = index"
+    >
       <app-single-hike-item
         class="single-hike"
         [hikeTitle]="hikePost.title"
@@ -37,10 +41,12 @@
         [hikeDifficulty]="hikePost.difficulty"
         [summary]="hikePost.summary"
       >
-    </app-single-hike-item>
-    
-      <hr *ngIf="i< hikePosts.length - 1" class="border-t-2 border-green-900 mt-6 w-full" />
-      
+      </app-single-hike-item>
+
+      <hr
+        *ngIf="i < hikePosts.length - 1"
+        class="border-t-2 border-green-900 mt-6 w-full"
+      />
     </div>
   </div>
 </div>
