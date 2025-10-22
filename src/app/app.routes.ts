@@ -40,7 +40,7 @@ export const routes: Routes = [
     },
 
     {
-        path: 'indemnity-clause',
+        path: 'indemnity-agreement',
         component: IndemnityClauseComponent
     },
 

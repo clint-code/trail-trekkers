@@ -33,9 +33,20 @@ p {
   .content-right {
     width: 65%;
 
+    @keyframes scroll-up {
+      from {
+        transform: translateY(0);
+      }
+      to {
+        transform: translateY(-100%);
+      }
+    }
+
     .column {
       .scroll {
         animation: scroll-up 50s linear infinite;
+        //transition: animation-duration 1.5s ease-out; /* Smooth transition for animation duration change */
+        transition: animation-duration 2s cubic-bezier(0.23, 1, 0.32, 1);
 
         img {
           width: 95%;
@@ -250,11 +261,9 @@ p {
     }
 
     .in-summary-text {
-
       h2 {
         font-size: 2.75rem;
       }
-
     }
 
     .adventure-post-articles {
@@ -307,6 +316,16 @@ p {
             line-height: 1;
           }
         }
+      }
+    }
+  }
+
+  .indemnity-agreement {
+    .content-section {
+      p {
+        font-size: 1.5rem;
+        line-height: 1.1;
+        text-align: justify;
       }
     }
   }
@@ -411,6 +430,18 @@ p {
       }
     }
   }
+
+  .indemnity-agreement {
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    .content-section {
+      p {
+        font-size: 1.35rem;
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 500px) {
@@ -432,9 +463,19 @@ p {
       margin-bottom: 1.5rem;
     }
   }
+
+  .indemnity-agreement{
+    .hero-section{
+      margin-top: 2rem;
+    }
+  }
+
 }
 
 @media screen and (max-width: 400px) {
+  .underline {
+    margin-top: 0px;
+  }
 
   .blog-article-section {
     .blog-intro-section {
@@ -503,4 +544,15 @@ p {
     }
   }
 
+  .indemnity-agreement {
+    h1 {
+      font-size: 2rem;
+      line-height: 2rem;
+    }
+    .content-section {
+      p {
+        font-size: 1.25rem;
+      }
+    }
+  }
 }

@@ -96,8 +96,6 @@ export class HomeComponent implements AfterViewInit {
 
       const badgeColor = this.colors[i % this.colors.length];
 
-      // console.log("Badge in loop:", badge, "with color:", badgeColor);
-
       Draggable.create(badge, {
         onPress: () => {
           gsap.to(badge, {
