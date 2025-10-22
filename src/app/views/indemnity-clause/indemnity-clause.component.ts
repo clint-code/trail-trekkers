@@ -24,6 +24,14 @@ export class IndemnityClauseComponent {
 
   siteImages: any = [];
 
+  constructor(
+    @Inject(DOCUMENT) private document: Document
+  ) { }
+
+  ngOnInit(): void {
+    this.document.documentElement.scrollTop = 0;
+  }
+
   ngAfterViewInit() {
 
     setTimeout(() => {
