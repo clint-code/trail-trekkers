@@ -31,9 +31,11 @@ export class HeaderComponent {
 
   isMobileMenuOpen: boolean = false;
   isRotated: boolean = false;
+  isOverlayVisible: boolean = false;
 
   toggleMenu() {
     this.isMobileMenuOpen = !this.isMobileMenuOpen;
+    this.isOverlayVisible = !this.isOverlayVisible;
     this.rotateIconOnClick();
   }
 
