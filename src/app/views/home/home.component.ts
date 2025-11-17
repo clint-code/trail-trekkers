@@ -36,7 +36,7 @@ export class HomeComponent implements AfterViewInit {
   imagesLoaded: boolean = false;
   siteImages: any = [];
   badges: any = [];
-  colors: string[] = ['#2f7db6', '#e61a23', '#266b5a'];
+  colors: string[] = ['#2f7db6', '#004aad', '#e61a23', '#266b5a'];
 
   constructor(
     @Inject(DOCUMENT)
@@ -96,6 +96,8 @@ export class HomeComponent implements AfterViewInit {
 
       const badgeColor = this.colors[i % this.colors.length];
 
+      console.log("Badge:", badge, "Color:", badgeColor);
+
       Draggable.create(badge, {
         onPress: () => {
           gsap.to(badge, {
@@ -118,6 +120,9 @@ export class HomeComponent implements AfterViewInit {
           const badgeRect = badge.getBoundingClientRect();
           const targetRect = target!.getBoundingClientRect();
 
+          console.log("Badge Rect:", badgeRect);
+          console.log("Target Rect:", targetRect);
+
           // Calculate overlap
           const overlapX = Math.max(0, Math.min(badgeRect.right, targetRect.right) - Math.max(badgeRect.left, targetRect.left));
           const overlapY = Math.max(0, Math.min(badgeRect.bottom, targetRect.bottom) - Math.max(badgeRect.top, targetRect.top));
@@ -135,6 +140,7 @@ export class HomeComponent implements AfterViewInit {
               ease: "elastic",
 
             });
+
           } else {
 
             gsap.to(target, {
