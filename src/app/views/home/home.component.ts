@@ -95,9 +95,6 @@ export class HomeComponent implements AfterViewInit {
     this.badges.forEach((badge: any, i: any) => {
 
       const badgeColor = this.colors[i % this.colors.length];
-
-      console.log("Badge:", badge, "Color:", badgeColor);
-
       Draggable.create(badge, {
         onPress: () => {
           gsap.to(badge, {
@@ -119,9 +116,6 @@ export class HomeComponent implements AfterViewInit {
 
           const badgeRect = badge.getBoundingClientRect();
           const targetRect = target!.getBoundingClientRect();
-
-          console.log("Badge Rect:", badgeRect);
-          console.log("Target Rect:", targetRect);
 
           // Calculate overlap
           const overlapX = Math.max(0, Math.min(badgeRect.right, targetRect.right) - Math.max(badgeRect.left, targetRect.left));
