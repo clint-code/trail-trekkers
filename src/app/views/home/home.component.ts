@@ -207,7 +207,7 @@ export class HomeComponent implements AfterViewInit {
     gsap.from(".scroll-top", {
       opacity: 0,
       y: -200,
-      duration: 3.5,
+      duration: 2.5,
       delay: 1,
       ease: "power2.out"
     });
@@ -219,7 +219,7 @@ export class HomeComponent implements AfterViewInit {
     gsap.from(".scroll-reverse", {
       opacity: 0,
       y: 200,
-      duration: 3.5,
+      duration: 2.5,
       delay: 1,
       ease: "power2.out"
     });
