@@ -37,4 +37,12 @@ export class AllContentService {
 
   }
 
+  getSingleUpcomingHike(hikeSlug: any): Observable<any[]> {
+
+    return this.http.get<any[]>(`${environment.contentRoot}upcoming_hikes?slug=${hikeSlug}`);
+
+  }
+
+
+
 }

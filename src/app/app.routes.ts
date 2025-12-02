@@ -20,7 +20,7 @@ export const routes: Routes = [
     },
 
     {
-        path: 'single-adventure-post',
+        path: 'single-adventure-post/:slug',
         component: SingleAdventurePostComponent
     },
 
@@ -30,7 +30,7 @@ export const routes: Routes = [
     },
 
     {
-        path: 'single-hike',
+        path: 'single-hike/:slug',
         component: SingleUpcomingHikePostComponent
     },
 

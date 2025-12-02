@@ -26,6 +26,7 @@ export class SingleHikeItemComponent {
   @Input() summary: string = '';
   @Input() hikeImageUrl: string = '';
   @Input() hikeImageAlt: string = '';
+  @Input() hikePostUrl: string = '';
 
   constructor(public el: ElementRef) { }
 

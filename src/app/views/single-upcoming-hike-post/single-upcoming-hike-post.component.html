@@ -4,10 +4,10 @@
 
 <div class="hike-banner-section relative">
   <app-hike-banner
-    [hikeTitle]="'Kilimambogo'"
-    [hikeLocation]="'Off Thika-Garissa Highway'"
-    [locationImage]="'assets/img/mount-ol-donyo-sabuk-hero-1.jpg'"
-    [locationImageAlt]="'mount-ol-donyo-sabuk'"
+    [hikeTitle]="hikeInfoDetails?.title?.rendered"
+    [hikeLocation]="hikeInfoDetails?.acf?.hike_location"
+    [locationImage]="hikeInfoDetails?.acf?.hike_banner_image?.url"
+    [locationImageAlt]="hikeInfoDetails?.acf?.hike_banner_image?.alt"
   ></app-hike-banner>
 </div>
 
@@ -17,11 +17,8 @@
   >
     <p
       class="font-garamondRegular text-4xl leading-none max-[768px]:text-3xl max-[600px]:text-2xl max-[500px]:text-xl mb-0"
+      [innerHTML]="hikeInfoDetails?.acf?.hike_summary"
     >
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec
-      bibendum eros, ac iaculis tellus. Aenean congue lacus sed turpis sagittis,
-      nec pretium erat volutpat. Aliquam pulvinar bibendum est sit amet
-      tincidunt.
     </p>
   </div>
 
@@ -45,19 +42,21 @@
     </div>
 
     <div
-      class="list-items-section flex flex-wrap justify-center max-[768px]:w-4/5 m-auto max-[500px]:w-11/12"
+      class="list-items-section flex flex-wrap justify-center mb-5 max-[768px]:w-4/5 m-auto max-[500px]:w-11/12"
     >
       <app-single-hike-info-item
         class="w-1/4 single-list-item mb-6 max-[768px]:w-1/2"
-        *ngFor="let hikeInfoItem of hikeInfoDetails"
+        *ngFor="let hikeInfoItem of hikeInfoItems"
         [hikeInfoIcon]="hikeInfoItem.infoIcon"
         [hikeInfoTitle]="hikeInfoItem.infoTitle"
         [hikeInfoDescription]="hikeInfoItem.infoDescription"
         [hikeInfoList]="hikeInfoItem.infoList"
       ></app-single-hike-info-item>
+      
     </div>
 
     <a class="green-button"> Register Here </a>
+
   </div>
 </div>
 
