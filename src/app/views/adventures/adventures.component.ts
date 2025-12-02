@@ -69,9 +69,19 @@ export class AdventuresComponent implements OnInit {
 
   getAdventurePosts() {
 
-    this.allContentService.getAdventurePosts().subscribe(posts => {
-      this.adventurePosts = posts;
-      console.log(this.adventurePosts);
+    // this.allContentService.getAdventurePosts().subscribe(posts => {
+    //   this.adventurePosts = posts;
+    //   console.log(this.adventurePosts);
+    // });
+
+    this.allContentService.getAllAdventures().subscribe((response: any[]) => {
+
+      if (response && response.length > 0 && response !== null) {
+        this.adventurePosts = response;
+
+        console.log("Adventure posts:", this.adventurePosts);
+      }
+
     });
 
   }

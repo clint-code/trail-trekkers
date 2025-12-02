@@ -10,10 +10,10 @@
 
 <div class="hike-banner-section relative">
   <app-hike-banner
-    [hikeTitle]="'First Hike, Fierce Climb'"
-    [hikeLocation]="'Elephant Hill, Aberdare Ranges, Njabini'"
-    [locationImage]="'assets/img/blog-imgs/elephant-hill-banner.jpg'"
-    [locationImageAlt]="'elephant-hill-banner'"
+    [hikeTitle]="adventurePostContent?.title?.rendered"
+    [hikeLocation]="adventurePostContent?.acf?.hike_location"
+    [locationImage]="adventurePostContent?.acf?.hike_banner_image?.url"
+    [locationImageAlt]="adventurePostContent?.acf?.hike_banner_image?.alt"
   ></app-hike-banner>
 </div>
 
@@ -22,8 +22,8 @@
     <div class="blog-intro-section">
 
       <div class="w-full text-center mt-8 mb-8">
-        <h2 class="display-2 orange-hover-underline">Scaling the Giant</h2>
-        <p class="blog-intro-date">Posted on 12th March 2023</p>
+        <h2 class="display-2 orange-hover-underline">{{adventurePostContent?.acf?.intro_title}}</h2>
+        <p class="blog-intro-date">Posted on {{adventurePostContent?.date | date : "longDate"}}</p>
       </div>
 
       <div class="columns-2 gap-4 blog-intro-text mt-10 mb-10 flex max-[768px]:flex-col">
@@ -65,21 +65,9 @@
           </ul>
         </div>
 
-        <div class="intro w-2/3 max-[768px]:w-full">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec
-            bibendum eros, ac iaculis tellus. Aenean congue lacus sed turpis
-            sagittis, nec pretium erat volutpat. Aliquam pulvinar bibendum est
-            sit amet tincidunt. Maecenas diam velit, laoreet ut nisl sit amet,
-            volutpat varius felis.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec
-            bibendum eros, ac iaculis tellus. Aenean congue lacus sed turpis
-            sagittis, nec pretium erat volutpat. Aliquam pulvinar bibendum est
-            sit amet tincidunt. Maecenas diam velit, laoreet ut nisl sit amet,
-            volutpat varius felis.
-          </p>
+        <div 
+          class="intro w-2/3 max-[768px]:w-full" 
+          [innerHTML]="adventurePostContent?.acf?.intro">
         </div>
 
       </div>
@@ -92,33 +80,13 @@
 
         <div class="text-section">
           <h2 class="display-2 orange-hover-underline mb-5 max-[768px]:mt-5">The Journey</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec
-            bibendum eros, ac iaculis tellus. Aenean congue lacus sed turpis
-            sagittis, nec pretium erat volutpat. Aliquam pulvinar bibendum est
-            sit amet tincidunt. Maecenas diam velit, laoreet ut nisl sit amet,
-            volutpat varius felis.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec
-            bibendum eros, ac iaculis tellus. Aenean congue lacus sed turpis
-            sagittis, nec pretium erat volutpat. Aliquam pulvinar bibendum est
-            sit amet tincidunt. Maecenas diam velit, laoreet ut nisl sit amet,
-            volutpat varius felis.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec
-            bibendum eros, ac iaculis tellus. Aenean congue lacus sed turpis
-            sagittis, nec pretium erat volutpat. Aliquam pulvinar bibendum est
-            sit amet tincidunt. Maecenas diam velit, laoreet ut nisl sit amet,
-            volutpat varius felis.
-          </p>
+          <div [innerHTML]="adventurePostContent?.acf?.the_journey_section?.the_journey"></div>
         </div>
 
         <div class="img-section mt-8 max-[768px]:mt-3">
           <img
-            src="assets/img/blog-imgs/elephant-hill-terrain.jpg"
-            alt="first-hike"
+            src="{{adventurePostContent?.acf?.the_journey_section?.image_section?.url}}"
+            alt="{{adventurePostContent?.acf?.the_journey_section?.image_section?.alt}}"
             class="h-auto max-w-full rounded-lg inline-block"
           />
         </div>
@@ -126,10 +94,7 @@
       </div>
 
       <div class="quote-section mt-14 mb-14">
-        <blockquote class="font-garamondItalic">
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec
-          bibendum eros, ac iaculis tellus. Aenean congue lacus sed turpis
-          sagittis, nec pretium erat volutpat."
+        <blockquote class="font-garamondItalic" [innerHTML]="adventurePostContent?.acf?.the_journey_section?.blockquote">
         </blockquote>
       </div>
 
@@ -168,29 +133,7 @@
 
     <div class="container mt-10 mb-10">
       <div class="text-section">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec
-          bibendum eros, ac iaculis tellus. Aenean congue lacus sed turpis
-          sagittis, nec pretium erat volutpat. Aliquam pulvinar bibendum est sit
-          amet tincidunt. Maecenas diam velit, laoreet ut nisl sit amet,
-          volutpat varius felis.
-        </p>
-
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec
-          bibendum eros, ac iaculis tellus. Aenean congue lacus sed turpis
-          sagittis, nec pretium erat volutpat. Aliquam pulvinar bibendum est sit
-          amet tincidunt. Maecenas diam velit, laoreet ut nisl sit amet,
-          volutpat varius felis.
-        </p>
-
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec
-          bibendum eros, ac iaculis tellus. Aenean congue lacus sed turpis
-          sagittis, nec pretium erat volutpat. Aliquam pulvinar bibendum est sit
-          amet tincidunt. Maecenas diam velit, laoreet ut nisl sit amet,
-          volutpat varius felis.
-        </p>
+         <div [innerHTML]="adventurePostContent?.acf?.the_rewarding_views?.rewarding_views_text_section"></div>
       </div>
 
       <div class="photo-grid-section mt-8 mb-8">
@@ -228,27 +171,9 @@
       </div>
 
       <div class="text-section mt-10 mb-10">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec
-          bibendum eros, ac iaculis tellus. Aenean congue lacus sed turpis
-          sagittis, nec pretium erat volutpat. Aliquam pulvinar bibendum est sit
-          amet tincidunt. Maecenas diam velit, laoreet ut nisl sit amet,
-          volutpat varius felis. Lorem ipsum dolor sit amet, consectetur
-          adipiscing elit. Vivamus nec bibendum eros, ac iaculis tellus. Lorem
-          ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec
-          bibendum eros, ac iaculis tellus.
-        </p>
 
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec
-          bibendum eros, ac iaculis tellus. Aenean congue lacus sed turpis
-          sagittis, nec pretium erat volutpat. Aliquam pulvinar bibendum est sit
-          amet tincidunt. Maecenas diam velit, laoreet ut nisl sit amet,
-          volutpat varius felis. Lorem ipsum dolor sit amet, consectetur
-          adipiscing elit. Vivamus nec bibendum eros, ac iaculis tellus. Lorem
-          ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec
-          bibendum eros, ac iaculis tellus.
-        </p>
+        <div [innerHTML]="adventurePostContent?.acf?.the_rewarding_views?.text_section"></div>
+
       </div>
     </div>
   </div>
@@ -257,8 +182,8 @@
 
     <div class="image-section w-1/2 max-[768px]:w-full">
       <img
-        src="assets/img/blog-imgs/at-the-summit.jpg"
-        alt="at-the-summit"
+            src="{{adventurePostContent?.acf?.in_summary?.image_section?.url}}"
+            alt="{{adventurePostContent?.acf?.in_summary?.image_section?.alt}}"
         class="h-auto rounded-lg"
       />
     </div>

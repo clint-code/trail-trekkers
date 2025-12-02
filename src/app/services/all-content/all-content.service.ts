@@ -43,6 +43,17 @@ export class AllContentService {
 
   }
 
+  getAllAdventures(): Observable<any[]> {
+
+    return this.http.get<any[]>(`${environment.contentRoot}adventures`);
+
+  }
+
+  getSingleAdventure(adventureSlug: any): Observable<any[]> {
+
+    return this.http.get<any[]>(`${environment.contentRoot}adventures?slug=${adventureSlug}`);
+
+  }
 
 
 }

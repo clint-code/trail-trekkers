@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { CommonModule, DOCUMENT } from '@angular/common';
 
 import { FaIconComponent, FaIconLibrary, FontAwesomeModule } from "@fortawesome/angular-fontawesome";
@@ -79,9 +79,9 @@ export class SingleUpcomingHikePostComponent implements OnInit {
   ngAfterViewInit() {
     this.animateSVGLine();
 
-    // setTimeout(() => {
-    //   this.animateHikeInfoItems();
-    // }, 1000);
+    setTimeout(() => {
+      this.animateHikeInfoItems();
+    }, 1000);
 
   }
 

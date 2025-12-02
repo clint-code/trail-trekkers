@@ -17,11 +17,12 @@
         <app-single-post-item
           class="single-post-item"
           *ngFor="let adventurePost of adventurePosts"
-          [postTitle]="adventurePost.title"
-          [postDate]="adventurePost.postDate"
-          [postSubtitle]="adventurePost.location"
-          [postImageUrl]="adventurePost.imageUrl"
-          [postImageAlt]="adventurePost.imageAlt"
+          [postTitle]="adventurePost?.title?.rendered"
+          [postUrl]="adventurePost?.slug"
+          [postDate]="adventurePost.date"
+          [postSubtitle]="adventurePost?.acf?.hike_location"
+          [postImageUrl]="adventurePost?.acf?.featured_blog_image?.url"
+          [postImageAlt]="adventurePost?.acf?.featured_blog_image?.alt"
         ></app-single-post-item>
       </div>
     </div>
