@@ -7,7 +7,7 @@ import { HeaderComponent } from '../../components/header/header.component';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { HikeBannerComponent } from '../../components/hike-banner/hike-banner.component';
 import { SingleHikeInfoItemComponent } from '../../components/single-hike-info-item/single-hike-info-item.component';
-import { SinglePostItemComponent } from '../../components/single-post-item/single-post-item.component';
+//import { SinglePostItemComponent } from '../../components/single-post-item/single-post-item.component';
 import { PostHeroImageComponent } from 'src/app/components/post-hero-image/post-hero-image.component';
 import { PreloaderComponent } from '../../components/preloader/preloader.component';
 import { Preloader } from '../../utils/preloader';
@@ -47,7 +47,7 @@ gsap.registerPlugin(ScrollTrigger);
     HikeBannerComponent,
     PostHeroImageComponent,
     SingleHikeInfoItemComponent,
-    SinglePostItemComponent,
+    //SinglePostItemComponent,
     FaIconComponent,
     DatePipe
   ]
@@ -63,7 +63,7 @@ export class SingleAdventurePostComponent {
   postSlug: string = "";
 
   adventurePostContent: any = [];
-  hikeInfoDetails: any[] = [];
+  hikeInfoDetails: any = [];
 
   adventurePosts: any[] = [
     {
@@ -156,19 +156,20 @@ export class SingleAdventurePostComponent {
 
     this.allContentService.getSingleAdventure(this.postSlug).subscribe((response: any[]) => {
 
-      // if (response && response.length > 0 && response !== null) {
-      //   const adventurePost = response[0];
-      // }
+      if (response && response.length > 0 && response !== null) {
 
-      this.adventurePostContent = response[0];
+        this.adventurePostContent = response[0];
 
-      // this.hikeInfoDetails = Object.values(this.hikeInfoDetails.acf.hike_info_collection).map((item: any) => ({
-      //   infoIcon: item.info_icon,
-      //   infoTitle: item.info_title,
-      //   infoDescription: item.info_description,
-      //   infoList: item.info_list,
-      //   iconObject: this.library.getIconDefinition('fas', item.info_icon)
-      // }));
+        this.hikeInfoDetails = Object.values(this.adventurePostContent.acf.in_summary.summary_info_details_group).map((item: any) => ({
+          infoIcon: item.info_icon,
+          infoTitle: item.info_title,
+          infoDescription: item.info_description,
+          iconObject: this.faIconLibrary.getIconDefinition('fas', item.info_icon)
+        }));
+
+        console.log("Mapped hike info items:", this.hikeInfoDetails);
+
+      }
 
     });
 

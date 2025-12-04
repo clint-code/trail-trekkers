@@ -1,6 +1,4 @@
-<app-preloader
-    *ngIf="siteImages.length < 1"
-></app-preloader>
+<app-preloader *ngIf="siteImages.length < 1"></app-preloader>
 
 <app-header></app-header>
 
@@ -20,14 +18,18 @@
 <div class="blog-article-section">
   <div class="container">
     <div class="blog-intro-section">
-
       <div class="w-full text-center mt-8 mb-8">
-        <h2 class="display-2 orange-hover-underline">{{adventurePostContent?.acf?.intro_title}}</h2>
-        <p class="blog-intro-date">Posted on {{adventurePostContent?.date | date : "longDate"}}</p>
+        <h2 class="display-2 orange-hover-underline">
+          {{ adventurePostContent?.acf?.intro_title }}
+        </h2>
+        <p class="blog-intro-date">
+          Posted on {{ adventurePostContent?.date | date : "longDate" }}
+        </p>
       </div>
 
-      <div class="columns-2 gap-4 blog-intro-text mt-10 mb-10 flex max-[768px]:flex-col">
-        
+      <div
+        class="columns-2 gap-4 blog-intro-text mt-10 mb-10 flex max-[768px]:flex-col"
+      >
         <div class="nav-section w-1/3 max-[768px]:w-full">
           <ul>
             <li
@@ -65,59 +67,63 @@
           </ul>
         </div>
 
-        <div 
-          class="intro w-2/3 max-[768px]:w-full" 
-          [innerHTML]="adventurePostContent?.acf?.intro">
-        </div>
-
+        <div
+          class="intro w-2/3 max-[768px]:w-full"
+          [innerHTML]="adventurePostContent?.acf?.intro"
+        ></div>
       </div>
-
     </div>
 
     <div #theJourney class="journey-section">
-
       <div class="columns-2 gap-8 journey-text mb-12 max-[768px]:columns-1">
-
         <div class="text-section">
-          <h2 class="display-2 orange-hover-underline mb-5 max-[768px]:mt-5">The Journey</h2>
-          <div [innerHTML]="adventurePostContent?.acf?.the_journey_section?.the_journey"></div>
+          <h2 class="display-2 orange-hover-underline mb-5 max-[768px]:mt-5">
+            The Journey
+          </h2>
+          <div
+            [innerHTML]="
+              adventurePostContent?.acf?.the_journey_section?.the_journey
+            "
+          ></div>
         </div>
 
         <div class="img-section mt-8 max-[768px]:mt-3">
           <img
-            src="{{adventurePostContent?.acf?.the_journey_section?.image_section?.url}}"
-            alt="{{adventurePostContent?.acf?.the_journey_section?.image_section?.alt}}"
+            src="{{ adventurePostContent?.acf?.the_journey_section?.image_section?.url }}"
+            alt="{{ adventurePostContent?.acf?.the_journey_section?.image_section?.alt }}"
             class="h-auto max-w-full rounded-lg inline-block"
           />
         </div>
-
       </div>
 
       <div class="quote-section mt-14 mb-14">
-        <blockquote class="font-garamondItalic" [innerHTML]="adventurePostContent?.acf?.the_journey_section?.blockquote">
-        </blockquote>
+        <blockquote
+          class="font-garamondItalic"
+          [innerHTML]="
+            adventurePostContent?.acf?.the_journey_section?.blockquote
+          "
+        ></blockquote>
       </div>
 
       <div class="photo-grid-section mb-8">
         <div class="columns-2 gap-8 space-y-8 max-[500px]:gap-4">
           <img
-            src="assets/img/blog-imgs/before-starting-point.jpg"
-            alt="before-starting-point"
+            src="{{ adventurePostContent?.acf?.the_journey_section?.photo_grid['photo-1']?.url }}"
+            alt="{{ adventurePostContent?.acf?.the_journey_section?.photo_grid['photo-1']?.alt }}"
             class="w-full aspect-auto rounded-lg"
           />
 
           <img
-            src="assets/img/blog-imgs/the-tail.jpg"
-            alt="before-starting-point"
+            src="{{ adventurePostContent?.acf?.the_journey_section?.photo_grid['photo-2']?.url }}"
+            alt="{{ adventurePostContent?.acf?.the_journey_section?.photo_grid['photo-2']?.alt }}"
             class="w-full aspect-auto rounded-lg"
           />
 
           <img
-            src="assets/img/blog-imgs/point-of-despair.jpg"
-            alt="before-starting-point"
+            src="{{ adventurePostContent?.acf?.the_journey_section?.photo_grid['photo-3']?.url }}"
+            alt="{{ adventurePostContent?.acf?.the_journey_section?.photo_grid['photo-3']?.alt }}"
             class="w-full aspect-auto rounded-lg"
           />
-          
         </div>
       </div>
     </div>
@@ -133,66 +139,74 @@
 
     <div class="container mt-10 mb-10">
       <div class="text-section">
-         <div [innerHTML]="adventurePostContent?.acf?.the_rewarding_views?.rewarding_views_text_section"></div>
+        <div
+          [innerHTML]="
+            adventurePostContent?.acf?.the_rewarding_views
+              ?.rewarding_views_text_section
+          "
+        ></div>
       </div>
 
       <div class="photo-grid-section mt-8 mb-8">
         <div class="columns-2 gap-8 space-y-8 max-[500px]:gap-4">
           <img
-            src="assets/img/blog-imgs/scenic-views-1.jpg"
-            alt="scenic-views-1"
+            src="{{ adventurePostContent?.acf?.the_rewarding_views?.photo_grid['photo-1']?.url }}"
+            alt="{{ adventurePostContent?.acf?.the_rewarding_views?.photo_grid['photo-1']?.alt }}"
             class="w-full aspect-auto rounded-lg"
           />
 
           <img
-            src="assets/img/blog-imgs/scenic-views-5.jpg"
-            alt="scenic-views-5"
+            src="{{ adventurePostContent?.acf?.the_rewarding_views?.photo_grid['photo-2']?.url }}"
+            alt="{{ adventurePostContent?.acf?.the_rewarding_views?.photo_grid['photo-2']?.alt }}"
             class="w-full aspect-auto rounded-lg"
           />
 
           <img
-            src="assets/img/blog-imgs/scenic-views-4.jpg"
-            alt="scenic-views-4"
+            src="{{ adventurePostContent?.acf?.the_rewarding_views?.photo_grid['photo-3']?.url }}"
+            alt="{{ adventurePostContent?.acf?.the_rewarding_views?.photo_grid['photo-3']?.alt }}"
             class="w-full aspect-auto rounded-lg"
           />
 
           <img
-            src="assets/img/blog-imgs/scenic-views-2.jpg"
-            alt="scenic-views-2"
+            src="{{ adventurePostContent?.acf?.the_rewarding_views?.photo_grid['photo-4']?.url }}"
+            alt="{{ adventurePostContent?.acf?.the_rewarding_views?.photo_grid['photo-4']?.alt }}"
             class="w-full aspect-auto rounded-lg"
           />
 
           <img
-            src="assets/img/blog-imgs/scenic-views-3.jpg"
-            alt="scenic-views-3"
+            src="{{ adventurePostContent?.acf?.the_rewarding_views?.photo_grid['photo-5']?.url }}"
+            alt="{{ adventurePostContent?.acf?.the_rewarding_views?.photo_grid['photo-5']?.alt }}"
             class="w-full aspect-auto rounded-lg"
           />
         </div>
       </div>
 
       <div class="text-section mt-10 mb-10">
-
-        <div [innerHTML]="adventurePostContent?.acf?.the_rewarding_views?.text_section"></div>
-
+        <div
+          [innerHTML]="
+            adventurePostContent?.acf?.the_rewarding_views?.text_section
+          "
+        ></div>
       </div>
     </div>
   </div>
 
-  <div #inSummary class="container in-summary-section columns-2  mt-8 mb-5 gap-8 flex max-[768px]:flex-col max-[500px]:mb-0">
-
+  <div
+    #inSummary
+    class="container in-summary-section columns-2 mt-8 mb-5 gap-8 flex max-[768px]:flex-col max-[500px]:mb-0"
+  >
     <div class="image-section w-1/2 max-[768px]:w-full">
       <img
-            src="{{adventurePostContent?.acf?.in_summary?.image_section?.url}}"
-            alt="{{adventurePostContent?.acf?.in_summary?.image_section?.alt}}"
+        src="{{ adventurePostContent?.acf?.in_summary?.image_section?.url }}"
+        alt="{{ adventurePostContent?.acf?.in_summary?.image_section?.alt }}"
         class="h-auto rounded-lg"
       />
     </div>
 
     <div class="in-summary-text w-1/2 max-[768px]:w-full">
-
       <h2 class="display-2 orange-hover-underline mb-5">In Summary...</h2>
 
-      <div class="list-items-section flex flex-col ">
+      <div class="list-items-section flex flex-col">
         <app-single-hike-info-item
           class="w-full single-list-item mb-6"
           *ngFor="let hikeInfoItem of hikeInfoDetails"
@@ -204,14 +218,16 @@
     </div>
   </div>
 
-  <div class="container">
-
+  <!-- <div class="container">
     <div class="adventure-post-articles">
-
-      <h4 class="display-2 orange-hover-underline mb-8 mt-8">More adventures...</h4>
+      <h4 class="display-2 orange-hover-underline mb-8 mt-8">
+        More adventures...
+      </h4>
 
       <div class="flex gap-6 mt-10 mb-10 adventure-post-items">
-        <div class="columns-3 max-[1000px]:columns-2 max-[500px]:columns-1 w-full">
+        <div
+          class="columns-3 max-[1000px]:columns-2 max-[500px]:columns-1 w-full"
+        >
           <app-single-post-item
             class="single-post-item"
             *ngFor="let adventurePost of adventurePosts"
@@ -224,7 +240,8 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
+
 </div>
 
 <app-footer></app-footer>

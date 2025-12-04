@@ -104,29 +104,11 @@ export class SingleUpcomingHikePostComponent implements OnInit {
 
   getHikeInfoDetails() {
 
-    // this.allContentService.getHikeInfoItems().subscribe(items => {
-
-    //   this.hikeInfoDetails = items;
-    //   console.log(this.hikeInfoDetails);
-
-    //   this.hikeInfoDetails = items.map(item => ({
-    //     ...item,
-    //     iconObject: this.library.getIconDefinition('fas', item.infoIcon)
-    //   }));
-
-    // });
-
     this.allContentService.getSingleUpcomingHike(this.postSlug).subscribe((response: any[]) => {
 
       if (response !== null && response.length > 0) {
 
         this.hikeInfoDetails = response[0];
-
-        console.log("Single upcoming hike response:", this.hikeInfoDetails);
-
-        // this.hikeInfoItems = this.hikeInfoDetails.acf.hike_info_collection;
-
-        console.log("Hike info items:", this.hikeInfoItems);
 
         this.hikeInfoItems = Object.values(this.hikeInfoDetails.acf.hike_info_collection).map((item: any) => ({
           infoIcon: item.info_icon,
@@ -135,8 +117,6 @@ export class SingleUpcomingHikePostComponent implements OnInit {
           infoList: item.info_list,
           iconObject: this.library.getIconDefinition('fas', item.info_icon)
         }));
-
-        console.log("Mapped hike info items:", this.hikeInfoItems);
 
       }
 
