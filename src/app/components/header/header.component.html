@@ -1,6 +1,7 @@
 <header class="header-section bg-[#FAF8EC] text-white shadow-md py-2">
-
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20 max-[500px]:h-10 py-4">
+  <div
+    class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20 max-[500px]:h-10 py-4"
+  >
     <!-- Logo -->
     <div class="flex items-center space-x-4">
       <a [routerLink]="['']">
@@ -53,7 +54,7 @@
         class="text-gray-950 menu-toggle-btn"
       >
         <div
-          class="icon-style text-4xl transform transition-transform duration-300 ease-in-out" 
+          class="icon-style text-4xl transform transition-transform duration-300 ease-in-out"
           [ngClass]="isRotated ? 'rotate-90' : 'rotate-0'"
         >
           <fa-icon [icon]="'compass'"></fa-icon>
@@ -61,20 +62,22 @@
       </button>
     </div>
 
-    <div 
+    <div
       class="overlay-on-toggle md:hidden"
       (click)="toggleMenu()"
       [ngClass]="{
         'visible opacity-50': isOverlayVisible,
         'invisible opacity-0': !isOverlayVisible
-      }">
-    </div>
+      }"
+    ></div>
 
-    <div class="md:hidden mobile-nav-menu transition duration-500 ease-in-out" 
+    <div
+      class="md:hidden mobile-nav-menu transition duration-500 ease-in-out"
       [ngClass]="{
         'translate-x-0': isMobileMenuOpen,
         '-translate-x-full': !isMobileMenuOpen
-      }">
+      }"
+    >
       <nav class="mt-9">
         <ul>
           <li>
@@ -108,7 +111,8 @@
 
           <li>
             <a
-              href="#"
+              href="https://chat.whatsapp.com/GK1Io7PCdQiCfYOOAVk0Fi"
+              target="_blank"
               class="hover:text-orange-600 transition orange-hover-underline font-passion text-black"
               >Community
             </a>
@@ -116,6 +120,5 @@
         </ul>
       </nav>
     </div>
-
   </div>
 </header>
