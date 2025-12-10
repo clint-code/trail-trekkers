@@ -33,13 +33,14 @@
     >
       <app-single-hike-item
         class="single-hike"
-        [hikeTitle]="hikePost.title"
-        [hikeLocation]="hikePost.location"
-        [hikeDate]="hikePost.date"
-        [hikeImageUrl]="hikePost.thumbnailUrl"
-        [hikeImageAlt]="hikePost.imageAlt"
-        [hikeDifficulty]="hikePost.difficulty"
-        [summary]="hikePost.summary"
+        [hikeTitle]="hikePost?.title?.rendered"
+        [hikePostUrl]="hikePost?.slug"
+        [hikeLocation]="hikePost?.acf?.hike_location"
+        [hikeDate]="hikePost?.acf?.date"
+        [hikeImageUrl]="hikePost?.acf?.featured_image?.url"
+        [hikeImageAlt]="hikePost?.acf?.featured_image?.alt"
+        [hikeDifficulty]="hikePost?.acf?.level_of_difficulty"
+        [summary]="hikePost?.acf?.hike_summary"
       >
       </app-single-hike-item>
 

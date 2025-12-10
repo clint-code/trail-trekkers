@@ -1,11 +1,13 @@
 import { Component, OnInit, Inject, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule, DOCUMENT } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 import { HeaderComponent } from '../../components/header/header.component';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { HikeBannerComponent } from '../../components/hike-banner/hike-banner.component';
 import { SingleHikeInfoItemComponent } from '../../components/single-hike-info-item/single-hike-info-item.component';
-import { SinglePostItemComponent } from '../../components/single-post-item/single-post-item.component';
+//import { SinglePostItemComponent } from '../../components/single-post-item/single-post-item.component';
 import { PostHeroImageComponent } from 'src/app/components/post-hero-image/post-hero-image.component';
 import { PreloaderComponent } from '../../components/preloader/preloader.component';
 import { Preloader } from '../../utils/preloader';
@@ -45,8 +47,9 @@ gsap.registerPlugin(ScrollTrigger);
     HikeBannerComponent,
     PostHeroImageComponent,
     SingleHikeInfoItemComponent,
-    SinglePostItemComponent,
-    FaIconComponent
+    //SinglePostItemComponent,
+    FaIconComponent,
+    DatePipe
   ]
 })
 export class SingleAdventurePostComponent {
@@ -57,8 +60,11 @@ export class SingleAdventurePostComponent {
 
   imagesLoaded: boolean = false;
   siteImages: any = [];
+  postSlug: string = "";
 
-  hikeInfoDetails: any[] = [];
+  adventurePostContent: any = [];
+  hikeInfoDetails: any = [];
+
   adventurePosts: any[] = [
     {
       id: 2,
@@ -90,6 +96,7 @@ export class SingleAdventurePostComponent {
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
+    private route: ActivatedRoute,
     private allContentService: AllContentService,
     private faIconLibrary: FaIconLibrary
   ) {
@@ -108,6 +115,9 @@ export class SingleAdventurePostComponent {
 
   ngOnInit(): void {
     this.document.documentElement.scrollTop = 0;
+
+    this.postSlug = this.route.snapshot.paramMap.get('slug') ?? '';
+
     this.getAdventurePostContent();
     this.getOtherAdventurePosts();
 
@@ -144,14 +154,23 @@ export class SingleAdventurePostComponent {
 
   getAdventurePostContent() {
 
-    this.allContentService.getAdventureSummaryDetails().subscribe(items => {
+    this.allContentService.getSingleAdventure(this.postSlug).subscribe((response: any[]) => {
 
-      this.hikeInfoDetails = items;
+      if (response && response.length > 0 && response !== null) {
 
-      this.hikeInfoDetails = items.map(item => ({
-        ...item,
-        iconObject: this.faIconLibrary.getIconDefinition('fas', item.infoIcon)
-      }));
+        this.adventurePostContent = response[0];
+
+        this.hikeInfoDetails = Object.values(this.adventurePostContent.acf.in_summary.summary_info_details_group).map((item: any) => ({
+          infoIcon: item.info_icon,
+          infoTitle: item.info_title,
+          infoDescription: item.info_description,
+          iconObject: this.faIconLibrary.getIconDefinition('fas', item.info_icon)
+        }));
+
+        console.log("Mapped hike info items:", this.hikeInfoDetails);
+
+      }
+
     });
 
 

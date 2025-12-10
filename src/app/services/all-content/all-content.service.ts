@@ -37,4 +37,23 @@ export class AllContentService {
 
   }
 
+  getSingleUpcomingHike(hikeSlug: any): Observable<any[]> {
+
+    return this.http.get<any[]>(`${environment.contentRoot}upcoming_hikes?slug=${hikeSlug}`);
+
+  }
+
+  getAllAdventures(): Observable<any[]> {
+
+    return this.http.get<any[]>(`${environment.contentRoot}adventures`);
+
+  }
+
+  getSingleAdventure(adventureSlug: any): Observable<any[]> {
+
+    return this.http.get<any[]>(`${environment.contentRoot}adventures?slug=${adventureSlug}`);
+
+  }
+
+
 }

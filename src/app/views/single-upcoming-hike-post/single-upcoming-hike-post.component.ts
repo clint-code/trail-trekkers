@@ -1,5 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { CommonModule, DOCUMENT } from '@angular/common';
+
 import { FaIconComponent, FaIconLibrary, FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { faBusSimple, faMoneyBillWave, faMountain, faLocationDot, faPersonHiking, faClock, faCompass, faBottleWater, faRoute } from '@fortawesome/free-solid-svg-icons';
 
@@ -35,12 +37,15 @@ gsap.registerPlugin(DrawSVGPlugin);
 })
 export class SingleUpcomingHikePostComponent implements OnInit {
 
-  hikeInfoDetails: any[] = [];
+  postSlug: string = "";
+  hikeInfoDetails: any = [];
+  hikeInfoItems: any = [];
   imagesLoaded: boolean = false;
   siteImages: any = [];
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
+    private route: ActivatedRoute,
     private allContentService: AllContentService,
     private library: FaIconLibrary
   ) {
@@ -60,12 +65,15 @@ export class SingleUpcomingHikePostComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.postSlug = this.route.snapshot.paramMap.get('slug') ?? '';
+
     setTimeout(() => {
       this.siteImages = Preloader.getImages();
     }, 1000);
 
     this.document.documentElement.scrollTop = 0;
     this.getHikeInfoDetails();
+
   }
 
   ngAfterViewInit() {
@@ -96,15 +104,21 @@ export class SingleUpcomingHikePostComponent implements OnInit {
 
   getHikeInfoDetails() {
 
-    this.allContentService.getHikeInfoItems().subscribe(items => {
+    this.allContentService.getSingleUpcomingHike(this.postSlug).subscribe((response: any[]) => {
 
-      this.hikeInfoDetails = items;
-      console.log(this.hikeInfoDetails);
+      if (response !== null && response.length > 0) {
 
-      this.hikeInfoDetails = items.map(item => ({
-        ...item,
-        iconObject: this.library.getIconDefinition('fas', item.infoIcon)
-      }));
+        this.hikeInfoDetails = response[0];
+
+        this.hikeInfoItems = Object.values(this.hikeInfoDetails.acf.hike_info_collection).map((item: any) => ({
+          infoIcon: item.info_icon,
+          infoTitle: item.info_title,
+          infoDescription: item.info_description,
+          infoList: item.info_list,
+          iconObject: this.library.getIconDefinition('fas', item.info_icon)
+        }));
+
+      }
 
     });
 

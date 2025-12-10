@@ -67,9 +67,17 @@ export class UpcomingHikesComponent implements OnInit {
 
   getUpcomingHikes() {
 
-    this.allContentService.getHikePosts().subscribe(posts => {
-      // Process the hike posts data here
-      this.hikePosts = posts;
+    // this.allContentService.getHikePosts().subscribe(posts => {
+    //   // Process the hike posts data here
+    //   this.hikePosts = posts;
+    // });
+
+    this.allContentService.getAllUpcomingHikes().subscribe((response: any[]) => {
+
+      if (response && response.length > 0 && response !== null) {
+        this.hikePosts = response;
+      }
+
     });
 
   }

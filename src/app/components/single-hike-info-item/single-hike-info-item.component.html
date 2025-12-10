@@ -14,14 +14,11 @@
         {{ hikeInfoDescription }}
       </p>
 
-      <ul *ngIf="hikeInfoList">
-        <li
-          *ngFor="let infoList of hikeInfoList"
-          class="font-garamondRegular text-xl text-left"
-        >
-          {{ infoList }}
-        </li>
-      </ul>
+      <div 
+        *ngIf="hikeInfoList" 
+        [innerHTML]="hikeInfoList" 
+        class="font-garamondRegular text-xl text-left">
+      </div>
 
     </div>
   </div>
