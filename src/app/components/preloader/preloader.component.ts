@@ -36,7 +36,6 @@ export class PreloaderComponent {
   // onLoopCompleteCalledTimes = 0;
 
   animationCreated(animationItem: AnimationItem): void {
-    //console.log(animationItem);
   }
 
   constructor(
@@ -72,8 +71,6 @@ export class PreloaderComponent {
 
       const image = new Image();
 
-      console.log("Image:", image);
-
       image.addEventListener("load", (event) => {
 
         this.imageLoaded(event);
@@ -82,7 +79,6 @@ export class PreloaderComponent {
 
       image.src = this.siteImages[i];
 
-      console.log("Image.src:", image.src);
     }
 
   }
@@ -90,8 +86,6 @@ export class PreloaderComponent {
   imageLoaded(event: Event) {
 
     this.imagesLoaded++;
-
-    console.log("Images loaded:", this.imagesLoaded++);
 
     this.percentageLoaded = Math.round((this.imagesLoaded / this.totalImages) * 100);
 
@@ -113,7 +107,7 @@ export class PreloaderComponent {
       preloader.classList.add('fade-out-up');
       setTimeout(() => {
         preloader.style.display = 'none';
-      }, 1000);
+      }, 2500);
     }
     //$(".preloader").fadeOut();
 

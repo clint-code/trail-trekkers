@@ -15,6 +15,7 @@ import { PostBannerComponent } from './components/post-banner/post-banner.compon
 import { HikeBannerComponent } from './components/hike-banner/hike-banner.component';
 import { SingleHikeItemComponent } from './components/single-hike-item/single-hike-item.component';
 
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { SingleHikeItemComponent } from './components/single-hike-item/single-hi
     HikeBannerComponent,
     SingleHikeItemComponent,
     BrowserModule,
+    NgxSkeletonLoaderModule
   ],
   providers: [],
   bootstrap: []

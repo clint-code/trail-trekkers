@@ -1,5 +1,7 @@
 <app-preloader *ngIf="siteImages.length < 1"></app-preloader>
 
+<app-preloader *ngIf="loadingContent"></app-preloader>
+
 <app-header></app-header>
 
 <div class="hike-banner-section relative">
@@ -55,7 +57,14 @@
       
     </div>
 
-    <a class="green-button"> Register Here </a>
+    <button 
+      [disabled]="isButtonDisabled"
+      [ngClass]="{
+        'bg-gray-400 text-white w-6/12 px-6 py-3 rounded-lg text-2xl font-passion cursor-not-allowed': isButtonDisabled,
+        'green-button': !isButtonDisabled
+        }"> 
+        Register Here 
+    </button>
 
   </div>
 </div>

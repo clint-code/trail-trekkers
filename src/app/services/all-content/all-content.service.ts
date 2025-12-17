@@ -55,5 +55,11 @@ export class AllContentService {
 
   }
 
+  getContentBySlug(slug: any): Observable<any[]> {
+
+    return this.http.get<any[]>(`${environment.contentRoot}pages?slug=${slug}`);
+
+  }
+
 
 }

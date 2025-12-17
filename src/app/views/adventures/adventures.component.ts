@@ -9,8 +9,7 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 import { PreloaderComponent } from '../../components/preloader/preloader.component';
 import { Preloader } from '../../utils/preloader';
 
-gsap.registerPlugin(SplitText);
-gsap.registerPlugin(Draggable);
+gsap.registerPlugin(SplitText, Draggable);
 
 import { HeaderComponent } from '../../components/header/header.component';
 import { FooterComponent } from '../../components/footer/footer.component';
@@ -38,6 +37,7 @@ export class AdventuresComponent implements OnInit {
   imagesLoaded: boolean = false;
   siteImages: any = [];
   //@ViewChildren(SinglePostItemComponent) singlePostItemComponents!: QueryList<SinglePostItemComponent>;
+  loadingContent: boolean = false;
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -69,17 +69,14 @@ export class AdventuresComponent implements OnInit {
 
   getAdventurePosts() {
 
-    // this.allContentService.getAdventurePosts().subscribe(posts => {
-    //   this.adventurePosts = posts;
-    //   console.log(this.adventurePosts);
-    // });
-
     this.allContentService.getAllAdventures().subscribe((response: any[]) => {
+
+      this.loadingContent = true;
 
       if (response && response.length > 0 && response !== null) {
         this.adventurePosts = response;
+        this.loadingContent = false;
 
-        console.log("Adventure posts:", this.adventurePosts);
       }
 
     });

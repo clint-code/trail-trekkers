@@ -30,9 +30,7 @@ import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 
 // Register GSAP plugins
-gsap.registerPlugin(DrawSVGPlugin);
-gsap.registerPlugin(ScrollTrigger);
-
+gsap.registerPlugin(DrawSVGPlugin, ScrollTrigger);
 
 @Component({
   selector: 'app-single-adventure-post',
@@ -61,6 +59,7 @@ export class SingleAdventurePostComponent {
   imagesLoaded: boolean = false;
   siteImages: any = [];
   postSlug: string = "";
+  loadingContent: boolean = false;
 
   adventurePostContent: any = [];
   hikeInfoDetails: any = [];
@@ -156,9 +155,13 @@ export class SingleAdventurePostComponent {
 
     this.allContentService.getSingleAdventure(this.postSlug).subscribe((response: any[]) => {
 
+      this.loadingContent = true;
+
       if (response && response.length > 0 && response !== null) {
 
         this.adventurePostContent = response[0];
+
+        this.loadingContent = false;
 
         this.hikeInfoDetails = Object.values(this.adventurePostContent.acf.in_summary.summary_info_details_group).map((item: any) => ({
           infoIcon: item.info_icon,
@@ -166,8 +169,6 @@ export class SingleAdventurePostComponent {
           infoDescription: item.info_description,
           iconObject: this.faIconLibrary.getIconDefinition('fas', item.info_icon)
         }));
-
-        console.log("Mapped hike info items:", this.hikeInfoDetails);
 
       }
 

@@ -1,5 +1,7 @@
 <app-preloader *ngIf="siteImages.length < 1"></app-preloader>
 
+<app-preloader *ngIf="loadingContent"></app-preloader>
+
 <app-header></app-header>
 
 <div class="scrollbar-container">

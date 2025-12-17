@@ -42,6 +42,9 @@ export class SingleUpcomingHikePostComponent implements OnInit {
   hikeInfoItems: any = [];
   imagesLoaded: boolean = false;
   siteImages: any = [];
+  isButtonDisabled: boolean = true;
+  loadingContent: boolean = false;
+
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -106,9 +109,12 @@ export class SingleUpcomingHikePostComponent implements OnInit {
 
     this.allContentService.getSingleUpcomingHike(this.postSlug).subscribe((response: any[]) => {
 
+      this.loadingContent = true;
+
       if (response !== null && response.length > 0) {
 
         this.hikeInfoDetails = response[0];
+        this.loadingContent = false;
 
         this.hikeInfoItems = Object.values(this.hikeInfoDetails.acf.hike_info_collection).map((item: any) => ({
           infoIcon: item.info_icon,

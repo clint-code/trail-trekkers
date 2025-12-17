@@ -1,5 +1,7 @@
 <app-preloader *ngIf="siteImages.length < 1"></app-preloader>
 
+<app-preloader *ngIf="loadingContent"></app-preloader>
+
 <app-header></app-header>
 
 <div class="max-w-7xl mx-auto relative min-h-screen mt-1.5 mb-7">
@@ -19,11 +21,14 @@
         >
           <span
             class="font-bold text-8xl max-[1000px]:text-7xl max-[768px]:text-5xl max-[500px]:text-5xl"
-            >"T</span
-          >he whole point of leisure is that time is not just something to be
-          filled with work or usefulness, but is itself a gift." -
-          <span class="font-bold">Josef Pieper</span>
+            >{{ aboutContentDetails?.acf?.about_section?.first_letter }}
+            </span>
+          {{ aboutContentDetails?.acf?.about_section?.intro_blockquote }}
+          <span class="font-bold">
+            {{ aboutContentDetails?.acf?.about_section?.source_of_quote }}
+          </span>
         </p>
+
       </div>
 
       <div class="about-image-section relative">
@@ -31,7 +36,7 @@
           class="quote-section w-3/5 -rotate-6 absolute z-20 bottom-20 right-10 max-[768px]:right-5 text-right"
         >
           <blockquote class="font-garamondItalic text-4xl text-white white-hover-underline">
-            Dragon's Teeth
+            {{ aboutContentDetails?.acf?.about_section?.about_side_image?.location }}
           </blockquote>
         </div>
 
@@ -41,14 +46,14 @@
         >
           <img
             src="assets/img/vector-icons/white-compass.png"
-            class="h-20 w-auto rotating-compass border"
+            class="h-20 w-auto rotating-compass"
             alt="compass"
           />
         </div>
 
         <img
-          src="assets/img/satima-vistas.jpg"
-          alt="satima-vistas"
+          src="{{ aboutContentDetails?.acf?.about_section?.about_side_image?.image_section?.url }}"
+          alt="{{ aboutContentDetails?.acf?.about_section?.about_side_image?.image_section?.alt }}"
           (mouseenter)="handleHover($event)"
           (mouseleave)="resetStyles($event)"
           class="h-auto rounded-3xl inline-block transition-transform duration-200 ease-out [transform-style:preserve-3d] max-[768px]:h-2/4"
@@ -76,9 +81,9 @@
       <div class="list-items-section flex pb-7 max-[768px]:flex-wrap">
         <app-single-about-item
           class="w-1/4 single-list-item max-[768px]:w-1/2 max-[500px]:w-full"
-          *ngFor="let item of aboutItems"
-          [itemIcon]="item.itemIcon"
-          [itemDescription]="item.itemDescription"
+          *ngFor="let item of iconItems"
+          [itemIcon]="item.infoIcon"
+          [itemDescription]="item.infoDescription"
         ></app-single-about-item>
       </div>
     </div>
@@ -103,54 +108,31 @@
       <div
         class="how-it-started-title columns-2 gap-5 mb-5 flex max-[768px]:flex-col"
       >
-        <div class="how-it-started-cnt">
-          <p class="font-garamondRegular text-3xl">
-            <span
-              class="font-garamondBold text-8xl max-[1000px]:text-7xl max-[500px]:text-5xl"
-              >T</span
-            >he whole point of leisure is that time is not just something to be
-            filled with work or usefulness, but is itself a gift."
-          </p>
+        <div class="how-it-started-cnt w-full">
 
-          <p class="font-garamondRegular text-3xl">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec
-            bibendum eros, ac iaculis tellus. Aenean congue lacus sed turpis
-            sagittis, nec pretium erat volutpat.
-          </p>
-
-          <p class="font-garamondRegular text-3xl">
-            Aliquam pulvinar bibendum est sit amet tincidunt.
-          </p>
-
-          <p class="font-garamondRegular text-3xl">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec
-            bibendum eros, ac iaculis tellus. Aenean congue lacus sed turpis
-            sagittis, nec pretium erat volutpat.
-          </p>
+          <div [innerHTML]="aboutContentDetails?.acf?.how_it_all_started?.how_it_all_started_content"></div>
 
           <div class="quote-section mt-4">
             <blockquote class="font-garamondItalic text-5xl text-orange-600 max-[500px]:text-center">
-              "The world is not in your books and maps. It’s out there!"
+              {{ aboutContentDetails?.acf?.how_it_all_started?.blockquote }} 
             </blockquote>
-            <small class="font-passion text-2xl pt-5 black-hover-underline"
-              >Gandalf the Grey, The Hobbit</small
-            >
+            <small class="font-passion text-2xl pt-5 black-hover-underline">
+              {{ aboutContentDetails?.acf?.how_it_all_started?.source_of_quote }}
+            </small>
           </div>
 
         </div>
 
         <div class="about-image-section relative">
-          <div
-            class="quote-section w-3/5 -rotate-6 absolute z-20 top-10 right-5 text-right"
-          >
-            <blockquote class="font-garamondItalic white-hover-underline text-4xl text-white">
-              First hike at Cianda Waterfalls
+          <div class="quote-section w-3/5 -rotate-6 absolute z-20 bottom-10 right-10 max-[768px]:right-5 text-right max-[320px]:-bottom-5">
+            <blockquote class="font-garamondItalic white-hover-underline text-4xl">
+              {{ aboutContentDetails?.acf?.how_it_all_started?.first_hike_image_section?.location_of_hike }}
             </blockquote>
           </div>
 
           <img
-            src="assets/img/first-hike.jpg"
-            alt="first-hike"
+            src="{{ aboutContentDetails?.acf?.how_it_all_started?.first_hike_image_section?.image?.url }}"
+            alt="{{ aboutContentDetails?.acf?.how_it_all_started?.first_hike_image_section?.image?.alt }}"
             class="w-full rounded-3xl inline-block relative brightness-50 hover:brightness-75 transition-transform duration-700 ease-in-out"
           />
         </div>
