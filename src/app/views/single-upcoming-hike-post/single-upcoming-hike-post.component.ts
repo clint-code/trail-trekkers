@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CommonModule, DOCUMENT } from '@angular/common';
 
 import { FaIconComponent, FaIconLibrary, FontAwesomeModule } from "@fortawesome/angular-fontawesome";
@@ -27,6 +27,7 @@ gsap.registerPlugin(DrawSVGPlugin);
   standalone: true,
   imports: [
     CommonModule,
+    RouterModule,
     PreloaderComponent,
     HeaderComponent,
     FooterComponent,
