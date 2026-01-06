@@ -66,10 +66,10 @@
         Register Here 
     </button> -->
 
-     <button class="green-button text-white w-6/12 px-6 py-3 rounded-lg text-2xl font-passion">
-       <a href ="{{hikeInfoDetails?.acf?.register_here}}">
+      <button 
+         [routerLink]="{{hikeInfoDetails?.acf?.register_here}}"
+         class="green-button text-white w-6/12 px-6 py-3 rounded-lg text-2xl font-passion">
         Register Here 
-       </a> 
     </button>
 
   </div>
