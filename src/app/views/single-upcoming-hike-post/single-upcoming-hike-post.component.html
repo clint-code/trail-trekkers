@@ -57,13 +57,19 @@
       
     </div>
 
-    <button 
+    <!-- <button 
       [disabled]="isButtonDisabled"
       [ngClass]="{
         'bg-gray-400 text-white w-6/12 px-6 py-3 rounded-lg text-2xl font-passion cursor-not-allowed': isButtonDisabled,
         'green-button': !isButtonDisabled
         }"> 
         Register Here 
+    </button> -->
+
+     <button>
+       <a href ="{{hikeInfoDetails?.acf?.register_here}}">
+        Register Here 
+       </a> 
     </button>
 
   </div>
