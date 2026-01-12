@@ -24,7 +24,7 @@
     </p>
   </div>
 
-  <div class="what-you-need-to-know-section text-center">
+  <div class="what-you-need-to-know-section text-center max-[500px]:pb-7">
     <div class="title-section pb-7">
       <h3 class="display-2 max-[768px]:text-4xl max-[600px]:text-3xl">
         What you need to know....
@@ -47,7 +47,7 @@
       class="list-items-section flex flex-wrap justify-center mb-5 max-[768px]:w-4/5 m-auto max-[500px]:w-11/12"
     >
       <app-single-hike-info-item
-        class="w-1/4 single-list-item mb-6 max-[768px]:w-1/2"
+        class="w-1/4 single-list-item mb-6 max-[768px]:w-1/2 max-[500px]:w-full"
         *ngFor="let hikeInfoItem of hikeInfoItems"
         [hikeInfoIcon]="hikeInfoItem.infoIcon"
         [hikeInfoTitle]="hikeInfoItem.infoTitle"
@@ -74,6 +74,7 @@
     </button>
 
   </div>
+
 </div>
 
 <app-footer></app-footer>
