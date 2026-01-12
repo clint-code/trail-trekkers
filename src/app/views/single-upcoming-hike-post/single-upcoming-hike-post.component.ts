@@ -106,6 +106,12 @@ export class SingleUpcomingHikePostComponent implements OnInit {
 
   }
 
+  redirectToLink() {
+    if (this.hikeInfoDetails?.acf?.register_here) {
+      window.open(this.hikeInfoDetails.acf.register_here, '_blank');
+    }
+  }
+
   getHikeInfoDetails() {
 
     this.allContentService.getSingleUpcomingHike(this.postSlug).subscribe((response: any[]) => {

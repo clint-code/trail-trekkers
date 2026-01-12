@@ -66,9 +66,10 @@
         Register Here 
     </button> -->
 
-      <button 
-         [routerLink]="{{hikeInfoDetails?.acf?.register_here}}"
-         class="green-button text-white w-6/12 px-6 py-3 rounded-lg text-2xl font-passion">
+    <button 
+      [ngClass]="hikeInfoDetails?.acf?.register_here ? 'green-button' : 'bg-gray-400 text-white w-6/12 px-6 py-3 rounded-lg text-2xl font-passion cursor-not-allowed'"
+      (click)="redirectToLink()"
+      [disabled]="!hikeInfoDetails?.acf?.register_here"> 
         Register Here 
     </button>
 
