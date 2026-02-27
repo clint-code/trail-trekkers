@@ -19,6 +19,11 @@ export class ComingSoonComponent {
     autoplay: true
   };
 
+  styles: Partial<CSSStyleDeclaration> = {
+    width: '600px',
+    margin: '0 auto'
+  };
+
   constructor(
     @Inject(DOCUMENT) private document: Document
   ) { }
