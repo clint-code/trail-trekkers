@@ -20,7 +20,7 @@ export class ComingSoonComponent {
   };
 
   styles: Partial<CSSStyleDeclaration> = {
-    width: '600px',
+    width: '350px',
     margin: '0 auto'
   };
 
