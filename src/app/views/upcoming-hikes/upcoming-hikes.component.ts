@@ -10,6 +10,10 @@ import { PreloaderComponent } from '../../components/preloader/preloader.compone
 import { Preloader } from '../../utils/preloader';
 import { ComingSoonComponent } from '../../components/coming-soon/coming-soon.component';
 
+//interactive map imports
+import { InteractiveMapComponent } from '../../components/interactive-map/interactive-map.component';
+import { TrailWebglMapComponent } from 'src/app/components/trail-webgl-map/trail-webgl-map.component';
+
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 gsap.registerPlugin(SplitText, Draggable, ScrollTrigger);
@@ -31,9 +35,11 @@ import { Scroll } from '@angular/router';
   imports: [
     CommonModule,
     PreloaderComponent,
-    ComingSoonComponent,
+    //ComingSoonComponent,
     HeaderComponent,
-    SingleHikeItemComponent,
+    //SingleHikeItemComponent,
+    //TrailWebglMapComponent,
+    InteractiveMapComponent,
     FooterComponent,
     NgxSkeletonLoaderModule
   ]

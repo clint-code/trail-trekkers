@@ -1,0 +1,302 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
+
+/* ── Host ──────────────────────────────────────────────────── */
+:host {
+  display: block;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ── Page shell ─────────────────────────────────────────────── */
+.map-page {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: #0d0a07;
+  overflow: hidden;
+}
+
+/* ── Pixi canvas fills page ─────────────────────────────────── */
+.pixi-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.pixi-canvas canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  outline: none;        /* ← add this */
+  touch-action: none;
+}
+
+/* ── Header ─────────────────────────────────────────────────── */
+.map-header {
+  position: absolute;
+  top: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  text-align: center;
+  pointer-events: none;
+  animation: fadeDown 1s ease both;
+}
+
+.header-eyebrow {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(0.6rem, 1vw, 0.75rem);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #c9a84c;
+  opacity: 0.75;
+  margin: 0 0 4px;
+}
+
+.header-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+  font-weight: 900;
+  color: #f5e9d0;
+  letter-spacing: 0.06em;
+  margin: 0;
+  text-shadow:
+    0 0 40px rgba(210, 90, 20, 0.5),
+    0 2px 12px rgba(13, 10, 7, 0.95);
+}
+
+.header-sub {
+  font-family: 'Crimson Text', serif;
+  font-size: clamp(0.75rem, 1.2vw, 0.95rem);
+  font-style: italic;
+  color: #c9a84c;
+  opacity: 0.65;
+  margin: 4px 0 0;
+}
+
+/* ── Map hint ────────────────────────────────────────────────── */
+.map-hint {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  font-family: 'Cinzel', serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(245, 233, 208, 0.35);
+  pointer-events: none;
+  animation: fadeUp 1.5s 2s ease both;
+}
+
+/* ── Side panel ──────────────────────────────────────────────── */
+.side-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(400px, 88vw);
+  z-index: 20;
+  transform: translateX(100%);
+  transition: transform 0.48s cubic-bezier(0.16, 1, 0.3, 1);
+  background: linear-gradient(160deg, rgba(31, 22, 9, 0.98), rgba(13, 10, 7, 0.99));
+  border-left: 1px solid rgba(201, 168, 76, 0.18);
+  overflow-y: auto;
+}
+
+/* Glowing top bar */
+.side-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #d25a14,
+    #c9a84c,
+    #d25a14,
+    transparent
+  );
+}
+
+.side-panel.open {
+  transform: translateX(0);
+}
+
+/* ── Panel inner ─────────────────────────────────────────────── */
+.panel-inner {
+  padding: 64px 36px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-height: 100%;
+}
+
+/* ── Close button ────────────────────────────────────────────── */
+.close-btn {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(201, 168, 76, 0.3);
+  background: transparent;
+  color: #c9a84c;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  z-index: 2;
+}
+
+.close-btn:hover {
+  background: rgba(210, 90, 20, 0.2);
+  border-color: #d25a14;
+  color: #f5e9d0;
+}
+
+/* ── Panel content ───────────────────────────────────────────── */
+.panel-eyebrow {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #c9a84c;
+  opacity: 0.65;
+  margin-bottom: 10px;
+}
+
+.panel-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.1rem, 2.2vw, 1.45rem);
+  font-weight: 600;
+  color: #f5e9d0;
+  line-height: 1.3;
+  margin: 0 0 10px;
+  text-shadow: 0 0 20px rgba(210, 90, 20, 0.25);
+}
+
+.panel-date {
+  font-family: 'Crimson Text', serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  color: #d25a14;
+  margin-bottom: 22px;
+}
+
+.panel-rule {
+  height: 1px;
+  background: linear-gradient(90deg, #d25a14, rgba(201, 168, 76, 0.3), transparent);
+  margin-bottom: 22px;
+}
+
+.panel-desc {
+  font-family: 'Crimson Text', serif;
+  font-size: 1.05rem;
+  color: rgba(245, 233, 208, 0.78);
+  line-height: 1.8;
+  margin: 0 0 32px;
+}
+
+/* ── Stats list ──────────────────────────────────────────────── */
+.panel-stats {
+  list-style: none;
+  margin: auto 0 0;
+  padding: 0;
+  border-top: 1px solid rgba(201, 168, 76, 0.15);
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.panel-stats li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.stat-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #c9a84c;
+  opacity: 0.65;
+}
+
+.stat-value {
+  font-family: 'Crimson Text', serif;
+  font-size: 1.05rem;
+  color: #f5e9d0;
+}
+
+/* ── Legend ──────────────────────────────────────────────────── */
+.map-legend {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  z-index: 10;
+  background: rgba(13, 10, 7, 0.75);
+  border: 1px solid rgba(201, 168, 76, 0.18);
+  border-radius: 6px;
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+  animation: fadeUp 1s 0.5s ease both;
+}
+
+.legend-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Cinzel', serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(245, 233, 208, 0.6);
+}
+
+.legend-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #d25a14;
+  box-shadow: 0 0 8px rgba(210, 90, 20, 0.7);
+  flex-shrink: 0;
+}
+
+/* ── Keyframes ───────────────────────────────────────────────── */
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
