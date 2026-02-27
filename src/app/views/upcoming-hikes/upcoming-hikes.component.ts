@@ -8,6 +8,7 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 
 import { PreloaderComponent } from '../../components/preloader/preloader.component';
 import { Preloader } from '../../utils/preloader';
+import { ComingSoonComponent } from '../../components/coming-soon/coming-soon.component';
 
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
@@ -30,6 +31,7 @@ import { Scroll } from '@angular/router';
   imports: [
     CommonModule,
     PreloaderComponent,
+    ComingSoonComponent,
     HeaderComponent,
     SingleHikeItemComponent,
     FooterComponent,
