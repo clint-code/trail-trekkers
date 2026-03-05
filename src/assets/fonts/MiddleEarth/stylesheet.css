@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'MiddleEarth';
+    src: url('MiddleEarth.woff2') format('woff2'),
+        url('MiddleEarth.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
