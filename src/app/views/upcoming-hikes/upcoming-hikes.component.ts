@@ -38,7 +38,7 @@ import { Scroll } from '@angular/router';
     //ComingSoonComponent,
     HeaderComponent,
     //SingleHikeItemComponent,
-    //TrailWebglMapComponent,
+    TrailWebglMapComponent,
     InteractiveMapComponent,
     FooterComponent,
     NgxSkeletonLoaderModule

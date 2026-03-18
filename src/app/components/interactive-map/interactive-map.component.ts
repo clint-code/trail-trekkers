@@ -41,6 +41,16 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit, OnDestroy
   private readonly IMG_WIDTH = 2000;
   private readonly IMG_HEIGHT = 1720;
 
+  pins = [
+    { id: 'sagana', cx: 68, cy: 155, label: "Sagana's Scenic Splendor" },
+    { id: 'longonot', cx: 200, cy: 165, label: "Longonot's Rim" },
+    { id: 'kiima', cx: 375, cy: 175, label: "Kiima Kimwe" },
+  ];
+
+  onPinClick(pin: any) {
+    console.log('Clicked:', pin.label);
+  }
+
   trails: Trail[] = [
     {
       id: 'sagana',
