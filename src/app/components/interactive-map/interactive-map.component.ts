@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import * as L from 'leaflet';
 
 interface Trail {
   id: string;
@@ -24,22 +23,14 @@ interface Trail {
   styleUrl: './interactive-map.component.css'
 })
 
-export class InteractiveMapComponent implements OnInit, AfterViewInit, OnDestroy {
+export class InteractiveMapComponent implements OnInit, AfterViewInit {
 
   @ViewChild('mapContainer', { static: true }) mapContainer!: ElementRef;
-
-  private map!: L.Map;
-  private markers: L.Marker[] = [];
-  private pathLayer!: L.Polyline;
-  private svgOverlay!: L.SVGOverlay;
 
   selectedTrail: Trail | null = null;
   panelVisible = false;
   pathDrawn = false;
 
-  // Image dimensions — update if yours differ
-  private readonly IMG_WIDTH = 2000;
-  private readonly IMG_HEIGHT = 1720;
 
   pins = [
     { id: 'sagana', cx: 68, cy: 155, label: "Sagana's Scenic Splendor" },
@@ -138,137 +129,8 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit, OnDestroy
   }
 
   ngAfterViewInit(): void {
-    this.ngZone.runOutsideAngular(() => {
-      this.initMap();
-      this.addImageOverlay();
-      this.addTrailPath();
-      this.addMarkers();
-    });
+
   }
 
-  private initMap(): void {
-    // Use simple CRS so pixel coords map directly
-    this.map = L.map(this.mapContainer.nativeElement, {
-      crs: L.CRS.Simple,
-      minZoom: -1,
-      maxZoom: 2,
-      zoomSnap: 0.25,
-      zoomDelta: 0.5,
-      attributionControl: false,
-      zoomControl: false,
-    });
-
-    // Fit map to image bounds
-    const bounds: L.LatLngBoundsExpression = [
-      [0, 0],
-      [this.IMG_HEIGHT, this.IMG_WIDTH]
-    ];
-    this.map.fitBounds(bounds);
-    this.map.setMaxBounds(bounds);
-
-    // Custom zoom control (top right)
-    L.control.zoom({ position: 'topright' }).addTo(this.map);
-  }
-
-  private addImageOverlay(): void {
-    const bounds: L.LatLngBoundsExpression = [
-      [0, 0],
-      [this.IMG_HEIGHT, this.IMG_WIDTH]
-    ];
-    L.imageOverlay('/assets/img/trail-to-the-throne-web-map.jpg', bounds).addTo(this.map);
-  }
-
-  private addTrailPath(): void {
-    // Convert pixel [x,y] to Leaflet LatLng [y, x] (row, col)
-    const latlngs: L.LatLngExpression[] = this.trails.map(t =>
-      [t.coords[1], t.coords[0]] as L.LatLngExpression
-    );
-
-    this.pathLayer = L.polyline(latlngs, {
-      color: '#d25a14',
-      weight: 3,
-      opacity: 0,
-      dashArray: '10, 8',
-      dashOffset: '0',
-      lineCap: 'round',
-      lineJoin: 'round',
-    }).addTo(this.map);
-
-    // Animate path opacity in after short delay
-    setTimeout(() => {
-      this.animatePath();
-    }, 600);
-  }
-
-  private animatePath(): void {
-    const el = (this.pathLayer as any)._path as SVGPathElement;
-    if (!el) return;
-
-    const length = el.getTotalLength();
-    el.style.strokeDasharray = `${length}`;
-    el.style.strokeDashoffset = `${length}`;
-    el.style.opacity = '1';
-    el.style.transition = 'stroke-dashoffset 3s ease-in-out, opacity 0.5s';
-
-    requestAnimationFrame(() => {
-      el.style.strokeDashoffset = '0';
-    });
-
-    this.pathDrawn = true;
-  }
-
-  private addMarkers(): void {
-    this.trails.forEach((trail, index) => {
-      const icon = this.createPulsingIcon(trail.stopNumber, index);
-
-      const marker = L.marker(
-        [trail.coords[1], trail.coords[0]],
-        { icon }
-      ).addTo(this.map);
-
-      marker.on('click', () => {
-        this.ngZone.run(() => this.onMarkerClick(trail));
-      });
-
-      this.markers.push(marker);
-    });
-  }
-
-  private createPulsingIcon(stopNumber: number, index: number): L.DivIcon {
-    return L.divIcon({
-      className: '',
-      html: `
-        <div class="trail-pin" style="animation-delay: ${index * 0.15}s">
-          <div class="pin-pulse" style="animation-delay: ${index * 0.15}s"></div>
-          <div class="pin-core">
-            <span class="pin-number">${stopNumber}</span>
-          </div>
-        </div>
-      `,
-      iconSize: [48, 48],
-      iconAnchor: [24, 24],
-    });
-  }
-
-  onMarkerClick(trail: Trail): void {
-    if (this.selectedTrail?.id === trail.id) {
-      this.closePanel();
-      return;
-    }
-    this.selectedTrail = trail;
-    this.panelVisible = true;
-
-    // Pan map slightly toward marker
-    this.map.panTo([trail.coords[1], trail.coords[0]], { animate: true, duration: 0.6 });
-  }
-
-  closePanel(): void {
-    this.panelVisible = false;
-    setTimeout(() => this.selectedTrail = null, 400);
-  }
-
-  ngOnDestroy(): void {
-    this.map.remove();
-  }
 
 }
