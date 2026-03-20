@@ -15,6 +15,17 @@ interface Trail {
   stopNumber: number;
 }
 
+interface MapLabel {
+  id: string;
+  lines: string[];
+  x: number;
+  y: number;
+  fontSize: number;
+  rotate?: number;
+  rotatePivotX?: number;
+  rotatePivotY?: number;
+}
+
 @Component({
   selector: 'app-interactive-map',
   standalone: true,
@@ -122,7 +133,55 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
     }
   ];
 
-  constructor(private ngZone: NgZone) { }
+  labels: MapLabel[] = [
+    {
+      id: 'longonot',
+      lines: ['MT. LONGONOT', '(11th April)'],
+      x: 300,
+      y: 400,
+      fontSize: 30
+    },
+    {
+      id: 'kiima',
+      lines: ['KIIMA KIMWE', 'HILL', '(9th May)'],
+      x: 880,
+      y: 340,
+      fontSize: 30
+    },
+    {
+      id: 'gatamaiyu',
+      lines: ['GATAMAIYU', 'FOREST', '(13th June)'],
+      x: 800,
+      y: 500,
+      fontSize: 30,
+      rotate: -55,
+      rotatePivotX: 860,
+      rotatePivotY: 580
+    },
+    {
+      id: 'elephant',
+      lines: ['ELEPHANT HILL', '(11th July)'],
+      x: 1500,
+      y: 350,
+      fontSize: 30
+    },
+    {
+      id: 'kahunira',
+      lines: ['KAHUNIRA', 'WATERFALL', '(8th August)'],
+      x: 1650,
+      y: 605,
+      fontSize: 30
+    },
+    {
+      id: 'mtkenya',
+      lines: ['MT KENYA', '(Sept 23 - 26th)'],
+      x: 2200,
+      y: 520,
+      fontSize: 35
+    }
+  ];
+
+  constructor() { }
 
   ngOnInit(): void {
 
@@ -130,6 +189,18 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
 
+  }
+
+  // Helper — builds the transform string only when rotation is defined
+  getTransform(label: MapLabel): string {
+    if (label.rotate !== undefined) {
+      return `rotate(${label.rotate}, ${label.rotatePivotX}, ${label.rotatePivotY})`;
+    }
+    return '';
+  }
+
+  getLineY(label: MapLabel, lineIndex: number): number {
+    return label.y + lineIndex * (label.fontSize * 1.2);
   }
 
 

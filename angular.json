@@ -42,6 +42,11 @@
                 "glob": "**/*",
                 "input": "src/assets/fonts/SF-Speakeasy",
                 "output": "assets/fonts/SF-Speakeasy"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/assets/fonts/Marauders-Map",
+                "output": "assets/fonts/Marauders-Map"
               }
             ],
             "styles": [
@@ -50,7 +55,8 @@
               "src/assets/css/main.scss",
               "src/assets/fonts/Apple-Garamond/stylesheet.css",
               "src/assets/fonts/Passion-One/stylesheet.css",
-              "src/assets/fonts/SF-Speakeasy/stylesheet.css"
+              "src/assets/fonts/SF-Speakeasy/stylesheet.css",
+              "src/assets/fonts/Marauders-Map/stylesheet.css"
             ],
             "scripts": []
           },
