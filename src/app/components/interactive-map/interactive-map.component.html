@@ -4,6 +4,14 @@
   <button class="replay-btn" (click)="replayAnimation()">
     ↺ Replay
   </button>
+
+  <!-- Zoom controls -->
+  <div class="zoom-controls">
+    <button (click)="zoomIn()"  title="Zoom in">＋</button>
+    <button (click)="zoomOut()" title="Zoom out">－</button>
+    <button (click)="resetZoom()" title="Reset">↺</button>
+  </div>
+
  
 <svg
   #svgEl
@@ -13,26 +21,31 @@
     xmlns="http://www.w3.org/2000/svg"
     class="trail-svg">
 
-    <!-- Base map injected here — no 2000 lines in template -->
-    <g #mapContainer [innerHTML]="svgContent"></g>
+    <g #zoomLayer>
 
-    <!-- Dynamic red labels on top -->
-    <g *ngFor="let label of labels"
-       [attr.transform]="getTransform(label)"
-       class="map-label"
-       style="opacity: 0">
-      <text
-        *ngFor="let location of label.lines; let i = index"
-        [attr.x]="label.x"
-        [attr.y]="getLineY(label, i)"
-        [attr.font-size]="label.fontSize"
-        font-family="'marauders-map', serif"
-        font-weight="700"
-        fill="#ed1111"
-        letter-spacing="2"
-        text-anchor="middle">
-        {{ location }}
-      </text>
+      <!-- Base map injected here — no 2000 lines in template -->
+      <g #mapContainer [innerHTML]="svgContent"></g>
+
+      <!-- Dynamic red labels on top -->
+      <g *ngFor="let label of labels"
+        [attr.transform]="getTransform(label)"
+        class="map-label"
+        style="opacity: 0">
+        <text
+          *ngFor="let location of label.lines; let i = index"
+          [attr.x]="label.x"
+          [attr.y]="getLineY(label, i)"
+          [attr.font-size]="label.fontSize"
+          font-family="'marauders-map', serif"
+          font-weight="700"
+          fill="#ed1111"
+          letter-spacing="2"
+          text-anchor="middle">
+          {{ location }}
+        </text>
+      </g>
+
+
     </g>
 
   </svg>
