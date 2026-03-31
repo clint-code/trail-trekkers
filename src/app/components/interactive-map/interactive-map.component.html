@@ -1,17 +1,26 @@
 <div class="map-page">
+
+   <!-- Replay button -->
+  <button class="replay-btn" (click)="replayAnimation()">
+    ↺ Replay
+  </button>
  
 <svg
+  #svgEl
     [attr.viewBox]="svgViewBox"
     width="100%"
     height="100%"
-    xmlns="http://www.w3.org/2000/svg">
+    xmlns="http://www.w3.org/2000/svg"
+    class="trail-svg">
 
     <!-- Base map injected here — no 2000 lines in template -->
     <g #mapContainer [innerHTML]="svgContent"></g>
 
     <!-- Dynamic red labels on top -->
     <g *ngFor="let label of labels"
-       [attr.transform]="getTransform(label)">
+       [attr.transform]="getTransform(label)"
+       class="map-label"
+       style="opacity: 0">
       <text
         *ngFor="let location of label.lines; let i = index"
         [attr.x]="label.x"
