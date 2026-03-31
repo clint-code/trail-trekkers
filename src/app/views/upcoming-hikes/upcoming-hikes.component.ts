@@ -12,7 +12,7 @@ import { ComingSoonComponent } from '../../components/coming-soon/coming-soon.co
 
 //interactive map imports
 import { InteractiveMapComponent } from '../../components/interactive-map/interactive-map.component';
-import { TrailWebglMapComponent } from 'src/app/components/trail-webgl-map/trail-webgl-map.component';
+//import { TrailWebglMapComponent } from 'src/app/components/trail-webgl-map/trail-webgl-map.component';
 
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
