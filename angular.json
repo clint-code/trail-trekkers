@@ -50,7 +50,6 @@
               }
             ],
             "styles": [
-              "node_modules/leaflet/dist/leaflet.css",
               "src/styles.css",
               "src/assets/css/main.scss",
               "src/assets/fonts/Apple-Garamond/stylesheet.css",
