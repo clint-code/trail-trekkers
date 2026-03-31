@@ -19,7 +19,14 @@
     width="100%"
     height="100%"
     xmlns="http://www.w3.org/2000/svg"
-    class="trail-svg">
+    class="trail-svg"
+    (mousedown)="onMouseDown($event)"
+    (mousemove)="onMouseMove($event)"
+    (mouseup)="onMouseUp()"
+    (mouseleave)="onMouseUp()"
+    (touchstart)="onTouchStart($event)"
+    (touchmove)="onTouchMove($event)"
+    (touchend)="onTouchEnd()">
 
     <g #zoomLayer>
 
