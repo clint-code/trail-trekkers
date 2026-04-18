@@ -119,7 +119,7 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
   }
 
   private loadSvg(): void {
-    this.http.get('assets/svg/svg-map.svg', { responseType: 'text' })
+    this.http.get('assets/svg/svg-map-updated-paths.svg', { responseType: 'text' })
       .subscribe(svgData => {
         const stripped = this.stripSvgWrapper(svgData);
         this.svgContent = this.sanitizer.bypassSecurityTrustHtml(stripped);
@@ -313,15 +313,19 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
   private animatePath(): void {
     const path = document.querySelector('#trailPath') as SVGPathElement;
     console.log("Path:", path);
+    
+    const lines = path.querySelectorAll('line');
+    console.log("Lines:", lines);
 
     // Master timeline
     const tl = gsap.timeline({ delay: 1.0 });
 
     // ── 1. DrawSVG — reveal the path progressively ──────────
-    tl.from(path, {
+    tl.from(lines, {
       drawSVG: '0%',      // start invisible
-      duration: 2.5,        // 5 seconds to draw full path
-      ease: 'power2.inOut'
+      duration: 2.0,        // 5 seconds to draw full path
+      ease: 'power2.inOut',
+      stagger: 1.5          // delay between each line segment
     })
 
       // ── 3. Fade in labels after path finishes ─────────────────
