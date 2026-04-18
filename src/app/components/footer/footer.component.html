@@ -8,13 +8,13 @@
         <img
           src="assets/img/Trail-Trekkers-logo.png"
           alt="Trail Trekkers"
-          class="h-20 w-auto"
+          class="h-24 w-auto trail-trekkers-logo"
         />
       </div>
     </div>
 
     <div class="flex">
-      <div class="quick-links-section">
+      <div class="quick-links-section max-[768px]:text-center">
         <!-- Quick Links -->
         <h3 class="font-garamondBold text-3xl max-[768px]:text-2xl">Quick Links</h3>
 
@@ -48,6 +48,14 @@
               [routerLink]="['/about']"
               class="white-hover-underline">
               About
+            </a>
+          </li>
+
+          <li class="hover:text-orange-300 transition font-passion text-lg">
+            <a 
+              [routerLink]="['/indemnity-agreement']"
+              class="white-hover-underline">
+              Indemnity Agreement
             </a>
           </li>
 

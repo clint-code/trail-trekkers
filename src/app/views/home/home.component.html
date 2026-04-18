@@ -1,6 +1,4 @@
-<app-preloader
-    *ngIf="siteImages.length < 1"
-></app-preloader>
+<app-preloader *ngIf="siteImages.length < 1"></app-preloader>
 
 <!-- <app-preloader
     *ngIf="siteImages.length > 0"
@@ -9,33 +7,57 @@
 
 <app-header></app-header>
 <div class="home max-w-7xl mx-auto relative min-h-screen">
-
   <div class="flex flex-nowrap h-screen overflow-hidden">
-
     <div class="content-left relative">
-
-      <div class="min-[600px]:hidden draggable-item absolute top-16 left-6" id="boot-icon">
-        <img src="assets/img/vector-icons/boot-icon.png" class="h-20 w-auto" alt="boot" />
+      <div
+        class="min-[600px]:hidden draggable-item absolute top-1 left-6 max-[320px]:top-8"
+        id="boot-icon"
+      >
+        <img
+          src="assets/img/vector-icons/boot-icon.png"
+          class="h-20 w-auto max-[320px]:h-14"
+          alt="boot"
+        />
       </div>
 
-      <div class="min-[600px]:hidden draggable-item absolute top-7 right-6" id="compass-icon">
-        <img src="assets/img/vector-icons/compass.png" class="h-20 w-auto rotating-compass" alt="compass" />
-      </div>
-      
-      <div class="min-[600px]:hidden draggable-item absolute top-20 right-1/4" id="kanunga-falls-badge">
-        <img src="assets/img/vector-icons/kanunga-falls-badge.png" class="h-28 w-auto rotating-badge" alt="kanunga-falls-badge" />
+      <div
+        class="min-[600px]:hidden draggable-item absolute top-7 right-6 max-[320px]:top-5"
+        id="compass-icon"
+      >
+        <img
+          src="assets/img/vector-icons/compass.png"
+          class="h-20 w-auto rotating-compass max-[320px]:h-14"
+          alt="compass"
+        />
       </div>
 
-      <div class="min-[600px]:hidden draggable-item absolute top-44 right-20" id="hiking-icon">
-        <fa-icon
-          class="icon-style text-6xl text-gray-700"
-          [icon]="['fas', 'person-hiking']"
-        >
-        </fa-icon>
+      <div
+        class="min-[600px]:hidden draggable-item absolute top-20 right-1/4 max-[320px]:top-7"
+        id="kanunga-falls-badge"
+      >
+        <img
+          src="assets/img/vector-icons/kanunga-falls-badge.png"
+          class="h-28 w-auto rotating-badge max-[320px]:h-20"
+          alt="kanunga-falls-badge"
+        />
+      </div>
+
+      <div
+        class="min-[600px]:hidden draggable-item absolute top-20 left-6 max-[320px]:top-7"
+        id="njabini-badge"
+      >
+        <img
+          src="assets/img/vector-icons/njabini-badge.png"
+          class="h-28 w-auto rotating-badge max-[320px]:h-20"
+          alt="njabini-badge"
+        />
       </div>
 
       <div class="hero-text-section">
-        <h1 class="text-8xl font-speakeasy text-orange-600 max-[1280px]:text-6xl ml-3 mr-3 max-[768px]:text-5xl max-[600px]:text-center" id="target-text">
+        <h1
+          class="text-8xl font-speakeasy text-orange-600 max-[1280px]:text-6xl ml-3 mr-3 max-[768px]:text-5xl max-[600px]:text-center max-[320px]:text-4xl"
+          id="target-text"
+        >
           Adventure is out there!
         </h1>
 
@@ -47,115 +69,141 @@
         </a>
       </div>
 
-      <div class="min-[600px]:hidden draggable-item absolute left-6 bottom-1/4" id="bag-icon">
-        <img src="assets/img/vector-icons/hiking-bag.png" class="h-24 w-auto" alt="bag" />
+      <div
+        class="min-[600px]:hidden draggable-item absolute left-6 bottom-10 max-[320px]:bottom-5"
+        id="bag-icon"
+      >
+        <img
+          src="assets/img/vector-icons/hiking-bag.png"
+          class="h-24 w-auto max-[320px]:h-20"
+          alt="bag"
+        />
       </div>
 
-      <div class="min-[600px]:hidden draggable-item absolute right-6 bottom-1/4" id="mountain-icon">
-        <img src="assets/img/vector-icons/mountain.png" class="h-24 w-auto" alt="mountain" />
-      </div>
-      
-      <div class="min-[600px]:hidden draggable-item absolute right-1/4 bottom-10" id="tigoni-badge">
-        <img src="assets/img/vector-icons/tigoni-trek-badge.png" class="rotating-badge h-28 w-auto" alt="tigoni-badge" />
+      <div
+        class="min-[600px]:hidden draggable-item absolute left-6 bottom-1/4 max-[320px]:bottom-28"
+        id="bag-icon"
+      >
+        <img
+          src="assets/img/vector-icons/mt-satima-badge.png"
+          class="rotating-badge h-28 w-auto max-[320px]:h-20"
+          alt="mt-satima-badge"
+        />
       </div>
 
+      <div
+        class="min-[600px]:hidden draggable-item absolute right-6 bottom-1/4"
+        id="mountain-icon"
+      >
+        <img
+          src="assets/img/vector-icons/mountain.png"
+          class="h-24 w-auto max-[320px]:h-20"
+          alt="mountain"
+        />
+      </div>
+
+      <div
+        class="min-[600px]:hidden draggable-item absolute right-1/4 bottom-10 max-[320px]:bottom-0"
+        id="tigoni-badge"
+      >
+        <img
+          src="assets/img/vector-icons/tigoni-trek-badge.png"
+          class="rotating-badge h-28 w-auto max-[320px]:h-20"
+          alt="tigoni-badge"
+        />
+      </div>
     </div>
 
     <div class="content-right flex flex-row max-[600px]:hidden">
       <div class="column">
         <div class="flex flex-col scroll scroll-top">
+          <img 
+            src="assets/img/homepage-imgs/satima.jpg" 
+            alt="satima" />
           <img
-            src="assets/img/homepage-imgs/elephant-hill-2-1.jpg"
-            alt="elephant-hill-2-1"
+            src="assets/img/homepage-imgs/sasumua-river.jpg"
+            alt="sasumua-river"
+          />
+          <img 
+            src="assets/img/homepage-imgs/kisamis.jpg" 
+            alt="kisamis" />
+          <img
+            src="assets/img/homepage-imgs/kefri-forest.jpg"
+            alt="kefri-forest"
           />
           <img
-            src="assets/img/homepage-imgs/elephant-hill-3.jpg"
-            alt="elephant-hill-3"
+            src="assets/img/homepage-imgs/kanunga-falls-1.jpg"
+            alt="kanunga-falls-1"
           />
           <img
-            src="assets/img/homepage-imgs/loldia-eburru-3.jpg"
-            alt="loldia-eburru-3"
+            src="assets/img/homepage-imgs/cianda-tea-farm.jpg"
+            alt="cianda-tea-farm"
           />
           <img
+            src="assets/img/homepage-imgs/satima-starting.jpg"
+            alt="satima-starting"
+          />
+          <img
+            src="assets/img/homepage-imgs/ndakaini-dam.jpg"
+            alt="ndakaini-dam"
+          />
+          <!-- <img
             src="assets/img/homepage-imgs/rurimeria-2-1.jpg"
             alt="rurimeria-2-1"
           />
           <img
             src="assets/img/homepage-imgs/loldia-eburru-3.jpg"
             alt="loldia-eburru-3"
-          />
-
-          <img
-            src="assets/img/homepage-imgs/elephant-hill-2-1.jpg"
-            alt="elephant-hill-2-1"
-          />
-          <img
-            src="assets/img/homepage-imgs/elephant-hill-3.jpg"
-            alt="elephant-hill-3"
-          />
-          <img
-            src="assets/img/homepage-imgs/loldia-eburru-3.jpg"
-            alt="loldia-eburru-3"
-          />
-          <img
-            src="assets/img/homepage-imgs/rurimeria-2-1.jpg"
-            alt="rurimeria-2-1"
-          />
-          <img
-            src="assets/img/homepage-imgs/loldia-eburru-3.jpg"
-            alt="loldia-eburru-3"
-          />
+          /> -->
         </div>
       </div>
 
       <div class="column">
         <div class="flex flex-col scroll reverse scroll-reverse">
           <img
-            src="assets/img/homepage-imgs/elephant-hill-2-1.jpg"
-            alt="elephant-hill-2-1"
+            src="/assets/img/homepage-imgs/sasumua-dam.jpg"
+            alt="sasumua-dam"
           />
           <img
-            src="assets/img/homepage-imgs/elephant-hill-3.jpg"
-            alt="elephant-hill-3"
+            src="/assets/img/homepage-imgs/tigoni-tea-farms.jpg"
+            alt="tigoni-tea-farms"
           />
           <img
-            src="assets/img/homepage-imgs/loldia-eburru-3.jpg"
-            alt="loldia-eburru-3"
+            src="assets/img/homepage-imgs/kilimambogo.jpg"
+            alt="kilimambogo"
           />
           <img
-            src="assets/img/homepage-imgs/rurimeria-2-1.jpg"
-            alt="rurimeria-2-1"
+            src="assets/img/homepage-imgs/kanunga-falls-2.jpg"
+            alt="kanunga-falls-2"
           />
           <img
-            src="assets/img/homepage-imgs/loldia-eburru-3.jpg"
-            alt="loldia-eburru-3"
+            src="assets/img/homepage-imgs/satima-sunset.jpg"
+            alt="satima-sunset"
           />
 
           <img
-            src="assets/img/homepage-imgs/elephant-hill-2-1.jpg"
-            alt="elephant-hill-2-1"
+            src="assets/img/homepage-imgs/kisamis-2.jpg"
+            alt="kisamis-2"
           />
           <img
-            src="assets/img/homepage-imgs/elephant-hill-3.jpg"
-            alt="elephant-hill-3"
+            src="assets/img/homepage-imgs/kefri-forest-2.jpg"
+            alt="kefri-forest-2"
           />
           <img
-            src="assets/img/homepage-imgs/loldia-eburru-3.jpg"
-            alt="loldia-eburru-3"
+            src="assets/img/homepage-imgs/satima-humor.jpg"
+            alt="satima-humor"
           />
-          <img
+          <!-- <img
             src="assets/img/homepage-imgs/rurimeria-2-1.jpg"
             alt="rurimeria-2-1"
           />
           <img
             src="assets/img/homepage-imgs/loldia-eburru-3.jpg"
             alt="loldia-eburru-3"
-          />
+          /> -->
         </div>
       </div>
     </div>
-
-
   </div>
 </div>
 

@@ -22,7 +22,7 @@ export class SinglePostItemComponent {
   @Input() postDate!: Date;
   @Input() postImageUrl: string = '';
   @Input() postImageAlt: string = '';
-
+  @Input() postUrl: string = '';
   constructor(public el: ElementRef) { }
 
   // Additional methods can be added here if needed

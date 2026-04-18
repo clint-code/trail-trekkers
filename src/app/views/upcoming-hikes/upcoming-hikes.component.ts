@@ -8,16 +8,20 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 
 import { PreloaderComponent } from '../../components/preloader/preloader.component';
 import { Preloader } from '../../utils/preloader';
+import { ComingSoonComponent } from '../../components/coming-soon/coming-soon.component';
 
-gsap.registerPlugin(SplitText);
-gsap.registerPlugin(Draggable);
-gsap.registerPlugin(ScrollTrigger);
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+
+gsap.registerPlugin(SplitText, Draggable, ScrollTrigger);
+// gsap.registerPlugin(Draggable);
+// gsap.registerPlugin(ScrollTrigger);
 
 import { HeaderComponent } from '../../components/header/header.component';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { SingleHikeItemComponent } from '../../components/single-hike-item/single-hike-item.component';
 
 import { AllContentService } from '../../services/all-content/all-content.service';
+import { Scroll } from '@angular/router';
 
 @Component({
   selector: 'app-upcoming-hikes',
@@ -27,17 +31,20 @@ import { AllContentService } from '../../services/all-content/all-content.servic
   imports: [
     CommonModule,
     PreloaderComponent,
+    ComingSoonComponent,
     HeaderComponent,
     SingleHikeItemComponent,
-    FooterComponent
+    FooterComponent,
+    NgxSkeletonLoaderModule
   ]
 
 })
 export class UpcomingHikesComponent implements OnInit {
 
   hikePosts: any;
-  imagesLoaded: boolean = false;
+  loading: boolean = false;
   siteImages: any = [];
+  loadingContent: boolean = false;
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -55,9 +62,11 @@ export class UpcomingHikesComponent implements OnInit {
 
     setTimeout(() => {
       this.siteImages = Preloader.getImages();
+      this.loading = true;
       this.animateHikeItems();
-    }, 1000);
+    }, 2500);
 
+    this.autoRotateIcons();
     this.animateDraggableItems();
     this.animateHeroText();
     this.animateIcons();
@@ -66,9 +75,30 @@ export class UpcomingHikesComponent implements OnInit {
 
   getUpcomingHikes() {
 
-    this.allContentService.getHikePosts().subscribe(posts => {
-      // Process the hike posts data here
-      this.hikePosts = posts;
+    this.allContentService.getAllUpcomingHikes().subscribe((response: any[]) => {
+
+      this.loadingContent = true;
+
+      if (response && response.length > 0 && response !== null) {
+        this.hikePosts = response;
+
+        this.loadingContent = false;
+
+      }
+
+    });
+
+  }
+
+  autoRotateIcons() {
+
+    gsap.to(".rotating-compass", {
+      duration: 10,
+      rotation: 360,
+      type: "rotation",
+      repeat: -1,
+      ease: "linear",
+      transformOrigin: "50% 50%"
     });
 
   }

@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewInit, Inject } from '@angular/core';
 import { CommonModule, DOCUMENT } from '@angular/common';
+
 import { FaIconComponent, FaIconLibrary, FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { faBusSimple, faEarthAfrica, faPeopleGroup, faSun } from '@fortawesome/free-solid-svg-icons';
 
@@ -16,9 +17,7 @@ import { SplitText } from 'gsap/SplitText';
 import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 
-gsap.registerPlugin(DrawSVGPlugin);
-gsap.registerPlugin(ScrollTrigger);
-gsap.registerPlugin(SplitText);
+gsap.registerPlugin(DrawSVGPlugin, ScrollTrigger, SplitText);
 
 @Component({
   selector: 'app-about',
@@ -34,13 +33,15 @@ gsap.registerPlugin(SplitText);
   ]
 })
 
-export class AboutComponent implements OnInit {
+export class AboutComponent {
 
-  aboutItems: any;
+  aboutContentDetails: any = [];
+  iconItems: any = [];
   threshold: number = 1;
-  hikePosts: any;
+  pageSlug: string = "";
   imagesLoaded: boolean = false;
   siteImages: any = [];
+  loadingContent: boolean = false;
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -65,16 +66,30 @@ export class AboutComponent implements OnInit {
 
     setTimeout(() => {
       this.siteImages = Preloader.getImages();
-    }, 1000);
+    }, 1500);
 
     this.animateSVGLine();
     this.animateHeroText();
-    this.animateQuoteText();
-    this.animateSubtitleText();
+    //this.animateQuoteText();
+    //this.animateSubtitleText();
+    this.autoRotateIcons();
 
     setTimeout(() => {
       this.animateAboutItems();
     }, 1000);
+
+  }
+
+  autoRotateIcons() {
+
+    gsap.to(".rotating-compass", {
+      duration: 10,
+      rotation: 360,
+      type: "rotation",
+      repeat: -1,
+      ease: "linear",
+      transformOrigin: "50% 50%"
+    });
 
   }
 
@@ -135,12 +150,27 @@ export class AboutComponent implements OnInit {
 
   getAboutItems() {
 
-    this.allContentService.getAboutItems().subscribe(items => {
+    this.allContentService.getContentBySlug("about-trail-trekkers").subscribe((response: any[]) => {
 
-      this.aboutItems = items;
+      this.loadingContent = true;
+
+      if (response !== null && response.length > 0) {
+
+        this.aboutContentDetails = response[0];
+        this.loadingContent = false;
+
+        this.iconItems = Object.values(this.aboutContentDetails.acf.why_we_do_this_section).map((item: any) => ({
+          infoIcon: item.reason_icon,
+          infoDescription: item.reason_text,
+          iconObject: this.library.getIconDefinition('fas', item.reason_icon)
+        }));
+
+      }
 
     });
+
   }
+
 
   animateAboutItems() {
 

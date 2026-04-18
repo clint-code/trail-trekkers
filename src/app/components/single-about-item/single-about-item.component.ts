@@ -17,4 +17,7 @@ export class SingleAboutItemComponent {
   @Input() itemIcon!: IconProp;
   @Input() itemDescription: string = '';
 
+  constructor(private library: FaIconLibrary) { }
+
+
 }

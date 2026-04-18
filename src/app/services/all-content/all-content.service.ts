@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+import { environment } from '../../../environments/environment.prod';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -28,5 +30,36 @@ export class AllContentService {
   getHikePosts(): Observable<any[]> {
     return this.http.get<any[]>("/assets/data/hike-posts.json");
   }
+
+  getAllUpcomingHikes(): Observable<any[]> {
+
+    return this.http.get<any[]>(`${environment.contentRoot}upcoming_hikes`);
+
+  }
+
+  getSingleUpcomingHike(hikeSlug: any): Observable<any[]> {
+
+    return this.http.get<any[]>(`${environment.contentRoot}upcoming_hikes?slug=${hikeSlug}`);
+
+  }
+
+  getAllAdventures(): Observable<any[]> {
+
+    return this.http.get<any[]>(`${environment.contentRoot}adventures`);
+
+  }
+
+  getSingleAdventure(adventureSlug: any): Observable<any[]> {
+
+    return this.http.get<any[]>(`${environment.contentRoot}adventures?slug=${adventureSlug}`);
+
+  }
+
+  getContentBySlug(slug: any): Observable<any[]> {
+
+    return this.http.get<any[]>(`${environment.contentRoot}pages?slug=${slug}`);
+
+  }
+
 
 }

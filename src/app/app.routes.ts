@@ -5,6 +5,7 @@ import { UpcomingHikesComponent } from './views/upcoming-hikes/upcoming-hikes.co
 import { AboutComponent } from './views/about/about.component';
 import { SingleUpcomingHikePostComponent } from './views/single-upcoming-hike-post/single-upcoming-hike-post.component';
 import { SingleAdventurePostComponent } from './views/single-adventure-post/single-adventure-post.component';
+import { IndemnityClauseComponent } from './views/indemnity-clause/indemnity-clause.component';
 
 export const routes: Routes = [
 
@@ -19,7 +20,7 @@ export const routes: Routes = [
     },
 
     {
-        path: 'single-adventure-post',
+        path: 'single-adventure-post/:slug',
         component: SingleAdventurePostComponent
     },
 
@@ -29,13 +30,23 @@ export const routes: Routes = [
     },
 
     {
-        path: 'single-hike',
+        path: 'single-hike/:slug',
         component: SingleUpcomingHikePostComponent
     },
 
     {
         path: 'about',
         component: AboutComponent
+    },
+
+    {
+        path: 'indemnity-agreement',
+        component: IndemnityClauseComponent
+    },
+
+    {
+        path: '**',
+        redirectTo: ''
     }
 
 ];
