@@ -313,7 +313,7 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
   private animatePath(): void {
     const path = document.querySelector('#trailPath') as SVGPathElement;
     console.log("Path:", path);
-    
+
     const lines = path.querySelectorAll('line');
     console.log("Lines:", lines);
 
@@ -323,9 +323,9 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
     // ── 1. DrawSVG — reveal the path progressively ──────────
     tl.from(lines, {
       drawSVG: '0%',      // start invisible
-      duration: 2.0,        // 5 seconds to draw full path
-      ease: 'power2.inOut',
-      stagger: 1.5          // delay between each line segment
+      duration: 0.25,        // 5 seconds to draw full path
+      ease: 'expo.out',
+      stagger: 0.5          // delay between each line segment
     })
 
       // ── 3. Fade in labels after path finishes ─────────────────
