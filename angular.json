@@ -95,7 +95,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "trail-trekkers:build"
+            "buildTarget": "trail-trekkers:build"
           }
         },
         "test": {
