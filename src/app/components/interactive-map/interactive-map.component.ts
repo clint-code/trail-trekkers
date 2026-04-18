@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild, ElementRef, SecurityContext, HostListener } from '@angular/core';
+import { Component, ChangeDetectorRef, OnInit, OnDestroy, AfterViewInit, ViewChild, ElementRef, SecurityContext, HostListener, QueryList } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
@@ -32,6 +32,7 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
   @ViewChild('mapContainer', { static: true }) mapContainer!: ElementRef;
   @ViewChild('svgEl') svgEl!: ElementRef<SVGSVGElement>;
   @ViewChild('zoomLayer') zoomLayer!: ElementRef<SVGGElement>;
+  @ViewChild('trailGroups') trailGroups!: QueryList<ElementRef>;
 
   svgContent: SafeHtml = '';
   svgViewBox = '0 0 2418.725 892.484';
@@ -60,21 +61,21 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
       id: 'longonot',
       lines: ['MT. LONGONOT', '(11th April)'],
       x: 300,
-      y: 400,
+      y: 320,
       fontSize: 30
     },
     {
       id: 'kiima',
       lines: ['KIIMA KIMWE', 'HILL', '(9th May)'],
       x: 880,
-      y: 340,
+      y: 270,
       fontSize: 30
     },
     {
       id: 'gatamaiyu',
       lines: ['GATAMAIYU', 'FOREST', '(13th June)'],
       x: 750,
-      y: 605,
+      y: 555,
       fontSize: 30,
       rotate: -55,
       rotatePivotX: 860,
@@ -84,28 +85,29 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
       id: 'elephant',
       lines: ['ELEPHANT HILL', '(11th July)'],
       x: 1500,
-      y: 350,
+      y: 270,
       fontSize: 30
     },
     {
       id: 'kahunira',
       lines: ['KAHUNIRA', 'WATERFALL', '(8th August)'],
-      x: 1650,
-      y: 605,
+      x: 1580,
+      y: 525,
       fontSize: 30
     },
     {
       id: 'mtkenya',
       lines: ['MT KENYA', '(Sept 23 - 26th)'],
-      x: 2200,
-      y: 520,
+      x: 2100,
+      y: 430,
       fontSize: 35
     }
   ];
 
   constructor(
     private http: HttpClient,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
@@ -126,12 +128,15 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
 
         // Wait for Angular to render injected SVG content
         // before running GSAP
-        setTimeout(() => this.animatePath(), 1000);
+        //setTimeout(() => this.animatePath(), 1000);
+        this.cdr.detectChanges();
+
+        this.animatePath();// ensure view updates before animation
 
       });
   }
 
-  //Wheel zom scoped only to SVG
+  //Wheel zoom scoped only to SVG
 
   private setupWheelZoom(): void {
 
@@ -311,31 +316,76 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
   }
 
   private animatePath(): void {
-    const path = document.querySelector('#trailPath') as SVGPathElement;
-    console.log("Path:", path);
 
-    const lines = path.querySelectorAll('line');
-    console.log("Lines:", lines);
+    const SEGMENT_DURATION = 0.25;
+
+    const groups = this.svgEl.nativeElement.querySelectorAll('g[id^="trailPath"]');
+
+    const master = gsap.timeline();
+
+    groups.forEach((group: Element, index: number) => {
+      const segments = gsap.utils.toArray(group.querySelectorAll("line"));
+      const labels = gsap.utils.toArray(
+        this.svgEl.nativeElement.querySelectorAll(".map-label")
+      );
+
+      const groupTimeline = gsap.timeline();
+
+      gsap.set(segments, { drawSVG: '0%' });
+      gsap.set(labels, { opacity: 0, y: 0 });
+
+      segments.forEach((segment, segmentIndex) => {
+        groupTimeline.to(segment as Element, {
+          drawSVG: '100%',
+          duration: SEGMENT_DURATION,
+          ease: 'power1.out'
+        });
+
+        const mapLabel = labels[segmentIndex];
+
+        console.log('Map label for segment', segmentIndex, ':', mapLabel);
+
+        if (mapLabel) {
+
+          groupTimeline.to(mapLabel, {
+            opacity: 1,
+            y: -4,
+            duration: 0.35,
+            //stagger: 0.35,
+            ease: 'power1.out'
+          }, `-=${SEGMENT_DURATION / 2}`); // start label animation halfway through segment
+        }
+
+      });
+
+      master.add(groupTimeline);
+    });
+
+    //const path = document.querySelector('#trailPath1') as SVGPathElement;
+    //console.log("Path:", path);
+
+    //const lines = path.querySelectorAll('line');
 
     // Master timeline
-    const tl = gsap.timeline({ delay: 1.0 });
+    //const tl = gsap.timeline({ delay: 1.0 });
 
     // ── 1. DrawSVG — reveal the path progressively ──────────
-    tl.from(lines, {
-      drawSVG: '0%',      // start invisible
-      duration: 0.25,        // 5 seconds to draw full path
-      ease: 'expo.out',
-      stagger: 0.5          // delay between each line segment
-    })
+    // tl.from(lines, {
+    //   drawSVG: '0%',
+    //   duration: 0.25,
+    //   ease: 'expo.out',
+    //   stagger: 0.5
+    // })
 
-      // ── 3. Fade in labels after path finishes ─────────────────
-      .to('.map-label', {
-        opacity: 1,
-        y: -4,
-        duration: 0.25,
-        stagger: 0.3,
-        ease: 'power2.out'
-      }, '-=0.5');               // start 0.5s before path finishes
+    // ── 3. Fade in labels after path finishes ─────────────────
+    // .to('.map-label', {
+    //   opacity: 1,
+    //   y: -4,
+    //   duration: 0.25,
+    //   stagger: 0.3,
+    //   ease: 'power2.out'
+    // }, '-=0.5');
+
   }
 
   replayAnimation(): void {
