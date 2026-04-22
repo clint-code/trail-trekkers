@@ -39,6 +39,8 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
   svgContent: SafeHtml = '';
   svgViewBox: string = '';
 
+  private rafPending = false;
+
   //zoom state
   private scale = 1;
   private translateX = 0;
@@ -297,11 +299,16 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
   //helpers
 
   private applyTransform(): void {
-    const g = this.zoomLayer.nativeElement;
-    g.setAttribute(
-      'transform',
-      `translate(${this.translateX}, ${this.translateY}) scale(${this.scale})`
-    );
+    if (this.rafPending) return;
+    this.rafPending = true;
+    requestAnimationFrame(() => {
+      const g = this.zoomLayer.nativeElement;
+      g.setAttribute(
+        'transform',
+        `translate(${this.translateX}, ${this.translateY}) scale(${this.scale})`
+      );
+      this.rafPending = false;
+    });
   }
 
   // Prevent panning outside the SVG bounds
