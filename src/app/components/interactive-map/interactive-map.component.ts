@@ -17,6 +17,7 @@ interface MapLabel {
   rotate?: number;
   rotatePivotX?: number;
   rotatePivotY?: number;
+  link: string;
 }
 
 @Component({
@@ -62,14 +63,16 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
       lines: ['MT. LONGONOT', '(11th April)'],
       x: 300,
       y: 320,
-      fontSize: 30
+      fontSize: 30,
+      link: 'longonot'
     },
     {
       id: 'kiima',
       lines: ['KIIMA KIMWE', 'HILL', '(9th May)'],
       x: 880,
       y: 270,
-      fontSize: 30
+      fontSize: 30,
+      link: 'longonot'
     },
     {
       id: 'gatamaiyu',
@@ -79,28 +82,32 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
       fontSize: 30,
       rotate: -55,
       rotatePivotX: 860,
-      rotatePivotY: 580
+      rotatePivotY: 580,
+      link: 'longonot'
     },
     {
       id: 'elephant',
       lines: ['ELEPHANT HILL', '(11th July)'],
       x: 1500,
       y: 270,
-      fontSize: 30
+      fontSize: 30,
+      link: 'longonot'
     },
     {
       id: 'kahunira',
       lines: ['KAHUNIRA', 'WATERFALL', '(8th August)'],
       x: 1580,
       y: 525,
-      fontSize: 30
+      fontSize: 30,
+      link: 'longonot'
     },
     {
       id: 'mtkenya',
       lines: ['MT KENYA', '(Sept 23 - 26th)'],
       x: 2100,
       y: 430,
-      fontSize: 35
+      fontSize: 35,
+      link: 'longonot'
     }
   ];
 
@@ -122,7 +129,7 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
   }
 
   private loadSvg(): void {
-    this.http.get('assets/svg/svg-map-updated-paths.svg', { responseType: 'text' })
+    this.http.get('assets/svg/svg-map-updated-paths-wider.svg', { responseType: 'text' })
       .subscribe(svgData => {
         const stripped = this.stripSvgWrapper(svgData);
         this.svgContent = this.sanitizer.bypassSecurityTrustHtml(stripped);
