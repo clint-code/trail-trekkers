@@ -41,6 +41,10 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
 
   private rafPending = false;
 
+  //midpoint state variables
+  private lastMidX = 0;
+  private lastMidY = 0;
+
   //zoom state
   private scale = 1;
   private translateX = 0;
@@ -250,7 +254,11 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
       this.translateX = midX - f * (midX - this.translateX);
       this.translateY = midY - f * (midY - this.translateY);
       this.scale = newScale;
-      this.lastPinchDist = dist;
+      this.isPanning = false;
+      //this.lastPinchDist = dist;
+      this.lastPinchDist = this.getPinchDist(e);
+      this.lastMidX = ((e.touches[0].clientX + e.touches[1].clientX) / 2) - rect.left;
+      this.lastMidY = ((e.touches[0].clientY + e.touches[1].clientY) / 2) - rect.top;
 
       this.clampTranslation();
       this.applyTransform();
