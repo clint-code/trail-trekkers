@@ -229,11 +229,23 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
 
   onTouchMove(e: TouchEvent): void {
     e.preventDefault();
-    if (e.touches.length === 1 && this.isPanning) {
-      this.translateX = this.panOriginX + (e.touches[0].clientX - this.panStartX);
-      this.translateY = this.panOriginY + (e.touches[0].clientY - this.panStartY);
-      this.clampTranslation();
-      this.applyTransform();
+
+    // if (e.touches.length === 1 && this.isPanning) {
+    //   this.translateX = this.panOriginX + (e.touches[0].clientX - this.panStartX);
+    //   this.translateY = this.panOriginY + (e.touches[0].clientY - this.panStartY);
+    //   this.clampTranslation();
+    //   this.applyTransform();
+    // }
+    if (e.touches.length === 1) {
+      if (!this.isPanning) {
+        // Re-anchor pan when dropping from 2 fingers to 1
+        this.isPanning = true;
+        this.panStartX = e.touches[0].clientX;
+        this.panStartY = e.touches[0].clientY;
+        this.panOriginX = this.translateX;
+        this.panOriginY = this.translateY;
+        return;
+      }
     }
 
     if (e.touches.length === 2) {
@@ -267,7 +279,7 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
 
   onTouchEnd(): void {
     this.isPanning = false;
-  }
+  };
 
   //Zoom buttons
   zoomIn(): void {
@@ -275,14 +287,14 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
     const centerX = svg.clientWidth / 2;
     const centerY = svg.clientHeight / 2;
     this.zoomAt(centerX, centerY, 1 + this.ZOOM_STEP * 2);
-  }
+  };
 
   zoomOut(): void {
     const svg = this.svgEl.nativeElement;
     const centerX = svg.clientWidth / 2;
     const centerY = svg.clientHeight / 2;
     this.zoomAt(centerX, centerY, 1 - this.ZOOM_STEP * 2);
-  }
+  };
 
   resetZoom(): void {
     this.scale = 1;
