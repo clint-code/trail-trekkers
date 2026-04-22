@@ -35,7 +35,7 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
   @ViewChild('trailGroups') trailGroups!: QueryList<ElementRef>;
 
   svgContent: SafeHtml = '';
-  svgViewBox = '0 0 2418.725 892.484';
+  svgViewBox: string = '';
 
   //zoom state
   private scale = 1;
@@ -129,10 +129,12 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
 
         // Wait for Angular to render injected SVG content
         // before running GSAP
-        //setTimeout(() => this.animatePath(), 1000);
         this.cdr.detectChanges();
 
         this.animatePath();// ensure view updates before animation
+
+        const bbox = this.svgEl.nativeElement.getBBox();
+        this.svgViewBox = `${bbox.x} ${bbox.y} ${bbox.width} ${bbox.height}`;
 
       });
   }
@@ -360,31 +362,6 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
       master.add(groupTimeline);
     });
 
-    //const path = document.querySelector('#trailPath1') as SVGPathElement;
-    //console.log("Path:", path);
-
-    //const lines = path.querySelectorAll('line');
-
-    // Master timeline
-    //const tl = gsap.timeline({ delay: 1.0 });
-
-    // ── 1. DrawSVG — reveal the path progressively ──────────
-    // tl.from(lines, {
-    //   drawSVG: '0%',
-    //   duration: 0.25,
-    //   ease: 'expo.out',
-    //   stagger: 0.5
-    // })
-
-    // ── 3. Fade in labels after path finishes ─────────────────
-    // .to('.map-label', {
-    //   opacity: 1,
-    //   y: -4,
-    //   duration: 0.25,
-    //   stagger: 0.3,
-    //   ease: 'power2.out'
-    // }, '-=0.5');
-
   }
 
   replayAnimation(): void {
@@ -420,8 +397,8 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
     console.log("Split text:", split);
 
     gsap.from(split.chars, {
-      duration: 1,
-      x: 100,
+      duration: 0.55,
+      y: 100,
       autoAlpha: 0,
       stagger: 0.25
     });

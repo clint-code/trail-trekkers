@@ -31,13 +31,15 @@
 
 <div class="map-page max-[720px]:hidden">
   <!-- Replay button -->
-  <button class="replay-btn" (click)="replayAnimation()">↺ Replay</button>
+  <button class="replay-btn font-passion" (click)="replayAnimation()">
+    ↺ Replay Animation
+  </button>
 
   <!-- Zoom controls -->
   <div class="zoom-controls">
-    <button (click)="zoomIn()" title="Zoom in">＋</button>
-    <button (click)="zoomOut()" title="Zoom out">－</button>
-    <button (click)="resetZoom()" title="Reset">↺</button>
+    <button (click)="resetZoom()" class="font-passion" title="Reset">
+      ↺ Reset Map
+    </button>
   </div>
 
   <svg
