@@ -203,6 +203,11 @@ p {
 
 /**interactive map styles**/
 
+.trail-svg {
+  touch-action: none;
+  user-select: none;
+}
+
 .map-page {
   width: 100%;
   //overflow: hidden;
@@ -216,7 +221,6 @@ p {
 }
 
 /**End of Interactive map styles **/
-
 
 @media screen and (max-width: 992px) {
   .home {
@@ -477,7 +481,6 @@ p {
 }
 
 @media screen and (max-width: 500px) {
-
   .hero-section,
   .hikes-title {
     margin-top: 1rem;

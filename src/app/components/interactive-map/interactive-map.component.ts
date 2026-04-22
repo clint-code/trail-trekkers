@@ -18,6 +18,7 @@ interface MapLabel {
   rotatePivotX?: number;
   rotatePivotY?: number;
   link: string;
+  status: string;
 }
 
 @Component({
@@ -61,6 +62,7 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
     {
       id: 'longonot',
       lines: ['MT. LONGONOT', '(11th April)'],
+      status: 'CONQUERED',
       x: 300,
       y: 320,
       fontSize: 30,
@@ -69,6 +71,7 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
     {
       id: 'kiima',
       lines: ['KIIMA KIMWE', 'HILL', '(9th May)'],
+      status: 'NEXT',
       x: 880,
       y: 270,
       fontSize: 30,
@@ -77,6 +80,7 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
     {
       id: 'gatamaiyu',
       lines: ['GATAMAIYU', 'FOREST', '(13th June)'],
+      status: 'PENDING',
       x: 750,
       y: 555,
       fontSize: 30,
@@ -88,6 +92,7 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
     {
       id: 'elephant',
       lines: ['ELEPHANT HILL', '(11th July)'],
+      status: 'PENDING',
       x: 1500,
       y: 270,
       fontSize: 30,
@@ -96,6 +101,7 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
     {
       id: 'kahunira',
       lines: ['KAHUNIRA', 'WATERFALL', '(8th August)'],
+      status: 'PENDING',
       x: 1580,
       y: 525,
       fontSize: 30,
@@ -104,6 +110,7 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
     {
       id: 'mtkenya',
       lines: ['MT KENYA', '(Sept 23 - 26th)'],
+      status: 'PENDING',
       x: 2100,
       y: 430,
       fontSize: 35,
@@ -118,8 +125,7 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit(): void {
-    //    this.loadSvg();
-
+    this.loadSvg();
   }
 
   ngAfterViewInit(): void {

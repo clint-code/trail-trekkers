@@ -29,7 +29,7 @@
   </div>
 </div>
 
-<div class="map-page max-[720px]:hidden">
+<div class="map-page mb-10 mt-10 max-[720px]:hidden">
   <!-- Replay button -->
   <button class="replay-btn font-passion" (click)="replayAnimation()">
     ↺ Replay Animation
@@ -72,6 +72,7 @@
           <text
             style="cursor: pointer"
             *ngFor="let location of label.lines; let i = index"
+            label.status
             [attr.x]="label.x"
             [attr.y]="getLineY(label, i)"
             [attr.font-size]="label.fontSize"
@@ -82,6 +83,7 @@
             text-anchor="middle"
           >
             {{ location }}
+            
           </text>
         </a>
       </g>
