@@ -4,9 +4,9 @@ import { HttpClient } from '@angular/common/http';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 import { gsap } from 'gsap';
-import { MotionPathPlugin, DrawSVGPlugin } from 'gsap/all';
+import { MotionPathPlugin, DrawSVGPlugin, SplitText } from 'gsap/all';
 
-gsap.registerPlugin(DrawSVGPlugin, MotionPathPlugin);
+gsap.registerPlugin(DrawSVGPlugin, MotionPathPlugin, SplitText);
 
 interface MapLabel {
   id: string;
@@ -117,6 +117,7 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.setupWheelZoom();
+    this.splitInstructionText();
     this.loadSvg();
   }
 
@@ -343,8 +344,6 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
 
         const mapLabel = labels[segmentIndex];
 
-        console.log('Map label for segment', segmentIndex, ':', mapLabel);
-
         if (mapLabel) {
 
           groupTimeline.to(mapLabel, {
@@ -410,6 +409,23 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
 
   getLineY(label: MapLabel, lineIndex: number): number {
     return label.y + lineIndex * (label.fontSize * 1.2);
+  }
+
+  splitInstructionText() {
+
+    let split = SplitText.create("splitInstructionText, p", {
+      type: "words, chars"
+    });
+
+    console.log("Split text:", split);
+
+    gsap.from(split.chars, {
+      duration: 1,
+      x: 100,
+      autoAlpha: 0,
+      stagger: 0.25
+    });
+
   }
 
 

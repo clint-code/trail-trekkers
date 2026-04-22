@@ -11,7 +11,8 @@ module.exports = {
       garamondItalic: ['"apple_garamonditalic"', 'serif'],
       passion: ['"passion_oneregular"', 'sans-serif'],
       speakeasy: ['"sf-speakeasy"', 'sans-serif'],
-      maraudersmap: ['"marauders-map"', 'serif']
+      maraudersmap: ['"marauders-map"', 'serif'],
+      ringBearer:['"ringbearer_medium"', 'serif']
     },
   },
   plugins: [],

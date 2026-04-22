@@ -47,6 +47,11 @@
                 "glob": "**/*",
                 "input": "src/assets/fonts/Marauders-Map",
                 "output": "assets/fonts/Marauders-Map"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/assets/fonts/RingBearer",
+                "output": "assets/fonts/RingBearer"
               }
             ],
             "styles": [
@@ -55,9 +60,10 @@
               "src/assets/fonts/Apple-Garamond/stylesheet.css",
               "src/assets/fonts/Passion-One/stylesheet.css",
               "src/assets/fonts/SF-Speakeasy/stylesheet.css",
-              "src/assets/fonts/Marauders-Map/stylesheet.css"
+              "src/assets/fonts/Marauders-Map/stylesheet.css",
+              "src/assets/fonts/RingBearer/stylesheet.css"
             ],
-            "scripts": []
+            "scripts": [ ]
           },
           "configurations": {
             "production": {
@@ -120,7 +126,7 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [ ]
           }
         }
       }

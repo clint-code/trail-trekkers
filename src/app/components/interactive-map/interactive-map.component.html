@@ -1,20 +1,47 @@
-<div class="map-page">
+<div class="compass-section min-[720px]:hidden">
+  <div
+    class="draggable-item absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+    id="compass-icon"
+  >
+    <img
+      src="assets/img/vector-icons/compass.png"
+      class="h-20 w-auto rotating-compass"
+      alt="compass"
+    />
+  </div>
 
-   <!-- Replay button -->
-  <button class="replay-btn" (click)="replayAnimation()">
-    ↺ Replay
-  </button>
+  <div class="instructions">
+    <p class="text-center font-ringBearer text-orange-600 max-[480px]:text-xl">
+      Tilt thine screen, the paths appear,
+    </p>
+
+    <p class="text-center font-ringBearer text-orange-600 max-[480px]:text-xl">
+      What lay hidden, now draws near,
+    </p>
+
+    <p class="text-center font-ringBearer text-orange-600 max-[480px]:text-xl">
+      Hold thy shard of captured light,
+    </p>
+
+    <p class="text-center font-ringBearer text-orange-600 max-[480px]:text-xl">
+      And ancient roads emerge from night.
+    </p>
+  </div>
+</div>
+
+<div class="map-page max-[720px]:hidden">
+  <!-- Replay button -->
+  <button class="replay-btn" (click)="replayAnimation()">↺ Replay</button>
 
   <!-- Zoom controls -->
   <div class="zoom-controls">
-    <button (click)="zoomIn()"  title="Zoom in">＋</button>
+    <button (click)="zoomIn()" title="Zoom in">＋</button>
     <button (click)="zoomOut()" title="Zoom out">－</button>
     <button (click)="resetZoom()" title="Reset">↺</button>
   </div>
 
- 
-<svg
-  #svgEl
+  <svg
+    #svgEl
     [attr.viewBox]="svgViewBox"
     width="100%"
     height="100%"
@@ -26,18 +53,19 @@
     (mouseleave)="onMouseUp()"
     (touchstart)="onTouchStart($event)"
     (touchmove)="onTouchMove($event)"
-    (touchend)="onTouchEnd()">
-
+    (touchend)="onTouchEnd()"
+  >
     <g #zoomLayer>
-
       <!-- Base map injected here — no 2000 lines in template -->
       <g #mapContainer [innerHTML]="svgContent"></g>
 
       <!-- Dynamic red labels on top -->
-      <g *ngFor="let label of labels"
+      <g
+        *ngFor="let label of labels"
         [attr.transform]="getTransform(label)"
         class="map-label"
-        style="opacity: 0">
+        style="opacity: 0"
+      >
         <text
           *ngFor="let location of label.lines; let i = index"
           [attr.x]="label.x"
@@ -47,14 +75,11 @@
           font-weight="700"
           fill="#ed1111"
           letter-spacing="2"
-          text-anchor="middle">
+          text-anchor="middle"
+        >
           {{ location }}
         </text>
       </g>
-
-
     </g>
-
   </svg>
-
 </div>

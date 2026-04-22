@@ -37,7 +37,7 @@ import { Scroll } from '@angular/router';
     PreloaderComponent,
     //ComingSoonComponent,
     HeaderComponent,
-    SingleHikeItemComponent,
+    //SingleHikeItemComponent,
     //TrailWebglMapComponent,
     InteractiveMapComponent,
     FooterComponent,
@@ -99,7 +99,7 @@ export class UpcomingHikesComponent implements OnInit {
   autoRotateIcons() {
 
     gsap.to(".rotating-compass", {
-      duration: 10,
+      duration: 5,
       rotation: 360,
       type: "rotation",
       repeat: -1,
