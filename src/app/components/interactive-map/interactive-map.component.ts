@@ -1,12 +1,12 @@
-import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild, ElementRef, SecurityContext, HostListener } from '@angular/core';
+import { Component, ChangeDetectorRef, OnInit, OnDestroy, AfterViewInit, ViewChild, ElementRef, SecurityContext, HostListener, QueryList } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 import { gsap } from 'gsap';
-import { MotionPathPlugin, DrawSVGPlugin } from 'gsap/all';
+import { MotionPathPlugin, DrawSVGPlugin, SplitText } from 'gsap/all';
 
-gsap.registerPlugin(DrawSVGPlugin, MotionPathPlugin);
+gsap.registerPlugin(DrawSVGPlugin, MotionPathPlugin, SplitText);
 
 interface MapLabel {
   id: string;
@@ -32,9 +32,10 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
   @ViewChild('mapContainer', { static: true }) mapContainer!: ElementRef;
   @ViewChild('svgEl') svgEl!: ElementRef<SVGSVGElement>;
   @ViewChild('zoomLayer') zoomLayer!: ElementRef<SVGGElement>;
+  @ViewChild('trailGroups') trailGroups!: QueryList<ElementRef>;
 
   svgContent: SafeHtml = '';
-  svgViewBox = '0 0 2418.725 892.484';
+  svgViewBox: string = '';
 
   //zoom state
   private scale = 1;
@@ -60,21 +61,21 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
       id: 'longonot',
       lines: ['MT. LONGONOT', '(11th April)'],
       x: 300,
-      y: 400,
+      y: 320,
       fontSize: 30
     },
     {
       id: 'kiima',
       lines: ['KIIMA KIMWE', 'HILL', '(9th May)'],
       x: 880,
-      y: 340,
+      y: 270,
       fontSize: 30
     },
     {
       id: 'gatamaiyu',
       lines: ['GATAMAIYU', 'FOREST', '(13th June)'],
       x: 750,
-      y: 605,
+      y: 555,
       fontSize: 30,
       rotate: -55,
       rotatePivotX: 860,
@@ -84,28 +85,29 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
       id: 'elephant',
       lines: ['ELEPHANT HILL', '(11th July)'],
       x: 1500,
-      y: 350,
+      y: 270,
       fontSize: 30
     },
     {
       id: 'kahunira',
       lines: ['KAHUNIRA', 'WATERFALL', '(8th August)'],
-      x: 1650,
-      y: 605,
+      x: 1580,
+      y: 525,
       fontSize: 30
     },
     {
       id: 'mtkenya',
       lines: ['MT KENYA', '(Sept 23 - 26th)'],
-      x: 2200,
-      y: 520,
+      x: 2100,
+      y: 430,
       fontSize: 35
     }
   ];
 
   constructor(
     private http: HttpClient,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
@@ -115,23 +117,29 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.setupWheelZoom();
+    this.splitInstructionText();
     this.loadSvg();
   }
 
   private loadSvg(): void {
-    this.http.get('assets/svg/svg-map.svg', { responseType: 'text' })
+    this.http.get('assets/svg/svg-map-updated-paths.svg', { responseType: 'text' })
       .subscribe(svgData => {
         const stripped = this.stripSvgWrapper(svgData);
         this.svgContent = this.sanitizer.bypassSecurityTrustHtml(stripped);
 
         // Wait for Angular to render injected SVG content
         // before running GSAP
-        setTimeout(() => this.animatePath(), 1000);
+        this.cdr.detectChanges();
+
+        this.animatePath();// ensure view updates before animation
+
+        const bbox = this.svgEl.nativeElement.getBBox();
+        this.svgViewBox = `${bbox.x} ${bbox.y} ${bbox.width} ${bbox.height}`;
 
       });
   }
 
-  //Wheel zom scoped only to SVG
+  //Wheel zoom scoped only to SVG
 
   private setupWheelZoom(): void {
 
@@ -311,27 +319,49 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
   }
 
   private animatePath(): void {
-    const path = document.querySelector('#trailPath') as SVGPathElement;
-    console.log("Path:", path);
 
-    // Master timeline
-    const tl = gsap.timeline({ delay: 1.0 });
+    const SEGMENT_DURATION = 0.25;
 
-    // ── 1. DrawSVG — reveal the path progressively ──────────
-    tl.from(path, {
-      drawSVG: '0%',      // start invisible
-      duration: 2.5,        // 5 seconds to draw full path
-      ease: 'power2.inOut'
-    })
+    const groups = this.svgEl.nativeElement.querySelectorAll('g[id^="trailPath"]');
 
-      // ── 3. Fade in labels after path finishes ─────────────────
-      .to('.map-label', {
-        opacity: 1,
-        y: -4,
-        duration: 0.25,
-        stagger: 0.3,
-        ease: 'power2.out'
-      }, '-=0.5');               // start 0.5s before path finishes
+    const master = gsap.timeline();
+
+    groups.forEach((group: Element, index: number) => {
+      const segments = gsap.utils.toArray(group.querySelectorAll("line"));
+      const labels = gsap.utils.toArray(
+        this.svgEl.nativeElement.querySelectorAll(".map-label")
+      );
+
+      const groupTimeline = gsap.timeline();
+
+      gsap.set(segments, { drawSVG: '0%' });
+      gsap.set(labels, { opacity: 0, y: 0 });
+
+      segments.forEach((segment, segmentIndex) => {
+        groupTimeline.to(segment as Element, {
+          drawSVG: '100%',
+          duration: SEGMENT_DURATION,
+          ease: 'power1.out'
+        });
+
+        const mapLabel = labels[segmentIndex];
+
+        if (mapLabel) {
+
+          groupTimeline.to(mapLabel, {
+            opacity: 1,
+            y: -4,
+            duration: 0.35,
+            //stagger: 0.35,
+            ease: 'power1.out'
+          }, `-=${SEGMENT_DURATION / 2}`); // start label animation halfway through segment
+        }
+
+      });
+
+      master.add(groupTimeline);
+    });
+
   }
 
   replayAnimation(): void {
@@ -356,6 +386,23 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
 
   getLineY(label: MapLabel, lineIndex: number): number {
     return label.y + lineIndex * (label.fontSize * 1.2);
+  }
+
+  splitInstructionText() {
+
+    let split = SplitText.create("splitInstructionText, p", {
+      type: "words, chars"
+    });
+
+    console.log("Split text:", split);
+
+    gsap.from(split.chars, {
+      duration: 0.55,
+      y: 100,
+      autoAlpha: 0,
+      stagger: 0.25
+    });
+
   }
 
 
