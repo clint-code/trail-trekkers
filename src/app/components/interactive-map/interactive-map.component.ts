@@ -35,6 +35,8 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
   @ViewChild('svgEl') svgEl!: ElementRef<SVGSVGElement>;
   @ViewChild('zoomLayer') zoomLayer!: ElementRef<SVGGElement>;
   @ViewChild('trailGroups') trailGroups!: QueryList<ElementRef>;
+  @ViewChild("cloudIconTop") cloudIcon!: ElementRef;
+  @ViewChild("cloudIconBottom") cloudIconBottom!: ElementRef;
 
   svgContent: SafeHtml = '';
   svgViewBox: string = '';
@@ -138,6 +140,7 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
     this.setupWheelZoom();
     this.splitInstructionText();
     this.loadSvg();
+    this.animateCloud();
   }
 
   @HostListener('window:resize', ['$event'])
@@ -457,6 +460,24 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
       stagger: 0.25
     });
 
+  }
+
+  animateCloud() {
+    gsap.from(this.cloudIcon.nativeElement, {
+      x: 50,
+      duration: 2,
+      ease: 'sine.inOut',
+      yoyo: true,
+      repeat: -1
+    });
+
+    gsap.from(this.cloudIconBottom.nativeElement, {
+      x: -50,
+      duration: 2,
+      ease: 'sine.inOut',
+      yoyo: true,
+      repeat: -1
+    });
   }
 
 
