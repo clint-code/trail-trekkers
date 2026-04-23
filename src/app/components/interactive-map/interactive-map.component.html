@@ -29,7 +29,7 @@
   </div>
 </div>
 
-<div class="map-page max-[720px]:hidden">
+<div class="map-page mb-10 mt-10 max-[720px]:hidden">
   <!-- Replay button -->
   <button class="replay-btn font-passion" (click)="replayAnimation()">
     ↺ Replay Animation
@@ -48,7 +48,7 @@
     width="100%"
     height="100%"
     xmlns="http://www.w3.org/2000/svg"
-    class="trail-svg"
+    class="trail-svg mb-10 mt-5"
     (mousedown)="onMouseDown($event)"
     (mousemove)="onMouseMove($event)"
     (mouseup)="onMouseUp()"
@@ -68,19 +68,24 @@
         class="map-label"
         style="opacity: 0"
       >
-        <text
-          *ngFor="let location of label.lines; let i = index"
-          [attr.x]="label.x"
-          [attr.y]="getLineY(label, i)"
-          [attr.font-size]="label.fontSize"
-          font-family="'marauders-map', serif"
-          font-weight="700"
-          fill="#ed1111"
-          letter-spacing="2"
-          text-anchor="middle"
-        >
-          {{ location }}
-        </text>
+        <a routerLink="/single-hike/`{label.link}`">
+          <text
+            style="cursor: pointer"
+            *ngFor="let location of label.lines; let i = index"
+            label.status
+            [attr.x]="label.x"
+            [attr.y]="getLineY(label, i)"
+            [attr.font-size]="label.fontSize"
+            font-family="'marauders-map', serif"
+            font-weight="700"
+            fill="#ed1111"
+            letter-spacing="2"
+            text-anchor="middle"
+          >
+            {{ location }}
+            
+          </text>
+        </a>
       </g>
     </g>
   </svg>

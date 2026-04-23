@@ -17,6 +17,8 @@ interface MapLabel {
   rotate?: number;
   rotatePivotX?: number;
   rotatePivotY?: number;
+  link: string;
+  status: string;
 }
 
 @Component({
@@ -36,6 +38,12 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
 
   svgContent: SafeHtml = '';
   svgViewBox: string = '';
+
+  private rafPending = false;
+
+  //midpoint state variables
+  private lastMidX = 0;
+  private lastMidY = 0;
 
   //zoom state
   private scale = 1;
@@ -60,47 +68,59 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
     {
       id: 'longonot',
       lines: ['MT. LONGONOT', '(11th April)'],
+      status: 'CONQUERED',
       x: 300,
       y: 320,
-      fontSize: 30
+      fontSize: 30,
+      link: 'longonot'
     },
     {
       id: 'kiima',
       lines: ['KIIMA KIMWE', 'HILL', '(9th May)'],
+      status: 'NEXT',
       x: 880,
       y: 270,
-      fontSize: 30
+      fontSize: 30,
+      link: 'longonot'
     },
     {
       id: 'gatamaiyu',
       lines: ['GATAMAIYU', 'FOREST', '(13th June)'],
+      status: 'PENDING',
       x: 750,
       y: 555,
       fontSize: 30,
       rotate: -55,
       rotatePivotX: 860,
-      rotatePivotY: 580
+      rotatePivotY: 580,
+      link: 'longonot'
     },
     {
       id: 'elephant',
       lines: ['ELEPHANT HILL', '(11th July)'],
+      status: 'PENDING',
       x: 1500,
       y: 270,
-      fontSize: 30
+      fontSize: 30,
+      link: 'longonot'
     },
     {
       id: 'kahunira',
       lines: ['KAHUNIRA', 'WATERFALL', '(8th August)'],
+      status: 'PENDING',
       x: 1580,
       y: 525,
-      fontSize: 30
+      fontSize: 30,
+      link: 'longonot'
     },
     {
       id: 'mtkenya',
       lines: ['MT KENYA', '(Sept 23 - 26th)'],
+      status: 'PENDING',
       x: 2100,
       y: 430,
-      fontSize: 35
+      fontSize: 35,
+      link: 'longonot'
     }
   ];
 
@@ -111,8 +131,7 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit(): void {
-    //    this.loadSvg();
-
+    this.loadSvg();
   }
 
   ngAfterViewInit(): void {
@@ -210,11 +229,23 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
 
   onTouchMove(e: TouchEvent): void {
     e.preventDefault();
-    if (e.touches.length === 1 && this.isPanning) {
-      this.translateX = this.panOriginX + (e.touches[0].clientX - this.panStartX);
-      this.translateY = this.panOriginY + (e.touches[0].clientY - this.panStartY);
-      this.clampTranslation();
-      this.applyTransform();
+
+    // if (e.touches.length === 1 && this.isPanning) {
+    //   this.translateX = this.panOriginX + (e.touches[0].clientX - this.panStartX);
+    //   this.translateY = this.panOriginY + (e.touches[0].clientY - this.panStartY);
+    //   this.clampTranslation();
+    //   this.applyTransform();
+    // }
+    if (e.touches.length === 1) {
+      if (!this.isPanning) {
+        // Re-anchor pan when dropping from 2 fingers to 1
+        this.isPanning = true;
+        this.panStartX = e.touches[0].clientX;
+        this.panStartY = e.touches[0].clientY;
+        this.panOriginX = this.translateX;
+        this.panOriginY = this.translateY;
+        return;
+      }
     }
 
     if (e.touches.length === 2) {
@@ -235,7 +266,11 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
       this.translateX = midX - f * (midX - this.translateX);
       this.translateY = midY - f * (midY - this.translateY);
       this.scale = newScale;
-      this.lastPinchDist = dist;
+      this.isPanning = false;
+      //this.lastPinchDist = dist;
+      this.lastPinchDist = this.getPinchDist(e);
+      this.lastMidX = ((e.touches[0].clientX + e.touches[1].clientX) / 2) - rect.left;
+      this.lastMidY = ((e.touches[0].clientY + e.touches[1].clientY) / 2) - rect.top;
 
       this.clampTranslation();
       this.applyTransform();
@@ -244,7 +279,7 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
 
   onTouchEnd(): void {
     this.isPanning = false;
-  }
+  };
 
   //Zoom buttons
   zoomIn(): void {
@@ -252,14 +287,14 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
     const centerX = svg.clientWidth / 2;
     const centerY = svg.clientHeight / 2;
     this.zoomAt(centerX, centerY, 1 + this.ZOOM_STEP * 2);
-  }
+  };
 
   zoomOut(): void {
     const svg = this.svgEl.nativeElement;
     const centerX = svg.clientWidth / 2;
     const centerY = svg.clientHeight / 2;
     this.zoomAt(centerX, centerY, 1 - this.ZOOM_STEP * 2);
-  }
+  };
 
   resetZoom(): void {
     this.scale = 1;
@@ -284,11 +319,16 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
   //helpers
 
   private applyTransform(): void {
-    const g = this.zoomLayer.nativeElement;
-    g.setAttribute(
-      'transform',
-      `translate(${this.translateX}, ${this.translateY}) scale(${this.scale})`
-    );
+    if (this.rafPending) return;
+    this.rafPending = true;
+    requestAnimationFrame(() => {
+      const g = this.zoomLayer.nativeElement;
+      g.setAttribute(
+        'transform',
+        `translate(${this.translateX}, ${this.translateY}) scale(${this.scale})`
+      );
+      this.rafPending = false;
+    });
   }
 
   // Prevent panning outside the SVG bounds
