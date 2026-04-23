@@ -335,14 +335,14 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
   private applyTransform(): void {
     if (this.rafPending) return;
     this.rafPending = true;
-    requestAnimationFrame(() => {
-      const g = this.zoomLayer.nativeElement;
-      g.setAttribute(
-        'transform',
-        `translate(${this.translateX}, ${this.translateY}) scale(${this.scale})`
-      );
-      this.rafPending = false;
-    });
+    // requestAnimationFrame(() => {
+    //   const g = this.zoomLayer.nativeElement;
+    //   g.setAttribute(
+    //     'transform',
+    //     `translate(${this.translateX}, ${this.translateY}) scale(${this.scale})`
+    //   );
+    //   this.rafPending = false;
+    // });
   }
 
   // Prevent panning outside the SVG bounds
@@ -451,7 +451,7 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
     console.log("Split text:", split);
 
     gsap.from(split.chars, {
-      duration: 0.55,
+      duration: 0.35,
       y: 100,
       autoAlpha: 0,
       stagger: 0.25

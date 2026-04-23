@@ -29,17 +29,29 @@
   </div>
 </div>
 
-<div class="map-page mb-10 mt-10 max-[720px]:hidden">
+<div class="map-page relative mb-10 mt-10 max-[720px]:hidden">
   <!-- Replay button -->
   <button class="replay-btn font-passion" (click)="replayAnimation()">
     ↺ Replay Animation
   </button>
 
   <!-- Zoom controls -->
-  <div class="zoom-controls">
+  <!-- <div class="zoom-controls">
     <button (click)="resetZoom()" class="font-passion" title="Reset">
       ↺ Reset Map
     </button>
+  </div> -->
+
+
+  <div
+    class="absolute top-7 right-0"
+    id="clouds-icon"
+  >
+    <img
+      src="assets/img/vector-icons/clouds.png"
+      class="h-auto w-auto"
+      alt="clouds"
+    />
   </div>
 
   <svg
@@ -49,15 +61,8 @@
     height="100%"
     xmlns="http://www.w3.org/2000/svg"
     class="trail-svg mb-10 mt-5"
-    (mousedown)="onMouseDown($event)"
-    (mousemove)="onMouseMove($event)"
-    (mouseup)="onMouseUp()"
-    (mouseleave)="onMouseUp()"
-    (touchstart)="onTouchStart($event)"
-    (touchmove)="onTouchMove($event)"
-    (touchend)="onTouchEnd()"
   >
-    <g #zoomLayer>
+    <g>
       <!-- Base map injected here — no 2000 lines in template -->
       <g #mapContainer [innerHTML]="svgContent"></g>
 
@@ -89,4 +94,16 @@
       </g>
     </g>
   </svg>
+
+  <div
+    class="absolute -bottom-3 left-0"
+    id="clouds-icon"
+  >
+    <img
+      src="assets/img/vector-icons/clouds.png"
+      class="h-auto w-auto"
+      alt="clouds"
+    />
+  </div>
+
 </div>
