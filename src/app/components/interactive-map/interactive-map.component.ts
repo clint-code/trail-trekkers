@@ -131,13 +131,27 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit(): void {
-    this.loadSvg();
+    //this.loadSvg();
   }
 
   ngAfterViewInit(): void {
     this.setupWheelZoom();
     this.splitInstructionText();
     this.loadSvg();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event): void {
+    this.loadSvg();
+    console.log('window resized');
+  }
+
+  @HostListener('window:orientationchange', ['$event'])
+  onOrientationChange(event: Event): void {
+    setTimeout(() => {
+      this.loadSvg();
+      console.log('window orientation changed');
+    }, 100);
   }
 
   private loadSvg(): void {
