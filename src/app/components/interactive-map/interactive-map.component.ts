@@ -19,6 +19,8 @@ interface MapLabel {
   rotatePivotY?: number;
   link: string;
   status: string;
+  iconPath?: string;
+  iconAlt?: string;
 }
 
 @Component({
@@ -66,65 +68,93 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
   private panOriginX = 0;
   private panOriginY = 0;
 
+  //Map Labels
+  selectedLabel: MapLabel | null = null;
+
   labels: MapLabel[] = [
     {
       id: 'longonot',
       lines: ['MT. LONGONOT', '(11th April)'],
-      status: 'CONQUERED',
+      status: 'CONQUERED!',
       x: 300,
       y: 320,
       fontSize: 30,
-      link: 'longonot'
+      link: 'longonot',
+      iconPath: 'assets/img/vector-icons/hiking-bag.png',
+      iconAlt: 'Hiking Bag'
     },
     {
       id: 'kiima',
-      lines: ['KIIMA KIMWE', 'HILL', '(9th May)'],
-      status: 'NEXT',
+      lines: ['KIIMA KIMWE HILL', '(9th May)'],
+      status: 'NEXT HIKE!',
       x: 880,
       y: 270,
       fontSize: 30,
-      link: 'longonot'
+      link: 'longonot',
+      iconPath: 'assets/img/vector-icons/compass.png',
+      iconAlt: 'compass'
     },
     {
       id: 'gatamaiyu',
-      lines: ['GATAMAIYU', 'FOREST', '(13th June)'],
-      status: 'PENDING',
-      x: 750,
-      y: 555,
+      lines: ['GATAMAIYU FOREST', '(13th June)'],
+      status: 'COMING SOON!',
+      x: 700,
+      y: 645,
       fontSize: 30,
       rotate: -55,
       rotatePivotX: 860,
       rotatePivotY: 580,
-      link: 'longonot'
+      link: 'longonot',
+      iconPath: 'assets/img/vector-icons/boot-icon.png',
+      iconAlt: 'boot-icon'
     },
     {
       id: 'elephant',
       lines: ['ELEPHANT HILL', '(11th July)'],
-      status: 'PENDING',
+      status: 'COMING SOONER!',
       x: 1500,
       y: 270,
       fontSize: 30,
-      link: 'longonot'
+      link: 'longonot',
+      iconPath: 'assets/img/vector-icons/map-clouds.png',
+      iconAlt: 'clouds-icon'
     },
     {
       id: 'kahunira',
-      lines: ['KAHUNIRA', 'WATERFALL', '(8th August)'],
-      status: 'PENDING',
-      x: 1580,
-      y: 525,
+      lines: ['KAHUNIRA FALLS', '(8th August)'],
+      status: 'COMING SOONEST!',
+      x: 1500,
+      y: 605,
       fontSize: 30,
-      link: 'longonot'
+      link: 'longonot',
+      iconPath: 'assets/img/vector-icons/hiking-bag.png',
+      iconAlt: 'hiking-bag'
     },
     {
       id: 'mtkenya',
-      lines: ['MT KENYA', '(Sept 23 - 26th)'],
-      status: 'PENDING',
+      lines: ['MT. KENYA', '(Sept 23 - 26th)'],
+      status: 'COMING SOONEST...EST!',
       x: 2100,
       y: 430,
       fontSize: 35,
-      link: 'longonot'
+      link: 'longonot',
+      iconPath: 'assets/img/vector-icons/mountain.png',
+      iconAlt: 'mountain'
     }
   ];
+
+  isModalOpen: boolean = false;
+
+  openModal(label: MapLabel): void {
+    console.log('label', label);
+    this.isModalOpen = true;
+    this.selectedLabel = label;
+  }
+
+  closeModal(): void {
+    this.isModalOpen = false;
+    this.selectedLabel = null;
+  }
 
   constructor(
     private http: HttpClient,

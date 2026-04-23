@@ -31,7 +31,7 @@
 
 <div class="map-page relative mb-10 mt-10 max-[720px]:hidden">
   <!-- Replay button -->
-  <button class="replay-btn font-passion" (click)="replayAnimation()">
+  <button class="ml-5 replay-btn font-passion" (click)="replayAnimation()">
     ↺ Replay Animation
   </button>
 
@@ -46,6 +46,18 @@
   <div
     #cloudIconTop
     class="absolute top-5 right-1/4"
+  >
+    <img
+      src="assets/img/vector-icons/clouds.png"
+      class="h-auto w-auto"
+      alt="clouds"
+    />
+  </div>
+
+  <div
+   #cloudIconBottom
+    class="absolute -bottom-3 left-20"
+    id="clouds-icon"
   >
     <img
       src="assets/img/vector-icons/clouds.png"
@@ -72,8 +84,8 @@
         [attr.transform]="getTransform(label)"
         class="map-label"
         style="opacity: 0"
+        (click)="openModal(label)"
       >
-        <a routerLink="/single-hike/`{label.link}`">
           <text
             style="cursor: pointer"
             *ngFor="let location of label.lines; let i = index"
@@ -90,21 +102,60 @@
             {{ location }}
             
           </text>
-        </a>
+        
       </g>
     </g>
   </svg>
+  
+  <!-- Modal -->
+<div 
+  *ngIf="isModalOpen && selectedLabel" 
+  class="modal-overlay relative"
+  (click)="closeModal()"
+>
+  <div class="modal-content" (click)="$event.stopPropagation()">
 
-  <div
-   #cloudIconBottom
-    class="absolute -bottom-3 left-20"
-    id="clouds-icon"
-  >
-    <img
-      src="assets/img/vector-icons/clouds.png"
-      class="h-auto w-auto"
-      alt="clouds"
-    />
+    <button class="close-btn" (click)="closeModal()">×</button>
+    
+    <div class="absolute bottom-1 right-2">
+        <img
+          src="{{selectedLabel.iconPath}}"
+          class="h-14 w-auto"
+          alt="{{selectedLabel.iconAlt}}"
+        />
+    </div>
+    
+    <h2 class="font-speakeasy text-[#ed1111] text-3xl">
+      {{ selectedLabel.lines[0] }}
+    </h2>
+
+    <p class="subtitle font-maraudersmap text-[#ed1111] text-xl" *ngIf="selectedLabel.lines.length > 1">
+      {{ selectedLabel.lines.slice(1).join(' ') }}
+    </p>
+    
+    <div class="modal-body">
+      <p class="text-base font-maraudersmap">
+        Sasumua Dam, the vital water source for Nairobi, is a 
+        hiker’s paradise, famous for its gorgeous vista of the Aberdare ranges, 
+      </p>
+
+      <div class="status-badge" 
+       [ngClass]="{
+        'conquered': selectedLabel.status === 'CONQUERED!',
+        'next': selectedLabel.status === 'NEXT HIKE!',
+        'pending': selectedLabel.status === 'COMING SOON!' ||
+                   selectedLabel.status === 'COMING SOONER!' ||
+                   selectedLabel.status === 'COMING SOONEST!' ||
+                   selectedLabel.status === 'COMING SOONEST...EST!'
+        }">
+      <p class="text-white mb-0 font-maraudersmap text-base">
+        {{ selectedLabel.status }}
+      </p>
+    </div>
+
+    </div>
+    
   </div>
+</div>
 
 </div>
