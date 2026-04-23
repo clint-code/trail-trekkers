@@ -80,8 +80,8 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
       y: 320,
       fontSize: 30,
       link: 'longonot',
-      iconPath: 'assets/img/vector-icons/hiking-bag.png',
-      iconAlt: 'Hiking Bag'
+      iconPath: 'assets/img/map-assets/1x/mt-longonot.png',
+      iconAlt: 'mt-longonot'
     },
     {
       id: 'kiima',
@@ -91,8 +91,8 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
       y: 270,
       fontSize: 30,
       link: 'longonot',
-      iconPath: 'assets/img/vector-icons/compass.png',
-      iconAlt: 'compass'
+      iconPath: 'assets/img/map-assets/1x/kiima-kimwe-hill.png',
+      iconAlt: 'kiima-kimwe-hill'
     },
     {
       id: 'gatamaiyu',
@@ -105,8 +105,8 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
       rotatePivotX: 860,
       rotatePivotY: 580,
       link: 'longonot',
-      iconPath: 'assets/img/vector-icons/boot-icon.png',
-      iconAlt: 'boot-icon'
+      iconPath: 'assets/img/map-assets/1x/gatamaiyu-forest.png',
+      iconAlt: 'gatamaiyu-forest'
     },
     {
       id: 'elephant',
@@ -116,8 +116,8 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
       y: 270,
       fontSize: 30,
       link: 'longonot',
-      iconPath: 'assets/img/vector-icons/map-clouds.png',
-      iconAlt: 'clouds-icon'
+      iconPath: 'assets/img/map-assets/1x/elephant-hill.png',
+      iconAlt: 'elephant-hill'
     },
     {
       id: 'kahunira',
@@ -127,8 +127,8 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
       y: 605,
       fontSize: 30,
       link: 'longonot',
-      iconPath: 'assets/img/vector-icons/hiking-bag.png',
-      iconAlt: 'hiking-bag'
+      iconPath: 'assets/img/map-assets/1x/kahunira-falls.png',
+      iconAlt: 'kahunira-falls'
     },
     {
       id: 'mtkenya',
@@ -138,8 +138,8 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
       y: 430,
       fontSize: 35,
       link: 'longonot',
-      iconPath: 'assets/img/vector-icons/mountain.png',
-      iconAlt: 'mountain'
+      iconPath: 'assets/img/map-assets/1x/mt-kenya.png',
+      iconAlt: 'mt-kenya'
     }
   ];
 

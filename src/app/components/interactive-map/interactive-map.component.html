@@ -117,10 +117,10 @@
 
     <button class="close-btn" (click)="closeModal()">×</button>
     
-    <div class="absolute bottom-1 right-2">
+    <div class="absolute bottom-4 right-4">
         <img
           src="{{selectedLabel.iconPath}}"
-          class="h-14 w-auto"
+          class="h-24 w-auto"
           alt="{{selectedLabel.iconAlt}}"
         />
     </div>
@@ -148,8 +148,8 @@
                    selectedLabel.status === 'COMING SOONEST!' ||
                    selectedLabel.status === 'COMING SOONEST...EST!'
         }">
-      <p class="text-white mb-0 font-maraudersmap text-base">
-        {{ selectedLabel.status }}
+      <p class="text-white mb-0 font-maraudersmap text-base cursor-pointer">
+        {{ selectedLabel.status }} 
       </p>
     </div>
 
