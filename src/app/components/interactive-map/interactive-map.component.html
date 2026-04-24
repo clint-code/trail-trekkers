@@ -32,7 +32,8 @@
 <div class="map-page relative mb-10 mt-10 max-[720px]:hidden">
   <!-- Replay button -->
   <button class="ml-5 replay-btn font-passion" (click)="replayAnimation()">
-    ↺ Replay Animation
+    <fa-icon [icon]="'arrow-rotate-right'" class="mr-2"></fa-icon> 
+    <span >Replay Animation</span>
   </button>
 
   <!-- Zoom controls -->
@@ -107,6 +108,18 @@
     </g>
   </svg>
   
+  <div
+    class="absolute bottom-3 right-5"
+  >
+    <span class="bg-orange-600 p-4 rounded-full cursor-pointer" (click)="scrollTop()">
+      <fa-icon 
+        [icon]="'circle-arrow-up'" 
+        class="text-white text-xl">
+      </fa-icon> 
+    </span>
+
+  </div>
+
   <!-- Modal -->
 <div 
   *ngIf="isModalOpen && selectedLabel" 
@@ -148,10 +161,15 @@
                    selectedLabel.status === 'COMING SOONEST!' ||
                    selectedLabel.status === 'COMING SOONEST...EST!'
         }">
-      <p class="text-white mb-0 font-maraudersmap text-base cursor-pointer">
-        {{ selectedLabel.status }} 
-      </p>
-    </div>
+        <p class="text-white mb-0 font-maraudersmap text-base cursor-pointer">
+          {{ selectedLabel.status }} 
+
+          <fa-icon 
+            [icon]="'circle-arrow-right'" 
+            class="text-white text-xl">
+          </fa-icon>
+        </p>
+      </div>
 
     </div>
     

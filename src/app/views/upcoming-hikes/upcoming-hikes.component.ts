@@ -114,7 +114,7 @@ export class UpcomingHikesComponent implements OnInit {
 
     Draggable.create(items, {
       type: 'rotation',
-      bounds: '.hikes-title',
+      bounds: '.compass-section',
       inertia: true
     });
 

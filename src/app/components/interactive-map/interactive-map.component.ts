@@ -6,6 +6,9 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { gsap } from 'gsap';
 import { MotionPathPlugin, DrawSVGPlugin, SplitText } from 'gsap/all';
 
+import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faCircleArrowUp, faCircleArrowRight, faArrowRotateRight } from '@fortawesome/free-solid-svg-icons';
+
 gsap.registerPlugin(DrawSVGPlugin, MotionPathPlugin, SplitText);
 
 interface MapLabel {
@@ -26,7 +29,10 @@ interface MapLabel {
 @Component({
   selector: 'app-interactive-map',
   standalone: true,
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    FontAwesomeModule
+  ],
   templateUrl: './interactive-map.component.html',
   styleUrl: './interactive-map.component.css'
 })
@@ -41,6 +47,7 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
   @ViewChild("cloudIconBottom") cloudIconBottom!: ElementRef;
 
   svgContent: SafeHtml = '';
+  //svgViewBox: string = '0 0 2418.725 892.484';
   svgViewBox: string = '';
 
   private rafPending = false;
@@ -159,8 +166,15 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
   constructor(
     private http: HttpClient,
     private sanitizer: DomSanitizer,
-    private cdr: ChangeDetectorRef
-  ) { }
+    private cdr: ChangeDetectorRef,
+    private library: FaIconLibrary
+  ) {
+    this.library.addIcons(
+      faCircleArrowUp,
+      faCircleArrowRight,
+      faArrowRotateRight
+    );
+  }
 
   ngOnInit(): void {
     //this.loadSvg();
@@ -185,6 +199,13 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
       this.loadSvg();
       console.log('window orientation changed');
     }, 100);
+  }
+
+  scrollTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   }
 
   private loadSvg(): void {
