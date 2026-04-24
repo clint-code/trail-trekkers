@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef, OnInit, OnDestroy, AfterViewInit, ViewChild, ElementRef, SecurityContext, HostListener, QueryList } from '@angular/core';
+import { Component, ChangeDetectorRef, OnInit, Input, AfterViewInit, ViewChild, ElementRef, HostListener, QueryList } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
@@ -45,6 +45,14 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
   @ViewChild('trailGroups') trailGroups!: QueryList<ElementRef>;
   @ViewChild("cloudIconTop") cloudIcon!: ElementRef;
   @ViewChild("cloudIconBottom") cloudIconBottom!: ElementRef;
+
+  @Input() hikeMonth: string = '';
+  @Input() hikeDate: string = '';
+  @Input() hikeTitle: string = '';
+  @Input() summary: string = '';
+  @Input() hikeImageUrl: string = '';
+  @Input() hikeImageAlt: string = '';
+  @Input() hikePostUrl: string = '';
 
   svgContent: SafeHtml = '';
   //svgViewBox: string = '0 0 2418.725 892.484';
@@ -177,7 +185,6 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    //this.loadSvg();
   }
 
   ngAfterViewInit(): void {
@@ -224,6 +231,117 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
         this.svgViewBox = `${bbox.x} ${bbox.y} ${bbox.width} ${bbox.height}`;
 
       });
+  }
+
+  // Removes the outer <svg ...> and </svg> tags
+  // so we can embed the paths inside our own SVG with viewBox control
+  private stripSvgWrapper(svg: string): string {
+    return svg
+      .replace(/<svg[^>]*>/, '')
+      .replace(/<\/svg>/, '');
+  }
+
+  private animatePath(): void {
+
+    const SEGMENT_DURATION = 0.25;
+
+    const groups = this.svgEl.nativeElement.querySelectorAll('g[id^="trailPath"]');
+
+    const master = gsap.timeline();
+
+    groups.forEach((group: Element, index: number) => {
+      const segments = gsap.utils.toArray(group.querySelectorAll("line"));
+      const labels = gsap.utils.toArray(
+        this.svgEl.nativeElement.querySelectorAll(".map-label")
+      );
+
+      const groupTimeline = gsap.timeline();
+
+      gsap.set(segments, { drawSVG: '0%' });
+      gsap.set(labels, { opacity: 0, y: 0 });
+
+      segments.forEach((segment, segmentIndex) => {
+        groupTimeline.to(segment as Element, {
+          drawSVG: '100%',
+          duration: SEGMENT_DURATION,
+          ease: 'power1.out'
+        });
+
+        const mapLabel = labels[segmentIndex];
+
+        if (mapLabel) {
+
+          groupTimeline.to(mapLabel, {
+            opacity: 1,
+            y: -4,
+            duration: 0.35,
+            //stagger: 0.35,
+            ease: 'power1.out'
+          }, `-=${SEGMENT_DURATION / 2}`); // start label animation halfway through segment
+        }
+
+      });
+
+      master.add(groupTimeline);
+    });
+
+  }
+
+  replayAnimation(): void {
+    const path = document.querySelector('#trailPath') as SVGPathElement;
+
+    // Reset everything first
+    gsap.set(path, { drawSVG: '0%' });
+    gsap.set('.map-label', { opacity: 0, y: 0 });
+
+    // Re-run after reset
+    setTimeout(() => this.animatePath(), 100);
+
+  }
+
+  // Helper — builds the transform string only when rotation is defined
+  getTransform(label: MapLabel): string {
+    if (label.rotate !== undefined) {
+      return `rotate(${label.rotate}, ${label.rotatePivotX}, ${label.rotatePivotY})`;
+    }
+    return '';
+  }
+
+  getLineY(label: MapLabel, lineIndex: number): number {
+    return label.y + lineIndex * (label.fontSize * 1.2);
+  }
+
+  splitInstructionText() {
+
+    let split = SplitText.create("splitInstructionText, p", {
+      type: "words, chars"
+    });
+
+    gsap.from(split.chars, {
+      duration: 0.35,
+      y: 100,
+      autoAlpha: 0,
+      stagger: 0.25
+    });
+
+  }
+
+  animateCloud() {
+    gsap.from(this.cloudIcon.nativeElement, {
+      x: 50,
+      duration: 2,
+      ease: 'sine.inOut',
+      yoyo: true,
+      repeat: -1
+    });
+
+    gsap.from(this.cloudIconBottom.nativeElement, {
+      x: -50,
+      duration: 2,
+      ease: 'sine.inOut',
+      yoyo: true,
+      repeat: -1
+    });
   }
 
   //Wheel zoom scoped only to SVG
@@ -416,120 +534,6 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
     return Math.hypot(dx, dy);
   }
   //end of helpers
-
-
-  // Removes the outer <svg ...> and </svg> tags
-  // so we can embed the paths inside our own SVG with viewBox control
-  private stripSvgWrapper(svg: string): string {
-    return svg
-      .replace(/<svg[^>]*>/, '')
-      .replace(/<\/svg>/, '');
-  }
-
-  private animatePath(): void {
-
-    const SEGMENT_DURATION = 0.25;
-
-    const groups = this.svgEl.nativeElement.querySelectorAll('g[id^="trailPath"]');
-
-    const master = gsap.timeline();
-
-    groups.forEach((group: Element, index: number) => {
-      const segments = gsap.utils.toArray(group.querySelectorAll("line"));
-      const labels = gsap.utils.toArray(
-        this.svgEl.nativeElement.querySelectorAll(".map-label")
-      );
-
-      const groupTimeline = gsap.timeline();
-
-      gsap.set(segments, { drawSVG: '0%' });
-      gsap.set(labels, { opacity: 0, y: 0 });
-
-      segments.forEach((segment, segmentIndex) => {
-        groupTimeline.to(segment as Element, {
-          drawSVG: '100%',
-          duration: SEGMENT_DURATION,
-          ease: 'power1.out'
-        });
-
-        const mapLabel = labels[segmentIndex];
-
-        if (mapLabel) {
-
-          groupTimeline.to(mapLabel, {
-            opacity: 1,
-            y: -4,
-            duration: 0.35,
-            //stagger: 0.35,
-            ease: 'power1.out'
-          }, `-=${SEGMENT_DURATION / 2}`); // start label animation halfway through segment
-        }
-
-      });
-
-      master.add(groupTimeline);
-    });
-
-  }
-
-  replayAnimation(): void {
-    const path = document.querySelector('#trailPath') as SVGPathElement;
-
-    // Reset everything first
-    gsap.set(path, { drawSVG: '0%' });
-    gsap.set('.map-label', { opacity: 0, y: 0 });
-
-    // Re-run after reset
-    setTimeout(() => this.animatePath(), 100);
-
-  }
-
-  // Helper — builds the transform string only when rotation is defined
-  getTransform(label: MapLabel): string {
-    if (label.rotate !== undefined) {
-      return `rotate(${label.rotate}, ${label.rotatePivotX}, ${label.rotatePivotY})`;
-    }
-    return '';
-  }
-
-  getLineY(label: MapLabel, lineIndex: number): number {
-    return label.y + lineIndex * (label.fontSize * 1.2);
-  }
-
-  splitInstructionText() {
-
-    let split = SplitText.create("splitInstructionText, p", {
-      type: "words, chars"
-    });
-
-    console.log("Split text:", split);
-
-    gsap.from(split.chars, {
-      duration: 0.35,
-      y: 100,
-      autoAlpha: 0,
-      stagger: 0.25
-    });
-
-  }
-
-  animateCloud() {
-    gsap.from(this.cloudIcon.nativeElement, {
-      x: 50,
-      duration: 2,
-      ease: 'sine.inOut',
-      yoyo: true,
-      repeat: -1
-    });
-
-    gsap.from(this.cloudIconBottom.nativeElement, {
-      x: -50,
-      duration: 2,
-      ease: 'sine.inOut',
-      yoyo: true,
-      repeat: -1
-    });
-  }
 
 
 }
