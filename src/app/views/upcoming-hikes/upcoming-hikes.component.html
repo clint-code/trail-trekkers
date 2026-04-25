@@ -23,39 +23,48 @@
   </div>
 
   <div class="compass-section min-[720px]:hidden">
-      <div
-        class="draggable-item absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-        id="compass-icon"
-      >
-        <img
-          src="assets/img/vector-icons/compass.png"
-          class="h-20 w-auto rotating-compass"
-          alt="compass"
-        />
-      </div>
-
-      <div class="instructions">
-        <p class="text-center font-ringBearer text-orange-600 max-[480px]:text-xl">
-          Tilt thine screen, the paths appear,
-        </p>
-
-        <p class="text-center font-ringBearer text-orange-600 max-[480px]:text-xl">
-          What lay hidden, now draws near,
-        </p>
-
-        <p class="text-center font-ringBearer text-orange-600 max-[480px]:text-xl">
-          Hold thy shard of captured light,
-        </p>
-
-        <p class="text-center font-ringBearer text-orange-600 max-[480px]:text-xl">
-          And ancient roads emerge from night.
-        </p>
-      </div>
+    <div
+      class="draggable-item absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+      id="compass-icon"
+    >
+      <img
+        src="assets/img/vector-icons/compass.png"
+        class="h-20 w-auto rotating-compass"
+        alt="compass"
+      />
     </div>
 
-  <div class="hike-posts-section mt-10 max-[400px]:mt-10">
+    <div class="instructions">
+      <p
+        class="text-center font-ringBearer text-orange-600 max-[480px]:text-xl"
+      >
+        Tilt thine screen, the paths appear,
+      </p>
 
+      <p
+        class="text-center font-ringBearer text-orange-600 max-[480px]:text-xl"
+      >
+        What lay hidden, now draws near,
+      </p>
+
+      <p
+        class="text-center font-ringBearer text-orange-600 max-[480px]:text-xl"
+      >
+        Hold thy shard of captured light,
+      </p>
+
+      <p
+        class="text-center font-ringBearer text-orange-600 max-[480px]:text-xl"
+      >
+        And ancient roads emerge from night.
+      </p>
+    </div>
+  </div>
+
+  <div class="hike-posts-section mt-10 max-[400px]:mt-10">
     <app-interactive-map
+      *ngIf="!loadingContent"
+      [labels]="hikingLocations"
     ></app-interactive-map>
 
     <!-- <div
@@ -80,7 +89,6 @@
         class="border-t-2 border-green-900 mt-6 w-full"
       />
     </div> -->
-
   </div>
 </div>
 

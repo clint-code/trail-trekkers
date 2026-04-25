@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+import { MapLabel } from '../../utils/map-label.interface';
+
 import { environment } from '../../../environments/environment.prod';
 
 @Injectable({
@@ -29,6 +31,10 @@ export class AllContentService {
 
   getHikePosts(): Observable<any[]> {
     return this.http.get<any[]>("/assets/data/hike-posts.json");
+  }
+
+  getLocationPosts(): Observable<MapLabel[]> {
+    return this.http.get<MapLabel[]>(`${environment.contentRoot}upcoming_hikes`);
   }
 
   getAllUpcomingHikes(): Observable<any[]> {

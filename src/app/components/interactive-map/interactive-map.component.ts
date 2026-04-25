@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
+import { MapLabel } from '../../utils/map-label.interface';
+
 import { gsap } from 'gsap';
 import { MotionPathPlugin, DrawSVGPlugin, SplitText } from 'gsap/all';
 
@@ -10,21 +12,6 @@ import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontaweso
 import { faCircleArrowUp, faCircleArrowRight, faArrowRotateRight } from '@fortawesome/free-solid-svg-icons';
 
 gsap.registerPlugin(DrawSVGPlugin, MotionPathPlugin, SplitText);
-
-interface MapLabel {
-  id: string;
-  lines: string[];
-  x: number;
-  y: number;
-  fontSize: number;
-  rotate?: number;
-  rotatePivotX?: number;
-  rotatePivotY?: number;
-  link: string;
-  status: string;
-  iconPath?: string;
-  iconAlt?: string;
-}
 
 @Component({
   selector: 'app-interactive-map',
@@ -46,6 +33,7 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
   @ViewChild("cloudIconTop") cloudIcon!: ElementRef;
   @ViewChild("cloudIconBottom") cloudIconBottom!: ElementRef;
 
+  //@Input() labels: MapLabel[] = [];
   @Input() hikeMonth: string = '';
   @Input() hikeDate: string = '';
   @Input() hikeTitle: string = '';
@@ -86,77 +74,79 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
   //Map Labels
   selectedLabel: MapLabel | null = null;
 
-  labels: MapLabel[] = [
-    {
-      id: 'longonot',
-      lines: ['MT. LONGONOT', '(11th April)'],
-      status: 'CONQUERED!',
-      x: 300,
-      y: 320,
-      fontSize: 30,
-      link: 'longonot',
-      iconPath: 'assets/img/map-assets/1x/mt-longonot.png',
-      iconAlt: 'mt-longonot'
-    },
-    {
-      id: 'kiima',
-      lines: ['KIIMA KIMWE HILL', '(9th May)'],
-      status: 'NEXT HIKE!',
-      x: 880,
-      y: 270,
-      fontSize: 30,
-      link: 'longonot',
-      iconPath: 'assets/img/map-assets/1x/kiima-kimwe-hill.png',
-      iconAlt: 'kiima-kimwe-hill'
-    },
-    {
-      id: 'gatamaiyu',
-      lines: ['GATAMAIYU FOREST', '(13th June)'],
-      status: 'COMING SOON!',
-      x: 700,
-      y: 645,
-      fontSize: 30,
-      rotate: -55,
-      rotatePivotX: 860,
-      rotatePivotY: 580,
-      link: 'longonot',
-      iconPath: 'assets/img/map-assets/1x/gatamaiyu-forest.png',
-      iconAlt: 'gatamaiyu-forest'
-    },
-    {
-      id: 'elephant',
-      lines: ['ELEPHANT HILL', '(11th July)'],
-      status: 'COMING SOONER!',
-      x: 1500,
-      y: 270,
-      fontSize: 30,
-      link: 'longonot',
-      iconPath: 'assets/img/map-assets/1x/elephant-hill.png',
-      iconAlt: 'elephant-hill'
-    },
-    {
-      id: 'kahunira',
-      lines: ['KAHUNIRA FALLS', '(8th August)'],
-      status: 'COMING SOONEST!',
-      x: 1500,
-      y: 605,
-      fontSize: 30,
-      link: 'longonot',
-      iconPath: 'assets/img/map-assets/1x/kahunira-falls.png',
-      iconAlt: 'kahunira-falls'
-    },
-    {
-      id: 'mtkenya',
-      lines: ['MT. KENYA', '(Sept 23 - 26th)'],
-      status: 'COMING SOONEST...EST!',
-      x: 2100,
-      y: 430,
-      fontSize: 35,
-      link: 'longonot',
-      iconPath: 'assets/img/map-assets/1x/mt-kenya.png',
-      iconAlt: 'mt-kenya'
-    }
-  ];
+  @Input() labels: MapLabel[] = [];
+
+  // @Input() labels: MapLabel[] = [
+  //   {
+  //     id: 'longonot',
+  //     lines: ['MT. LONGONOT', '(11th April)'],
+  //     status: 'CONQUERED!',
+  //     x: 300,
+  //     y: 320,
+  //     fontSize: 30,
+  //     link: 'longonot',
+  //     iconPath: 'assets/img/map-assets/1x/mt-longonot.png',
+  //     iconAlt: 'mt-longonot'
+  //   },
+  //   {
+  //     id: 'kiima',
+  //     lines: ['KIIMA KIMWE HILL', '(9th May)'],
+  //     status: 'NEXT HIKE!',
+  //     x: 880,
+  //     y: 270,
+  //     fontSize: 30,
+  //     link: 'longonot',
+  //     iconPath: 'assets/img/map-assets/1x/kiima-kimwe-hill.png',
+  //     iconAlt: 'kiima-kimwe-hill'
+  //   },
+  //   {
+  //     id: 'gatamaiyu',
+  //     lines: ['GATAMAIYU FOREST', '(13th June)'],
+  //     status: 'COMING SOON!',
+  //     x: 700,
+  //     y: 645,
+  //     fontSize: 30,
+  //     rotate: -55,
+  //     rotatePivotX: 860,
+  //     rotatePivotY: 580,
+  //     link: 'longonot',
+  //     iconPath: 'assets/img/map-assets/1x/gatamaiyu-forest.png',
+  //     iconAlt: 'gatamaiyu-forest'
+  //   },
+  //   {
+  //     id: 'elephant',
+  //     lines: ['ELEPHANT HILL', '(11th July)'],
+  //     status: 'COMING SOONER!',
+  //     x: 1500,
+  //     y: 270,
+  //     fontSize: 30,
+  //     link: 'longonot',
+  //     iconPath: 'assets/img/map-assets/1x/elephant-hill.png',
+  //     iconAlt: 'elephant-hill'
+  //   },
+  //   {
+  //     id: 'kahunira',
+  //     lines: ['KAHUNIRA FALLS', '(8th August)'],
+  //     status: 'COMING SOONEST!',
+  //     x: 1500,
+  //     y: 605,
+  //     fontSize: 30,
+  //     link: 'longonot',
+  //     iconPath: 'assets/img/map-assets/1x/kahunira-falls.png',
+  //     iconAlt: 'kahunira-falls'
+  //   },
+  //   {
+  //     id: 'mtkenya',
+  //     lines: ['MT. KENYA', '(Sept 23 - 26th)'],
+  //     status: 'COMING SOONEST...EST!',
+  //     x: 2100,
+  //     y: 430,
+  //     fontSize: 35,
+  //     link: 'longonot',
+  //     iconPath: 'assets/img/map-assets/1x/mt-kenya.png',
+  //     iconAlt: 'mt-kenya'
+  //   }
+  // ];
 
   isModalOpen: boolean = false;
 

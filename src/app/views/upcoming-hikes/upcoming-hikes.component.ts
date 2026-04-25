@@ -16,15 +16,14 @@ import { InteractiveMapComponent } from '../../components/interactive-map/intera
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 gsap.registerPlugin(SplitText, Draggable, ScrollTrigger);
-// gsap.registerPlugin(Draggable);
-// gsap.registerPlugin(ScrollTrigger);
+
+import { MapLabel } from '../../utils/map-label.interface';
 
 import { HeaderComponent } from '../../components/header/header.component';
 import { FooterComponent } from '../../components/footer/footer.component';
-import { SingleHikeItemComponent } from '../../components/single-hike-item/single-hike-item.component';
+//import { SingleHikeItemComponent } from '../../components/single-hike-item/single-hike-item.component';
 
 import { AllContentService } from '../../services/all-content/all-content.service';
-import { Scroll } from '@angular/router';
 
 @Component({
   selector: 'app-upcoming-hikes',
@@ -36,8 +35,7 @@ import { Scroll } from '@angular/router';
     PreloaderComponent,
     //ComingSoonComponent,
     HeaderComponent,
-    SingleHikeItemComponent,
-    //TrailWebglMapComponent,
+    //SingleHikeItemComponent,
     InteractiveMapComponent,
     FooterComponent,
     NgxSkeletonLoaderModule
@@ -50,6 +48,7 @@ export class UpcomingHikesComponent implements OnInit {
   loading: boolean = false;
   siteImages: any = [];
   loadingContent: boolean = false;
+  hikingLocations: MapLabel[] = [];
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -60,7 +59,7 @@ export class UpcomingHikesComponent implements OnInit {
   ngOnInit(): void {
     this.document.documentElement.scrollTop = 0;
     this.getUpcomingHikes();
-
+    this.getMapLocationData();
   }
 
   ngAfterViewInit(): void {
@@ -75,6 +74,24 @@ export class UpcomingHikesComponent implements OnInit {
     this.animateDraggableItems();
     this.animateHeroText();
     this.animateIcons();
+
+  }
+
+  getMapLocationData() {
+
+    this.allContentService.getLocationPosts().subscribe({
+      next: (data) => {
+        this.hikingLocations = data;
+        console.log('Hiking locations data:', this.hikingLocations);
+
+        this.loadingContent = false;
+      },
+      error: (err) => {
+        console.error('Error fetching hiking locations:', err);
+        //this.error = 'Failed to load hiking locations';
+        this.loadingContent = false;
+      }
+    });
 
   }
 
