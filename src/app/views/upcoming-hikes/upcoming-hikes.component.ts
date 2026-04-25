@@ -24,6 +24,7 @@ import { FooterComponent } from '../../components/footer/footer.component';
 //import { SingleHikeItemComponent } from '../../components/single-hike-item/single-hike-item.component';
 
 import { AllContentService } from '../../services/all-content/all-content.service';
+import { HikingMapService } from '../../services/hiking-map/hiking-map.service';
 
 @Component({
   selector: 'app-upcoming-hikes',
@@ -53,12 +54,13 @@ export class UpcomingHikesComponent implements OnInit {
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private allContentService: AllContentService,
+    private hikingMapService: HikingMapService,
     private el: ElementRef
   ) { }
 
   ngOnInit(): void {
     this.document.documentElement.scrollTop = 0;
-    this.getUpcomingHikes();
+    //this.getUpcomingHikes();
     this.getMapLocationData();
   }
 
@@ -79,16 +81,20 @@ export class UpcomingHikesComponent implements OnInit {
 
   getMapLocationData() {
 
-    this.allContentService.getLocationPosts().subscribe({
+    this.loadingContent = true;
+
+    console.log('Fetching hiking locations data...');
+
+    this.hikingMapService.getLocationPosts().subscribe({
+
       next: (data) => {
         this.hikingLocations = data;
         console.log('Hiking locations data:', this.hikingLocations);
-
         this.loadingContent = false;
+        console.log('Hiking locations data loaded successfully.');
       },
       error: (err) => {
         console.error('Error fetching hiking locations:', err);
-        //this.error = 'Failed to load hiking locations';
         this.loadingContent = false;
       }
     });

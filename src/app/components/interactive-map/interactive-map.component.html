@@ -124,14 +124,15 @@
         hiker’s paradise, famous for its gorgeous vista of the Aberdare ranges, 
       </p>
 
-      <div class="status-badge" 
+      <a 
+        class="status-badge" 
+        [routerLink]="['/single-hike/', selectedLabel.link]"
        [ngClass]="{
         'conquered': selectedLabel.status === 'CONQUERED!',
         'next': selectedLabel.status === 'NEXT HIKE!',
         'pending': selectedLabel.status === 'COMING SOON!' ||
                    selectedLabel.status === 'COMING SOONER!' ||
-                   selectedLabel.status === 'COMING SOONEST!' ||
-                   selectedLabel.status === 'COMING SOONEST...EST!'
+                   selectedLabel.status === 'COMING SOONEST!'
         }">
         <p class="text-white mb-0 font-maraudersmap text-base cursor-pointer">
           {{ selectedLabel.status }} 
@@ -141,7 +142,8 @@
             class="text-white text-xl">
           </fa-icon>
         </p>
-      </div>
+
+      </a>
 
     </div>
     

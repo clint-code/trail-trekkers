@@ -10,6 +10,7 @@ import { MotionPathPlugin, DrawSVGPlugin, SplitText } from 'gsap/all';
 
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCircleArrowUp, faCircleArrowRight, faArrowRotateRight } from '@fortawesome/free-solid-svg-icons';
+import { RouterLinkWithHref } from "@angular/router";
 
 gsap.registerPlugin(DrawSVGPlugin, MotionPathPlugin, SplitText);
 
@@ -18,7 +19,8 @@ gsap.registerPlugin(DrawSVGPlugin, MotionPathPlugin, SplitText);
   standalone: true,
   imports: [
     CommonModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    RouterLinkWithHref
   ],
   templateUrl: './interactive-map.component.html',
   styleUrl: './interactive-map.component.css'
