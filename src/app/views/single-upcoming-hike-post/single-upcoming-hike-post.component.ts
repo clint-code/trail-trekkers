@@ -40,6 +40,7 @@ export class SingleUpcomingHikePostComponent implements OnInit {
 
   postSlug: string = "";
   hikeInfoDetails: any = [];
+  hikeStatus: string = "";
   hikeInfoItems: any = [];
   imagesLoaded: boolean = false;
   siteImages: any = [];
@@ -97,8 +98,6 @@ export class SingleUpcomingHikePostComponent implements OnInit {
         drawSVG: "100%",
         scrollTrigger: {
           trigger: '.title-section',
-          // start: 'top 80%',
-          // end: 'bottom 60%',
           scrub: true
         }
       }
@@ -121,6 +120,9 @@ export class SingleUpcomingHikePostComponent implements OnInit {
       if (response !== null && response.length > 0) {
 
         this.hikeInfoDetails = response[0];
+        this.hikeStatus = this.hikeInfoDetails.acf.metadata_collection.hike_status;
+        console.log('Hike Status:', this.hikeStatus);
+
         this.loadingContent = false;
 
         this.hikeInfoItems = Object.values(this.hikeInfoDetails.acf.hike_info_collection).map((item: any) => ({
@@ -135,6 +137,24 @@ export class SingleUpcomingHikePostComponent implements OnInit {
 
     });
 
+  }
+
+  get isDisabled(): boolean {
+    return ['CONQUERED!'].includes(this.hikeStatus);
+  }
+
+  get isDisabledComingSoon(): boolean {
+    return ['COMING SOON!', 'COMING SOONER!', 'COMING SOONEST!'].includes(this.hikeStatus);
+  }
+
+  get buttonText(): string {
+    if (this.hikeStatus === 'CONQUERED!') {
+      return 'Event Passed';
+    } else if (this.hikeStatus === 'COMING SOON!' || this.hikeStatus === 'COMING SOONER!' || this.hikeStatus === 'COMING SOONEST!') {
+      return 'Coming Soon';
+    }
+    if (this.isDisabled) return 'Past Event';
+    return 'Register Here';
   }
 
   animateHikeInfoItems() {

@@ -20,8 +20,7 @@
     <p
       class="font-garamondRegular text-4xl leading-none max-[768px]:text-3xl max-[600px]:text-2xl max-[500px]:text-xl mb-0"
       [innerHTML]="hikeInfoDetails?.acf?.hike_summary"
-    >
-    </p>
+    ></p>
   </div>
 
   <div class="what-you-need-to-know-section text-center max-[500px]:pb-7">
@@ -54,27 +53,21 @@
         [hikeInfoDescription]="hikeInfoItem.infoDescription"
         [hikeInfoList]="hikeInfoItem.infoList"
       ></app-single-hike-info-item>
-      
     </div>
 
-    <!-- <button 
-      [disabled]="isButtonDisabled"
-      [ngClass]="{
-        'bg-gray-400 text-white w-6/12 px-6 py-3 rounded-lg text-2xl font-passion cursor-not-allowed': isButtonDisabled,
-        'green-button': !isButtonDisabled
-        }"> 
-        Register Here 
-    </button> -->
-
     <button 
+      [disabled]="isDisabled" 
+      [ngClass]="{ 'green-button': !isDisabled, 'disabled-btn': isDisabled }">
+      {{ buttonText }}
+    </button>
+
+    <!-- <button 
       [ngClass]="hikeInfoDetails?.acf?.register_here ? 'green-button' : 'bg-gray-400 text-white w-6/12 px-6 py-3 rounded-lg text-2xl font-passion cursor-not-allowed'"
       (click)="redirectToLink()"
       [disabled]="!hikeInfoDetails?.acf?.register_here"> 
         Register Here 
-    </button>
-
+    </button> -->
   </div>
-
 </div>
 
 <app-footer></app-footer>

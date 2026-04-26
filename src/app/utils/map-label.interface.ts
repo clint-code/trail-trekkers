@@ -1,6 +1,7 @@
 export interface MapLabel {
     id: string;
     lines: string[];
+    hikeSummary: string;
     x: number;
     y: number;
     fontSize: number;

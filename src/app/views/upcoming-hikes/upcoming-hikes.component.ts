@@ -83,15 +83,11 @@ export class UpcomingHikesComponent implements OnInit {
 
     this.loadingContent = true;
 
-    console.log('Fetching hiking locations data...');
-
     this.hikingMapService.getLocationPosts().subscribe({
 
       next: (data) => {
         this.hikingLocations = data;
-        console.log('Hiking locations data:', this.hikingLocations);
         this.loadingContent = false;
-        console.log('Hiking locations data loaded successfully.');
       },
       error: (err) => {
         console.error('Error fetching hiking locations:', err);

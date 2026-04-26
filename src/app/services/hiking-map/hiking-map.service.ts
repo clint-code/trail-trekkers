@@ -34,6 +34,7 @@ export class HikingMapService {
         hike.title.rendered.toUpperCase(),
         `(${formattedDate})`
       ],
+      hikeSummary: hike.acf.hike_summary,
       status: metadata.hike_status,
       x: parseFloat(metadata['x_axis_label_position']) || 0,
       y: parseFloat(metadata['y_axis_label_position']) || 0,
