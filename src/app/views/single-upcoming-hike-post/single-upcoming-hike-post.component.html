@@ -55,9 +55,11 @@
       ></app-single-hike-info-item>
     </div>
 
-    <button 
-      [disabled]="isDisabled" 
-      [ngClass]="{ 'green-button': !isDisabled, 'disabled-btn': isDisabled }">
+    <button
+      [disabled]="isDisabled"
+      (click)="redirectToLink()"
+      [ngClass]="{ 'green-button': !isDisabled, 'disabled-btn': isDisabled }"
+    >
       {{ buttonText }}
     </button>
 
@@ -67,6 +69,22 @@
       [disabled]="!hikeInfoDetails?.acf?.register_here"> 
         Register Here 
     </button> -->
+
+    <div class="modal-overlay" *ngIf="showModal" (click)="closeModal()">
+      <div class="modal-content" (click)="$event.stopPropagation()">
+        <button class="close-btn" (click)="closeModal()">×</button>
+        <h3 class="font-ringBearer text-[#ed1111] text-3xl mb-4">
+          Hear ye, Hiking Enthusiasts!
+        </h3>
+
+        <p class="text-base font-maraudersmap">
+          Hold thy eager heart, brave wanderer of trails,
+        </p>
+        <p class="text-base font-maraudersmap">For the path is being forged where the mountain wind wails,</p>
+        <p class="text-base font-maraudersmap">So sharpen thy boots and keep watch by the door,</p>
+        <p class="text-base font-maraudersmap">Soon shall the gate open and the hills wait in store.</p>
+      </div>
+    </div>
   </div>
 </div>
 

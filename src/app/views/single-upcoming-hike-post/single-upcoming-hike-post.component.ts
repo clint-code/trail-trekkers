@@ -46,7 +46,7 @@ export class SingleUpcomingHikePostComponent implements OnInit {
   siteImages: any = [];
   isButtonDisabled: boolean = true;
   loadingContent: boolean = false;
-
+  showModal = false;
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -106,9 +106,16 @@ export class SingleUpcomingHikePostComponent implements OnInit {
   }
 
   redirectToLink() {
+
     if (this.hikeInfoDetails?.acf?.register_here) {
-      window.open(this.hikeInfoDetails.acf.register_here, '_blank');
+      window.open(this.hikeInfoDetails.acf.register_here);
+    } else {
+      this.showModal = true;
     }
+  }
+
+  closeModal() {
+    this.showModal = false;
   }
 
   getHikeInfoDetails() {
@@ -151,7 +158,7 @@ export class SingleUpcomingHikePostComponent implements OnInit {
     if (this.hikeStatus === 'CONQUERED!') {
       return 'Event Passed';
     } else if (this.hikeStatus === 'COMING SOON!' || this.hikeStatus === 'COMING SOONER!' || this.hikeStatus === 'COMING SOONEST!') {
-      return 'Coming Soon';
+      return 'Coming Soon...';
     }
     if (this.isDisabled) return 'Past Event';
     return 'Register Here';
