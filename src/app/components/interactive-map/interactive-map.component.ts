@@ -153,7 +153,6 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
   isModalOpen: boolean = false;
 
   openModal(label: MapLabel): void {
-    console.log('label', label);
     this.isModalOpen = true;
     this.selectedLabel = label;
   }
@@ -189,22 +188,13 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
   @HostListener('window:resize', ['$event'])
   onResize(event: Event): void {
     this.loadSvg();
-    console.log('window resized');
   }
 
   @HostListener('window:orientationchange', ['$event'])
   onOrientationChange(event: Event): void {
     setTimeout(() => {
       this.loadSvg();
-      console.log('window orientation changed');
     }, 100);
-  }
-
-  scrollTop() {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
   }
 
   private loadSvg(): void {
