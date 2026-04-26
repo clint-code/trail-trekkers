@@ -10,18 +10,21 @@ import { PreloaderComponent } from '../../components/preloader/preloader.compone
 import { Preloader } from '../../utils/preloader';
 import { ComingSoonComponent } from '../../components/coming-soon/coming-soon.component';
 
+//interactive map imports
+import { InteractiveMapComponent } from '../../components/interactive-map/interactive-map.component';
+
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 gsap.registerPlugin(SplitText, Draggable, ScrollTrigger);
-// gsap.registerPlugin(Draggable);
-// gsap.registerPlugin(ScrollTrigger);
+
+import { MapLabel } from '../../utils/map-label.interface';
 
 import { HeaderComponent } from '../../components/header/header.component';
 import { FooterComponent } from '../../components/footer/footer.component';
-import { SingleHikeItemComponent } from '../../components/single-hike-item/single-hike-item.component';
+//import { SingleHikeItemComponent } from '../../components/single-hike-item/single-hike-item.component';
 
 import { AllContentService } from '../../services/all-content/all-content.service';
-import { Scroll } from '@angular/router';
+import { HikingMapService } from '../../services/hiking-map/hiking-map.service';
 
 @Component({
   selector: 'app-upcoming-hikes',
@@ -31,9 +34,10 @@ import { Scroll } from '@angular/router';
   imports: [
     CommonModule,
     PreloaderComponent,
-    ComingSoonComponent,
+    //ComingSoonComponent,
     HeaderComponent,
-    SingleHikeItemComponent,
+    //SingleHikeItemComponent,
+    InteractiveMapComponent,
     FooterComponent,
     NgxSkeletonLoaderModule
   ]
@@ -45,17 +49,19 @@ export class UpcomingHikesComponent implements OnInit {
   loading: boolean = false;
   siteImages: any = [];
   loadingContent: boolean = false;
+  hikingLocations: MapLabel[] = [];
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private allContentService: AllContentService,
+    private hikingMapService: HikingMapService,
     private el: ElementRef
   ) { }
 
   ngOnInit(): void {
     this.document.documentElement.scrollTop = 0;
-    this.getUpcomingHikes();
-
+    //this.getUpcomingHikes();
+    this.getMapLocationData();
   }
 
   ngAfterViewInit(): void {
@@ -70,6 +76,24 @@ export class UpcomingHikesComponent implements OnInit {
     this.animateDraggableItems();
     this.animateHeroText();
     this.animateIcons();
+
+  }
+
+  getMapLocationData() {
+
+    this.loadingContent = true;
+
+    this.hikingMapService.getLocationPosts().subscribe({
+
+      next: (data) => {
+        this.hikingLocations = data;
+        this.loadingContent = false;
+      },
+      error: (err) => {
+        console.error('Error fetching hiking locations:', err);
+        this.loadingContent = false;
+      }
+    });
 
   }
 
@@ -93,7 +117,7 @@ export class UpcomingHikesComponent implements OnInit {
   autoRotateIcons() {
 
     gsap.to(".rotating-compass", {
-      duration: 10,
+      duration: 5,
       rotation: 360,
       type: "rotation",
       repeat: -1,
@@ -109,7 +133,7 @@ export class UpcomingHikesComponent implements OnInit {
 
     Draggable.create(items, {
       type: 'rotation',
-      bounds: '.hikes-title',
+      bounds: '.compass-section',
       inertia: true
     });
 

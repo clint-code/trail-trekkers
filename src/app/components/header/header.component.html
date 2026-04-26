@@ -16,11 +16,11 @@
     <!-- Navigation -->
     <nav class="hidden md:flex space-x-8 text-xl">
       <a
-        [routerLink]="['/upcoming-hikes']"
+        [routerLink]="['/trail-to-the-throne']"
         [routerLinkActive]="['text-orange-600']"
         class="hover:text-orange-600 transition orange-hover-underline font-passion text-black"
       >
-        Upcoming Hikes
+        Trail to the Throne
       </a>
 
       <a
@@ -67,7 +67,7 @@
       (click)="toggleMenu()"
       [ngClass]="{
         'visible opacity-50': isOverlayVisible,
-        'invisible opacity-0': !isOverlayVisible
+        'invisible opacity-0': !isOverlayVisible,
       }"
     ></div>
 
@@ -75,18 +75,18 @@
       class="md:hidden mobile-nav-menu transition duration-500 ease-in-out"
       [ngClass]="{
         'translate-x-0': isMobileMenuOpen,
-        '-translate-x-full': !isMobileMenuOpen
+        '-translate-x-full': !isMobileMenuOpen,
       }"
     >
       <nav class="mt-9">
         <ul>
           <li>
             <a
-              [routerLink]="['/upcoming-hikes']"
+              [routerLink]="['/trail-to-the-throne']"
               [routerLinkActive]="['text-orange-600']"
               class="hover:text-orange-600 transition orange-hover-underline font-passion text-black"
             >
-              Upcoming Hikes
+              Trail to the Throne
             </a>
           </li>
 

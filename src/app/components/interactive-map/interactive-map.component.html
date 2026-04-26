@@ -1,0 +1,139 @@
+
+
+<div class="map-page relative mb-10 mt-10 max-[720px]:hidden">
+  <!-- Replay button -->
+  <button class="ml-5 replay-btn font-passion" (click)="replayAnimation()">
+    <fa-icon [icon]="'arrow-rotate-right'" class="mr-2"></fa-icon> 
+    <span >Replay Animation</span>
+  </button>
+
+  <!-- Zoom controls -->
+  <!-- <div class="zoom-controls">
+    <button (click)="resetZoom()" class="font-passion" title="Reset">
+      ↺ Reset Map
+    </button>
+  </div> -->
+
+
+  <div
+    #cloudIconTop
+    class="absolute top-5 right-1/4"
+  >
+    <img
+      src="assets/img/vector-icons/clouds.png"
+      class="h-auto w-auto"
+      alt="clouds"
+    />
+  </div>
+
+  <div
+   #cloudIconBottom
+    class="absolute -bottom-3 left-20"
+    id="clouds-icon"
+  >
+    <img
+      src="assets/img/vector-icons/clouds.png"
+      class="h-auto w-auto"
+      alt="clouds"
+    />
+  </div>
+
+  <svg
+    #svgEl
+    [attr.viewBox]="svgViewBox"
+    width="100%"
+    height="100%"
+    xmlns="http://www.w3.org/2000/svg"
+    class="trail-svg mt-5 p-3"
+  >
+    <g>
+      <!-- Base map injected here — no 2000 lines in template -->
+      <g #mapContainer [innerHTML]="svgContent"></g>
+
+      <!-- Dynamic red labels on top -->
+      <g
+        *ngFor="let label of labels"
+        [attr.transform]="getTransform(label)"
+        class="map-label"
+        style="opacity: 0; pointer-events: all"
+        (click)="openModal(label)"
+      >
+          <text
+            style="cursor: pointer"
+            *ngFor="let location of label.lines; let i = index"
+            label.status
+            [attr.x]="label.x"
+            [attr.y]="getLineY(label, i)"
+            [attr.font-size]="label.fontSize"
+            font-family="'marauders-map', serif"
+            font-weight="700"
+            fill="#ed1111"
+            letter-spacing="2"
+            text-anchor="middle"
+          >
+            {{ location }}
+            
+          </text>
+        
+      </g>
+    </g>
+  </svg> 
+
+  <!-- Modal -->
+<div 
+  *ngIf="isModalOpen && selectedLabel" 
+  class="modal-overlay relative"
+  (click)="closeModal()"
+>
+  <div class="modal-content" (click)="$event.stopPropagation()">
+
+    <button class="close-btn" (click)="closeModal()">×</button>
+    
+    <div class="absolute bottom-4 right-4">
+        <img
+          src="{{selectedLabel.iconPath}}"
+          class="h-24 w-auto"
+          alt="{{selectedLabel.iconAlt}}"
+        />
+    </div>
+    
+    <h2 class="font-speakeasy text-[#ed1111] text-3xl">
+      {{ selectedLabel.lines[0] }}
+    </h2>
+
+    <p class="subtitle font-maraudersmap text-[#ed1111] text-xl" *ngIf="selectedLabel.lines.length > 1">
+      {{ selectedLabel.lines.slice(1).join(' ') }}
+    </p>
+    
+    <div class="modal-body">
+      <p class="text-base font-maraudersmap">
+        {{ selectedLabel.hikeSummary }} 
+      </p>
+
+      <a 
+        class="status-badge" 
+        [routerLink]="['/single-hike/', selectedLabel.link]"
+       [ngClass]="{
+        'conquered': selectedLabel.status === 'CONQUERED!',
+        'next': selectedLabel.status === 'NEXT HIKE!',
+        'pending': selectedLabel.status === 'COMING SOON!' ||
+                   selectedLabel.status === 'COMING SOONER!' ||
+                   selectedLabel.status === 'COMING SOONEST!'
+        }">
+        <p class="text-white mb-0 font-maraudersmap text-base cursor-pointer">
+          {{ selectedLabel.status }} 
+
+          <fa-icon 
+            [icon]="'circle-arrow-right'" 
+            class="text-white text-xl">
+          </fa-icon>
+        </p>
+
+      </a>
+
+    </div>
+    
+  </div>
+</div>
+
+</div>

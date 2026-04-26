@@ -19,7 +19,11 @@
 }
 
 .green-button {
-  @apply bg-[#266b5a] text-white w-6/12 px-6 py-3 rounded-lg text-2xl font-passion hover:bg-[#ea580c] transition;
+  @apply bg-[#266b5a] mb-2 text-white w-6/12 px-6 py-3 rounded-lg text-2xl font-passion hover:bg-[#ea580c] transition;
+}
+
+.disabled-btn {
+  @apply bg-gray-400 mb-2 text-white w-6/12 px-6 py-3 rounded-lg text-2xl font-passion cursor-not-allowed;
 }
 
 .parallax-effect {

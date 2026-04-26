@@ -25,7 +25,7 @@ export const routes: Routes = [
     },
 
     {
-        path: 'upcoming-hikes',
+        path: 'trail-to-the-throne',
         component: UpcomingHikesComponent
     },
 

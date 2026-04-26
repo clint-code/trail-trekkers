@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'marauders-map';
+    src: url('marauders-map.woff2') format('woff2'),
+        url('marauders-map.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
