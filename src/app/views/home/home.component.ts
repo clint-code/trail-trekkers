@@ -36,7 +36,7 @@ export class HomeComponent implements AfterViewInit {
   imagesLoaded: boolean = false;
   siteImages: any = [];
   badges: any = [];
-  colors: string[] = ['#2f7db6', '#004aad', '#e61a23', '#266b5a'];
+  colors: string[] = ['#2f7db6', '#004aad', '#e61a23', '#266b5a', '#386641'];
 
   constructor(
     @Inject(DOCUMENT)
