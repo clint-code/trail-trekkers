@@ -34,7 +34,7 @@ import { HikingMapService } from '../../services/hiking-map/hiking-map.service';
   imports: [
     CommonModule,
     PreloaderComponent,
-    //ComingSoonComponent,
+    ComingSoonComponent,
     HeaderComponent,
     //SingleHikeItemComponent,
     InteractiveMapComponent,
