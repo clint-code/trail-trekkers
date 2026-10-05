@@ -14,8 +14,9 @@ p {
 }
 
 .home {
+  background-color: #f4e285;
   .content-left {
-    width: 35%;
+    width: 100%;
     min-height: 100vh;
     height: auto;
 
@@ -24,7 +25,7 @@ p {
     }
 
     .hero-text-section {
-      margin-top: -200px;
+      margin-top: -150px;
       position: absolute;
       width: 100%;
       top: 50%;
@@ -33,63 +34,6 @@ p {
         line-height: 0.85;
       }
     }
-  }
-  .content-right {
-    width: 65%;
-
-    @keyframes scroll-up {
-      from {
-        transform: translateY(0);
-      }
-      to {
-        transform: translateY(-100%);
-      }
-    }
-
-    .column {
-      .scroll {
-        animation: scroll-up 50s linear infinite;
-        transition: animation-duration 2s cubic-bezier(0.23, 1, 0.32, 1);
-
-        img {
-          width: 95%;
-          height: auto;
-          object-fit: cover;
-          margin-bottom: 20px;
-          border-radius: 20px;
-        }
-
-        &:hover {
-          animation-duration: 150s;
-        }
-      }
-
-      .reverse {
-        animation: scroll-down 50s linear infinite;
-
-        &:hover {
-          animation-duration: 150s;
-        }
-      }
-    }
-  }
-}
-
-@keyframes scroll-up {
-  0% {
-    transform: translateY(0);
-  }
-  100% {
-    transform: translateY(-50%);
-  }
-}
-
-@keyframes scroll-down {
-  0% {
-    transform: translateY(-50%);
-  }
-  100% {
-    transform: translateY(0);
   }
 }
 
@@ -314,12 +258,7 @@ p {
 
 @media screen and (max-width: 768px) {
   .home {
-    background-color: #f4e285;
-    .content-right {
-      width: 60%;
-    }
     .content-left {
-      width: 40%;
 
       .hero-text-section {
         margin-top: -110px;
