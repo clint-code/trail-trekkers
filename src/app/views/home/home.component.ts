@@ -99,7 +99,7 @@ export class HomeComponent implements AfterViewInit {
         onPress: () => {
           gsap.to(badge, {
             duration: 0.5,
-            scale: 1.25,
+            scale: 1.35,
             zIndex: 1000,
           });
           gsap.to(
