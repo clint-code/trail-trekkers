@@ -183,7 +183,6 @@ export class HomeComponent implements AfterViewInit {
       duration: 10,
       rotation: -360,
       type: "rotation",
-      repeat: -1,
       ease: "linear",
       transformOrigin: "50% 50%"
     });

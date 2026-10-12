@@ -198,7 +198,7 @@ export class InteractiveMapComponent implements OnInit, AfterViewInit {
   }
 
   private loadSvg(): void {
-    this.http.get('assets/svg/svg-map-updated-locations-paths.svg', { responseType: 'text' })
+    this.http.get('assets/svg/svg-map-updated-locations-new.svg', { responseType: 'text' })
       .subscribe(svgData => {
         const stripped = this.stripSvgWrapper(svgData);
         this.svgContent = this.sanitizer.bypassSecurityTrustHtml(stripped);
